@@ -1,10 +1,4 @@
-const compileBtn = document.getElementById("compilebtn");
-const consoleOutput = document.getElementById("console");
-const pdfbox = document.getElementById("pdfbox");
-
 import * as latex from './latex.js'
-
-console.log(latex.code)
 
 
 document.getElementById('editor').innerHTML = latex.code
@@ -17,26 +11,22 @@ editor.setFontSize(18);
 
 const globalEn = new PdfTeXEngine();
 
-async function init() {
+document.addEventListener("DOMContentLoaded", async () => {
   await globalEn.loadEngine();
-  compileBtn.innerHTML = "Compile";
-  compileBtn.disabled = false;
-}
-
-async function compile() {
+  compile.addEventListener('click', async () => {
     if(!globalEn.isReady()) {
         console.log("Engine not ready yet");
         return;
     }
-    compileBtn.disabled = true;
-    compileBtn.innerHTML = "Compiling...";
+    compile.disabled = true;
+    compile.innerHTML = "Compiling...";
 
     globalEn.writeMemFSFile("main.tex", editor.getValue());
     globalEn.setEngineMainFile("main.tex");
     let r = await globalEn.compileLaTeX();
-    consoleOutput.innerHTML = r.log;
-    compileBtn.innerHTML = "Compile";
-    compileBtn.disabled = false;
+    log.innerHTML = r.log;
+    compile.innerHTML = "Compile";
+    compile.disabled = false;
     if (r.status === 0) {
         const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
         const objectURL = URL.createObjectURL(pdfblob);
@@ -46,5 +36,5 @@ async function compile() {
         console.log(objectURL);
         pdfbox.innerHTML = `<embed src="${objectURL}" width="100%" height="400px" type="application/pdf">`;
     }
-}
-init();
+  })
+})
