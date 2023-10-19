@@ -6,9 +6,22 @@ editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
 
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   const globalEn = await new PdfTeXEngine();  
   await globalEn.loadEngine();
+  loadAjax.addEventListener('click', 
+  function () {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      document.getElementById("demo").innerHTML = this.responseText;
+      }
+    xhttp.open("GET", "main.tex", true);
+    xhttp.send();
+  }
+  
+  )
   compile.addEventListener('click', async () => {
 
     compile.disabled = true;
