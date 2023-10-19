@@ -1,4 +1,16 @@
 import * as latex from './latex.js'
+
+function read (file) {
+  let response
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() { response =  this.responseText }
+  xhttp.open("GET", file, false);
+  xhttp.send();
+  return response
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+
 document.getElementById('editor').innerHTML = latex.code
 const editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
@@ -8,20 +20,9 @@ editor.setFontSize(18);
 
 
 
-document.addEventListener("DOMContentLoaded", async () => {
   const globalEn = await new PdfTeXEngine();  
   await globalEn.loadEngine();
-  loadAjax.addEventListener('click', 
-  function () {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-      document.getElementById("demo").innerHTML = this.responseText;
-      }
-    xhttp.open("GET", "main.tex", true);
-    xhttp.send();
-  }
-  
-  )
+  loadAjax.addEventListener('click', () => console.log(read("main.tex")) )
   compile.addEventListener('click', async () => {
 
     compile.disabled = true;
