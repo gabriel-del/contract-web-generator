@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
         const objectURL = URL.createObjectURL(pdfblob);
         setTimeout(()=> URL.revokeObjectURL(objectURL) , 30000);
-        console.log(objectURL)
+        download.href = objectURL
+        download.download = "abc"
+        download.click()
         pdfbox.innerHTML = `<embed src="${objectURL}" width="100%" height="400px" type="application/pdf">`;
     }
   })
