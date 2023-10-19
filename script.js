@@ -6,7 +6,6 @@ editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
 
-
 document.addEventListener("DOMContentLoaded", async () => {
   const globalEn = await new PdfTeXEngine();  
   await globalEn.loadEngine();
