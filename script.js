@@ -2,30 +2,12 @@ const compileBtn = document.getElementById("compilebtn");
 const consoleOutput = document.getElementById("console");
 const pdfbox = document.getElementById("pdfbox");
 
+import * as latex from './latex.js'
 
-const latex = `
-\\documentclass{article}
+console.log(latex.code)
 
-\\usepackage{tgtermes}
-\\renewcommand*\\ttdefault{txtt}
 
-\\usepackage[T1]{fontenc}
-\\usepackage[utf8]{inputenc}
-
-\\input glyphtounicode
-\\pdfgentounicode=1
-
-\\begin{document}
-\\noindent
-\\rmfamily
-rmfamily: zażółć gęsią jaźń \\\\
-\\ttfamily
-ttfamily: zażółć gęsią jaźń \\\\
-\\end{document}
-`
-console.log(latex)
-
-document.getElementById('editor').innerHTML = latex
+document.getElementById('editor').innerHTML = latex.code
 
 const editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
