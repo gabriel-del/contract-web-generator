@@ -1,0 +1,9 @@
+#editor {
+  width: 100%;
+  height: 400px;
+}
+pre {
+white-space: pre-wrap;
+max-height: 400px;
+overflow-y: scroll;
+}
