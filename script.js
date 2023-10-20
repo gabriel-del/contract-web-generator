@@ -19,7 +19,11 @@ editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
 
-
+let nome = "fulano"
+let aTex = read("main2.tex")
+let aa
+eval(aTex)
+console.log(aa)
 
   const globalEn = await new PdfTeXEngine();  
   await globalEn.loadEngine();
