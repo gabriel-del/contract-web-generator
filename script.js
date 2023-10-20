@@ -1,4 +1,4 @@
-import db  from './form.js';
+import { db, dbg }   from './form.js';
 
 function read (file) {
   let response
@@ -19,14 +19,12 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
-
+console.log(dbg)
   const globalEn = await new PdfTeXEngine();  
   await globalEn.loadEngine();
   compile.addEventListener('click', async () => {
-
     compile.disabled = true;
     compile.innerHTML = "Compiling...";
-
     globalEn.writeMemFSFile("main.tex", editor.getValue());
     globalEn.setEngineMainFile("main.tex");
     let r = await globalEn.compileLaTeX();
