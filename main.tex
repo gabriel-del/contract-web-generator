@@ -7,7 +7,7 @@
 \usepackage{ifthen}
 \usepackage[portuguese]{babel}
 \fancyhf{}
-\fancyhead[C]{\tiny CONTINUAÇÃO DO CONTRATO DE LOCAÇÃO DO IMÓVEL SITUADO NA RUA \hrulefill  \vspace*{0.2cm} \\ \noindent \hrulefill – PORTO DE GALINHAS/IPOJUCA (PE) CEP: 55.590-000\\}
+\fancyhead[C]{\tiny CONTINUAÇÃO DO CONTRATO DE LOCAÇÃO DO IMÓVEL SITUADO NA ${dbg.enderecoC}$, APT. Nº ${db.apartamento}$ – PORTO DE GALINHAS/IPOJUCA (PE) CEP: 55.590-000\\}
 \date{\today}
 \author{ENRIQUE ALBERTO DEL CESARE}
 \title{CONTRATO DE LOCAÇÃO DE IMÓVEL}
@@ -17,19 +17,15 @@
 \newcommand\n{\newcommand}
 
 
-Os signatários ${db.nome}$ deste ${db.nacionalidade}$ instrumento ${db.data.inicio}$ de um lado Enrique Alberto Del Cesare,
+Os signatários deste  instrumento de um lado Enrique Alberto Del Cesare,
 argentino, naturalizado brasileiro, solteiro, CPF nº 578.550.724-20, identidade nº 2.583.252 SDS\//PE, 
 residente a Rua Cavalo Marinho, nº 180 Recanto Porto de Galinhas II Quadra 5 Lote G1 
 no bairro de Porto de Galinhas Ipojuca/Pernambuco CEP 55.590-000 e, de outro,
-\hrulefill
+${db.nome}$, ${db.nacionalidade}$, ${db.estadoCivil}$, ${db.profissao}$, CPF nº ${db.cpf}$, identidade ${db.identidade}$, 
+residente a ${db.endereco}$. 
 
-\noindent \hrulefill.
-
-O primeiro nomeado, aqui designado “LOCADOR”, sendo proprietário do imóvel situado à rua \hrulefill
- 
-\noindent \hrulefill, 
-
-\noindent no bairro de Porto de Galinhas Ipojuca\//Pernambuco, CEP 55.590-000 loca-o ao segundo, aqui designado “LOCATÁRIO”, mediante as cláusulas e condições seguintes:
+O primeiro nomeado, aqui designado “LOCADOR”, sendo proprietário do imóvel situado à rua ${dbg.enderecoc}$  
+no bairro de Porto de Galinhas Ipojuca\//Pernambuco, CEP 55.590-000 loca-o ao segundo, aqui designado “LOCATÁRIO”, mediante as cláusulas e condições seguintes:
 
 \begin{enumerate}
 

@@ -23,6 +23,7 @@ export let dbg = {
   "aluguelExtenso": extenso(db.aluguel),
   "vencimentoExtenso": extenso(db.vencimento),
   "dataFinal": db.data,
+  "enderecoc": endereco(db.bloco),
   "enderecoC": endereco(db.bloco),
   "limitePessoas": limitePessoas(db.bloco, db.apartamento),
   "bicicletas": bicicletas(db.bloco),
@@ -31,8 +32,8 @@ export let dbg = {
 }
 
 function endereco (bloco) {
-  if (bloco === 'A') return 'Rua Cavalo Marinho, nº 180}'
-  if (bloco === 'B') return 'Rua Cavalo Marinho, nº 182}'
+  if (bloco === 'A') return 'Rua Cavalo Marinho, nº 180'
+  if (bloco === 'B') return 'Rua Cavalo Marinho, nº 182'
   if (bloco === 'C') return 'Rua Merepe III, S\//N'
 }
 function limitePessoas(bloco, apartamento){
