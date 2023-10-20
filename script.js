@@ -19,7 +19,7 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
-console.log(dbg)
+console.log(dbg.objetos)
   const globalEn = await new PdfTeXEngine();  
   await globalEn.loadEngine();
   compile.addEventListener('click', async () => {

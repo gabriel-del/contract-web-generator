@@ -1,5 +1,7 @@
 
 import extenso from 'https://cdn.jsdelivr.net/npm/extenso@2.0.1/+esm'
+import pluralize from 'https://cdn.jsdelivr.net/npm/pluralize-ptbr@1.0.4/+esm'
+
 
 
 export let db = {
@@ -16,7 +18,7 @@ export let db = {
   "profissao": "autônomo",
   "endereco": "Rua Abc",
   "estadoCivil": "solteiro",
-  "objetos": ["cama", "guarda-roupa"],
+  "objetos": [{"nome": "cama", "quantidade": 2},{"nome": "guarda-roupa", "quantidade": 2}],
 }
 
 export let dbg = {
@@ -35,7 +37,7 @@ export let dbg = {
   "profissao": db.profissao ? `,  ${db.profissao}` : '',
   "endereco": db.endereco ? `, residente a ${db.endereco}` : '',
   "estadoCivil": db.estadoCivil ? `,  ${db.estadoCivil}` : '',
-  "objetos": db.objetos ? `,  ${db.objetos}` : '',
+  "objetos": objetos(db.objetos),
 }
 
 function endereco (bloco) {
@@ -60,4 +62,20 @@ function animais(bloco){
 function garagem(bloco,apartamento){
   if (bloco === 'B' && apartamento <= 8 ) return ' Cada apartamento tem direito a uma vaga de garagem rotativa.'
   return  ''
+}
+function objetos(objetos){
+  let result = ''
+  objetos.forEach((objeto,i) => {
+    if (objeto.quantidade === 0) return
+    if(result !== '') result += ', '
+    if (objeto.quantidade === 1) {result += `${objeto.quantidade} ${objeto.nome}` } 
+    else {result += `${objeto.quantidade} ${plural(objeto.nome)}`}
+  })
+  return result
+}
+function plural(palavra){
+  if (palavra === 'guarda-roupa') return 'guarda-roupas'
+  if (palavra === 'ar-condicionado') return 'ares-condicionados'
+  return pluralize(palavra)
+
 }
