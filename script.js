@@ -6,7 +6,7 @@ function read (file) {
   xhttp.onload = function() { response =  this.responseText }
   xhttp.open("GET", file, false);
   xhttp.send();
-  return response
+  return response.replaceAll("\\","\\\\").replaceAll("}$", "}")
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -20,9 +20,9 @@ editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
 
 let aa
-let nome = "fulano"
-let aTex = read("main2.tex").replaceAll("\\","\\\\")
-eval(aTex)
+let nome = "fulano2"
+let aTex = read("main.tex")
+eval(`aa = \`${aTex}\``)
 console.log(aa)
 
   const globalEn = await new PdfTeXEngine();  
