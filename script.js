@@ -1,5 +1,4 @@
-import * as latex from './latex.js'
-let nome = "fulano4"
+import db  from './form.js';
 
 function read (file) {
   let response
