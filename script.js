@@ -1,4 +1,5 @@
 import * as latex from './latex.js'
+let nome = "fulano4"
 
 function read (file) {
   let response
@@ -6,7 +7,8 @@ function read (file) {
   xhttp.onload = function() { response =  this.responseText }
   xhttp.open("GET", file, false);
   xhttp.send();
-  return response.replaceAll("\\","\\\\").replaceAll("}$", "}")
+  eval(`response = \`${response.replaceAll("\\","\\\\").replaceAll("}$", "}")}\``)
+  return response
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -18,12 +20,6 @@ editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
-
-let aa
-let nome = "fulano2"
-let aTex = read("main.tex")
-eval(`aa = \`${aTex}\``)
-console.log(aa)
 
   const globalEn = await new PdfTeXEngine();  
   await globalEn.loadEngine();
