@@ -7,11 +7,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body >
-  <div id="editor"></div>
-  <div id="pdfbox"></div>
-  <h4>Console Output:</h4>
-  <pre id="log"></pre>
-  <button id="compile" >Compile</button>
+  <aside>
+    <button >
+      <img src="menu.svg" alt="Abrir menu" />
+    </button>
+    <nav>
+      <ul>
+        <li><a href="#" class='active'><span>Formulário</span></a></li>
+        <li><a href="#"><span>Histórico</span></a></li>
+        <li><a href="#"><span>Dev</span></a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main>
+    <div id="editor"></div>
+    <div class="right">
+      <button id="compile" >Compilar</button>
+      <div id="pdfbox"></div>
+      <pre id="log"></pre>
+    </div>
+  </main>
   <a id="download"></a>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"></script>
