@@ -19,9 +19,9 @@ editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
 
-let nome = "fulano"
-let aTex = read("main2.tex")
 let aa
+let nome = "fulano"
+let aTex = read("main2.tex").replaceAll("\\","\\\\")
 eval(aTex)
 console.log(aa)
 
