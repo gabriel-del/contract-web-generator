@@ -3,20 +3,20 @@ import extenso from 'https://cdn.jsdelivr.net/npm/extenso@2.0.1/+esm'
 
 
 export let db = {
+  "bloco": "B",
+  "apartamento": "4",
+  "data": "01 de janeiro de 2021",
+  "duracao": "12",
+  "aluguel": "1200",
+  "vencimento": "01",
   "nome": "Fulano123",
+  "cpf": "999.999.999-99",
+  "identidade": "9.999.999",
   "nacionalidade": "brasileiro",
   "profissao": "autônomo",
   "endereco": "Rua Abc",
   "estadoCivil": "solteiro",
-  "cpf": "999.999.999-99",
-  "identidade": "9.999.999",
-  "bloco": "B",
-  "apartamento": "4",
-  "aluguel": "1200",
-  "data": "01 de janeiro de 2021",
-  "duracao": "12",
-  "vencimento": "01",
-  "objetos": ["cama", "guarda-roupa"]
+  "objetos": ["cama", "guarda-roupa"],
 }
 
 export let dbg = {
@@ -28,7 +28,14 @@ export let dbg = {
   "limitePessoas": limitePessoas(db.bloco, db.apartamento),
   "bicicletas": bicicletas(db.bloco),
   "animais": animais(db.bloco),
-  "garagem": garagem(db.bloco, db.apartamento)
+  "garagem": garagem(db.bloco, db.apartamento),
+  "cpf": db.cpf ? `, CPF nº ${db.cpf}` : '',
+  "identidade": db.identidade ? `, identidade ${db.identidade}` : '',
+  "nacionalidade": db.nacionalidade ? `, CPF nº ${db.nacionalidade}` : '',
+  "profissao": db.profissao ? `,  ${db.profissao}` : '',
+  "endereco": db.endereco ? `, residente a ${db.endereco}` : '',
+  "estadoCivil": db.estadoCivil ? `,  ${db.estadoCivil}` : '',
+  "objetos": db.objetos ? `,  ${db.objetos}` : '',
 }
 
 function endereco (bloco) {
@@ -44,13 +51,13 @@ function limitePessoas(bloco, apartamento){
 }
 function bicicletas(bloco){
   if (bloco === 'C' ) return ''
-  return  'As bicicletas devem ser guardadas no bicicletário.'
+  return  ' As bicicletas devem ser guardadas no bicicletário.'
 }
 function animais(bloco){
   if (bloco === 'C' ) return ''
-  return  'é proibido a criação de animais'
+  return  ' É proibido a criação de animais.'
 }
 function garagem(bloco,apartamento){
-  if (bloco === 'B' && apartamento <= 8 ) return 'e cada apartamento tem direito a uma vaga de garagem rotativa'
+  if (bloco === 'B' && apartamento <= 8 ) return ' Cada apartamento tem direito a uma vaga de garagem rotativa.'
   return  ''
 }
