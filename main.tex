@@ -29,12 +29,12 @@ no bairro de Porto de Galinhas Ipojuca\//Pernambuco, CEP 55.590-000 loca-o ao se
 
 \begin{enumerate}
 
-\item O prazo do presente contrato é de \textbf{01 (hum) ano} a iniciar em \hrulefill
-\ e a terminar em \makebox[6cm]{\hrulefill}\ data em que o LOCATÁRIO 
+\item O prazo do presente contrato é de \textbf{01 (hum) ano} a iniciar em ${db.data}$
+\ e a terminar em ${dbg.dataFinal}$\ data em que o LOCATÁRIO 
 se obriga a restituir o imóvel completamente desocupado, nas condições previstas neste contrato,
 sob pena de incorrer na multa da cláusula 9º e de sujeitar-se ao disposto no Artigo 1196 do Código Civil Brasileiro;
-\item O aluguel mensal é de \textbf{R\$ \makebox[2cm]{\hrulefill},00 (\makebox[8cm]{\hrulefill}\ reais)},
-que o LOCATÁRIO se compromete a pagar pontualmente, até o dia \makebox[4cm]{\hrulefill}\
+\item O aluguel mensal é de \textbf{R\$ ${db.aluguel}$,00 (${dbg.aluguelExtenso}$ reais)},
+que o LOCATÁRIO se compromete a pagar pontualmente, até o dia ${db.vencimento}$\
 de cada mês, na residência do LOCADOR ou efetuando o depósito no Banco do Brasil Agência 4600-0 poupança número 9457-9, operação 51; 
 \item Os consumos de \textbf{água e luz}, assim como taxas de condomínio, que incidam ou venham a incidir sobre o imóvel, conservação e outras decorrentes de lei, assim como suas respectivas majorações, \textbf{ficam a cargo do LOCATÁRIO} e, seu não pagamento na época determinada, acarretará a rescisão deste; 
 \item O LOCATÁRIO, salvo as obras que importem na segurança do imóvel, obriga-se por todas as outras, devendo trazer o imóvel locado em boas condições de higiene e limpeza, e pinturas, em perfeito estado de conservação e funcionamento, para assim restituí-los quando findo ou rescindido este contrato, sem direito a retenção ou indenização por quaisquer benfeitorias ainda que necessárias, as quais ficarão desde logo incorporadas ao imóvel; 
@@ -45,24 +45,21 @@ de cada mês, na residência do LOCADOR ou efetuando o depósito no Banco do Bra
 \item Para todas as questões oriundas deste contrato, será competente o foro da situação do imóvel, com renúncia de qualquer outro, por mais especial que se apresente;
 \item Tudo quanto for devido em razão deste contrato e, que não comportem o processo executivo, será cobrado em ação competente, ficando a cargo do devedor, em qualquer caso, os honorários do advogado que o credor constituir para ressalva dos seus direitos;
 \item Quaisquer estragos ocasionados ao imóvel e suas instalações, bem como as despesas a que o proprietário for obrigado por eventuais modificações feitas no imóvel, pelo LOCATÁRIO, não ficam compreendidas na multa da cláusula 9ª , mas serão pagas à parte;
-\item O imóvel, objeto desta locação, destina-se exclusivamente para fins residenciais, reservado para \makebox[2cm]{\hrulefill} pessoas,  não podendo, a sua destinação ser mudada sem o consentimento do LOCADOR;
+\item O imóvel, objeto desta locação, destina-se exclusivamente para fins residenciais, 
+reservado para \textbf{ ${dbg.limitePessoas}$ pessoas },  não podendo, a sua destinação ser mudada sem o consentimento do LOCADOR;
 Será cobrado uma multa de 100 reais por dia, por pessoa além do limite;
 \item Quando da rescisão do contrato pelo LOCATÁRIO  ou pelo LOCADOR, o desistente será penalizado com uma multa no valor correspondente a 2 (dois) meses de aluguel. O LOCADOR não será penalizado quando o motivo da desistência for motivado pela não observância de qualquer uma das cláusulas pelo LOCATÁRIO;
-\item Os objetos citados nesta cláusula: \hrulefill
-
-\noindent \hrulefill ;
+\item Os objetos citados nesta cláusula: ${db.objetos}$;
 \item Demais regras de convivência no condomínio: Proibido som alto, jogar lixo no chão ou jardim, como cigarros, latinhas etc. 
 Estender pranchas ou outros objetos na área externa.
 Proibido festas, piscinas de plástico, lavar carros ou bicicletas no condomínio.
-\hrulefill
-
-
+${dbg.bicicletas}$ ${dbg.animais}$ ${dbg.garagem}$
 
 \end{enumerate}
 Assim, por estarem justos e contratados, assinam o presente, em 2 (duas) vias de igual teor.
 
 \begin{flushright}
-Ipojuca, \makebox[6cm]{\hrulefill}
+Ipojuca, \today
 \end{flushright}
 
 \begin{center}
@@ -75,7 +72,7 @@ LOCADOR: \hrulefill
 \vspace{2.5cm}
 
 LOCATÁRIO: \hrulefill
-\\
+\\${db.nome}$
  \end{center}
 
 \end{document}
