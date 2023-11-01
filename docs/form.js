@@ -33,7 +33,7 @@ export let dbg = {
   "garagem": garagem(db.bloco, db.apartamento),
   "cpf": db.cpf ? `, CPF nº ${db.cpf}` : '',
   "identidade": db.identidade ? `, identidade ${db.identidade}` : '',
-  "nacionalidade": db.nacionalidade ? `, CPF nº ${db.nacionalidade}` : '',
+  "nacionalidade": db.nacionalidade ? `, ${db.nacionalidade}` : '',
   "profissao": db.profissao ? `,  ${db.profissao}` : '',
   "endereco": db.endereco ? `, residente a ${db.endereco}` : '',
   "estadoCivil": db.estadoCivil ? `,  ${db.estadoCivil}` : '',

@@ -37,7 +37,7 @@ console.log(dbg.objetos)
       setTimeout(()=> URL.revokeObjectURL(objectURL) , 30000);
       download.href = objectURL
       download.download = db.nome
-      // download.click()
+      download.click()
       pdfbox.innerHTML = `<embed src="${objectURL}" width="100%" height="400px" type="application/pdf">`;
     }
   })
