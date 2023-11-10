@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-debug',
-  templateUrl: `
+  template: `
   <div style="margin-top: 20px" *ngIf="form" >
   <div>Detalhes do form</div>
   <pre>Form válido: {{ form.valid }}</pre>
@@ -13,7 +13,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class Debug implements OnInit {
 
-  @Input() form;
+  @Input() form: any;
 
   constructor() { }
 

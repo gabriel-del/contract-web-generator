@@ -28,7 +28,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
   <button type="submit" class="btn btn-primary">Submit</button>
 
-  <!-- <app-form-debug [form]="formulario"></app-form-debug> -->
+  <app-debug [form]="formulario"></app-debug>
 </form>
   `,
   styles: [
