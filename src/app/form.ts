@@ -9,16 +9,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
   <app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório" ></app-campo-control-erro>
 </div>
-<div [ngClass]="aplicaCssErro('nome')">
+<div [ngClass]="aplicaCssErro('email')">
   <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
   <app-campo-control-erro [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="verificaEmailInvalido()" msgErro="Email inválido" ></app-campo-control-erro>
   </div>
   <button type="submit">Submit</button>
   <button (click)="resetar()">Cancelar</button>
   <app-debug [form]="formulario"></app-debug>
 </form>
   `,
-  styles: []
+  styles: [`
+  .has-error {
+    color: red;
+  }`]
 })
 export class Form implements OnInit {
   formulario!: FormGroup
@@ -39,6 +43,13 @@ export class Form implements OnInit {
 
   resetar() {
     this.formulario.reset()
+  }
+  verificaEmailInvalido() {
+    let campoEmail = this.formulario.get('email')
+    if (campoEmail.errors && campoEmail.touched){
+      return campoEmail.errors['email'] && campoEmail.touched
+      // return true
+    } else {return false}
   }
   verificaValidTouched (campo){
     return !this.formulario.get(campo).valid && this.formulario.get(campo).touched
