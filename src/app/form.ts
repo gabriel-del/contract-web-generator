@@ -47,18 +47,9 @@ export class Form implements OnInit {
   }
   hasError(where, what?) {
     let field = this.formulario.controls[where]
-    // if (!!what) {
-    //   return field.errors?.[what] && field.touched
-    // }
-    // else {
-    //   return field.errors && field.touched
-    // }
-    if (field.errors && field.touched) {
-      // console.log(`${where}:${what}:${field.errors?.[what]} `)
-      return !!what ?  (field.errors?.[what]) :  true
-    } else {
-      return false
-    }
+    if (field.errors && field.touched)  return !!what ?  field.errors?.[what] :  true
+    return false
+
   }
 
   aplicaCssErro(campo: any) {
