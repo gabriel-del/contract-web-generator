@@ -5,12 +5,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   selector: 'app-form',
   template: `
  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
- <div [ngClass]="aplicaCssErro('nome')">
+ <div [ngClass]="hasErrorStyle('nome')">
   <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
   <app-error-msg [show]="hasError('nome', 'required')">Nome é obrigatório</app-error-msg>
   <app-error-msg [show]="hasError('nome', 'minlength')">Ao menos 3 caracteres</app-error-msg>
 </div>
-<div [ngClass]="aplicaCssErro('email')">
+<div [ngClass]="hasErrorStyle('email')">
   <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
   <app-error-msg [show]="hasError('email', 'required')">Email é obrigatório</app-error-msg>
   <app-error-msg [show]="hasError('email', 'email')">Email inválido</app-error-msg>
@@ -52,10 +52,10 @@ export class Form implements OnInit {
 
   }
 
-  aplicaCssErro(campo: any) {
+  hasErrorStyle(field) {
     return {
-      'has-error': this.hasError(campo),
-      'has-feedback': this.hasError(campo)
+      'has-error': this.hasError(field),
+      'has-feedback': this.hasError(field)
     }
   }
 
