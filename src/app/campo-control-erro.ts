@@ -5,7 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
   template: `
   <div *ngIf="mostrarErro" >
   <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-  <span class="sr-only">(error)</span>
+  <!-- <span class="sr-only">(error)</span> -->
   <div class="alert alert-danger errorDiv" role="alert">
     {{ msgErro }}
   </div>

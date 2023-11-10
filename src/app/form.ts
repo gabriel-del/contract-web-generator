@@ -1,4 +1,3 @@
-import { CampoControlErro } from './campo-control-erro';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -7,13 +6,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   template: `
  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
  <div [ngClass]="aplicaCssErro('nome')">
-    <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
-    <app-campo-control-erro 
-    [mostrarErro]="verificaValidTouched('nome')"
-    msgErro="Nome é obrigatório"
-    ></app-campo-control-erro>
-  </div>
+  <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
+  <app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório" ></app-campo-control-erro>
+</div>
+<div [ngClass]="aplicaCssErro('nome')">
   <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
+  <app-campo-control-erro [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório" ></app-campo-control-erro>
+  </div>
   <button type="submit">Submit</button>
   <button (click)="resetar()">Cancelar</button>
   <app-debug [form]="formulario"></app-debug>
@@ -41,7 +40,6 @@ export class Form implements OnInit {
   resetar() {
     this.formulario.reset()
   }
-
   verificaValidTouched (campo){
     return !this.formulario.get(campo).valid && this.formulario.get(campo).touched
   }
