@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-form',
   template: `
- <form [formGroup]="formulario">
+ <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
   <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
   <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
   <button type="submit">Submit</button>
@@ -23,6 +23,10 @@ export class Form implements OnInit {
       nome: [null],
       email: [null]
     })
+  }
+
+  onSubmit() {
+    console.log(this.formulario.value)
   }
 
 }
