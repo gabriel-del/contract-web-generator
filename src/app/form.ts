@@ -27,6 +27,7 @@ export class Form implements OnInit {
 
   onSubmit() {
     console.log(this.formulario.value)
+    this.formulario.reset()
   }
 
 }
