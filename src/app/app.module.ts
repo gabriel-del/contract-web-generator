@@ -5,13 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Form } from './form';
 import {  Debug } from './debug';
+import {  CampoControlErro } from './campo-control-erro';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     Form,
-    Debug
+    Debug,
+    CampoControlErro
   ],
   imports: [
     BrowserModule,
