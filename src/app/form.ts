@@ -7,12 +7,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
  <div [ngClass]="aplicaCssErro('nome')">
   <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
-  <app-campo-control-erro [mostrarErro]="!isValid('nome', 'required')" msgErro="Nome é obrigatório" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="hasError('nome', 'required')" msgErro="Nome é obrigatório" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="hasError('nome', 'minlength')" msgErro="Ao menos 3 caracteres" ></app-campo-control-erro>
 </div>
 <div [ngClass]="aplicaCssErro('email')">
   <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
-  <app-campo-control-erro [mostrarErro]="!isValid('email', 'required')" msgErro="Email é obrigatório" ></app-campo-control-erro>
-  <app-campo-control-erro [mostrarErro]="!isValid('email', 'email')" msgErro="Email inválido" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="hasError('email', 'required')" msgErro="Email é obrigatório" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="hasError('email', 'email')" msgErro="Email inválido" ></app-campo-control-erro>
   </div>
   <button type="submit">Submit</button>
   <button (click)="resetar()">Cancelar</button>
@@ -44,19 +45,25 @@ export class Form implements OnInit {
   resetar() {
     this.formulario.reset()
   }
-  isValid(campo, what?) {
+  hasError(campo, what?) {
     let Campo = this.formulario.controls[campo]
-    if (Campo.errors && Campo.touched){
-      //return false
-      // return Campo.errors[what] && Campo.touched
-      return false
-    } else {return true}
+    if (!!what) {
+      if (Campo.errors && Campo.touched){
+        return Campo.errors[what]
+      } else {return false}
+    }
+    else {
+      if (Campo.errors && Campo.touched){
+        return true
+      } else {return false}
+
+    }
   }
 
   aplicaCssErro(campo: any) {
     return {
-      'has-error': !this.isValid(campo),
-      'has-feedback': !this.isValid(campo)
+      'has-error': this.hasError(campo),
+      'has-feedback': this.hasError(campo)
     }
   }
 
