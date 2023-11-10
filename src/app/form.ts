@@ -48,9 +48,7 @@ export class Form implements OnInit {
   hasError(where, what?) {
     let field = this.formulario.controls[where]
     if (!!what) {
-      if (field.errors && field.touched){
-        return field.errors[what]
-      } else {return false}
+      return field.errors?.[what] && field.touched
     }
     else {
       return field.errors && field.touched
