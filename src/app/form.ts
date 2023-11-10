@@ -7,12 +7,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
  <div [ngClass]="aplicaCssErro('nome')">
   <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
-  <app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="!isValid('nome', 'required')" msgErro="Nome é obrigatório" ></app-campo-control-erro>
 </div>
 <div [ngClass]="aplicaCssErro('email')">
   <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
-  <app-campo-control-erro [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório" ></app-campo-control-erro>
-  <app-campo-control-erro [mostrarErro]="verificaEmailInvalido()" msgErro="Email inválido" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="!isValid('email', 'required')" msgErro="Email é obrigatório" ></app-campo-control-erro>
+  <app-campo-control-erro [mostrarErro]="!isValid('email', 'email')" msgErro="Email inválido" ></app-campo-control-erro>
   </div>
   <button type="submit">Submit</button>
   <button (click)="resetar()">Cancelar</button>
@@ -44,20 +44,19 @@ export class Form implements OnInit {
   resetar() {
     this.formulario.reset()
   }
-  verificaEmailInvalido() {
-    let campoEmail = this.formulario.get('email')
-    if (campoEmail.errors && campoEmail.touched){
-      return campoEmail.errors['email'] && campoEmail.touched
-      // return true
-    } else {return false}
+  isValid(campo, what?) {
+    let Campo = this.formulario.controls[campo]
+    if (Campo.errors && Campo.touched){
+      //return false
+      // return Campo.errors[what] && Campo.touched
+      return false
+    } else {return true}
   }
-  verificaValidTouched (campo){
-    return !this.formulario.get(campo).valid && this.formulario.get(campo).touched
-  }
+
   aplicaCssErro(campo: any) {
     return {
-      'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo)
+      'has-error': !this.isValid(campo),
+      'has-feedback': !this.isValid(campo)
     }
   }
 
