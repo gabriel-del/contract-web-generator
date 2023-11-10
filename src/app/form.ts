@@ -5,14 +5,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   selector: 'app-form',
   template: `
  <form [formGroup]="formulario">
-  <label>Nome<input type="text" formControlName="nome"  placeholder="Nome" ></label>
-  <label>Email<input type="email" formControlName="email" placeholder="nome@email.com" ></label>
+  <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
+  <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
   <button type="submit">Submit</button>
   <app-debug [form]="formulario"></app-debug>
 </form>
   `,
-  styles: [
-  ]
+  styles: []
 })
 export class Form implements OnInit {
   formulario!: FormGroup
