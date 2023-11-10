@@ -7,13 +7,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
  <div [ngClass]="aplicaCssErro('nome')">
   <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
-  <app-campo-control-erro [show]="hasError('nome', 'required')">Nome é obrigatório</app-campo-control-erro>
-  <app-campo-control-erro [show]="hasError('nome', 'minlength')">Ao menos 3 caracteres</app-campo-control-erro>
+  <app-error-msg [show]="hasError('nome', 'required')">Nome é obrigatório</app-error-msg>
+  <app-error-msg [show]="hasError('nome', 'minlength')">Ao menos 3 caracteres</app-error-msg>
 </div>
 <div [ngClass]="aplicaCssErro('email')">
   <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
-  <app-campo-control-erro [show]="hasError('email', 'required')">Email é obrigatório</app-campo-control-erro>
-  <app-campo-control-erro [show]="hasError('email', 'email')">Email inválido</app-campo-control-erro>
+  <app-error-msg [show]="hasError('email', 'required')">Email é obrigatório</app-error-msg>
+  <app-error-msg [show]="hasError('email', 'email')">Email inválido</app-error-msg>
   </div>
   <button type="submit">Submit</button>
   <button (click)="resetar()">Cancelar</button>

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Form } from './form';
 import {  Debug } from './debug';
-import {  CampoControlErro } from './campo-control-erro';
+import {  ErrorMsg } from './campo-control-erro';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     Form,
     Debug,
-    CampoControlErro
+    ErrorMsg
   ],
   imports: [
     BrowserModule,
