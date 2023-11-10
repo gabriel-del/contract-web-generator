@@ -45,17 +45,15 @@ export class Form implements OnInit {
   resetar() {
     this.formulario.reset()
   }
-  hasError(campo, what?) {
-    let Campo = this.formulario.controls[campo]
+  hasError(where, what?) {
+    let field = this.formulario.controls[where]
     if (!!what) {
-      if (Campo.errors && Campo.touched){
-        return Campo.errors[what]
+      if (field.errors && field.touched){
+        return field.errors[what]
       } else {return false}
     }
     else {
-      if (Campo.errors && Campo.touched){
-        return true
-      } else {return false}
+      return field.errors && field.touched
 
     }
   }
