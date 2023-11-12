@@ -76,8 +76,12 @@ export class Form implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formulario)
-    // this.formulario.reset()
+    if (this.formulario.valid) {
+      console.log(this.formulario.value)
+      // this.formulario.reset()
+    } else {
+      Object.keys(this.formulario.controls).forEach(field => this.formulario.controls[field].markAsDirty())
+    }
   }
 
   resetar() {
@@ -85,7 +89,7 @@ export class Form implements OnInit {
   }
   hasError(where: string, what?: string) {
     let field = this.formulario.controls[where]
-    if (field.errors && field.touched)  return !!what ?  field.errors?.[what] :  true
+    if (field.errors && (field.touched || field.dirty))  return !!what ?  field.errors?.[what] :  true
     return false
 
   }
