@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-form',
@@ -16,7 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     <app-error-msg [show]="hasError('email', 'email')">Email inválido</app-error-msg>
   </div>
   <div [ngClass]="hasErrorStyle('cep')">
-    <label>Cep: <input type="text" formControlName="cep"></label><br/>
+    <label>Cep: <input type="text" formControlName="cep" (blur)="consultaCEP()"></label><br/>
     <app-error-msg [show]="hasError('cep', 'required')">Cep é obrigatório</app-error-msg>
   </div>
   <div [ngClass]="hasErrorStyle('numero')">
@@ -24,8 +25,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     <app-error-msg [show]="hasError('numero', 'required')">Número é obrigatório</app-error-msg>
   </div>
   <div [ngClass]="hasErrorStyle('complemento')">
-    <label>Completo: <input type="text" formControlName="complemento"></label><br/>
-    <app-error-msg [show]="hasError('complemento', 'required')">Completo é obrigatório</app-error-msg>
+    <label>Complemento: <input type="text" formControlName="complemento"></label><br/>
+    <app-error-msg [show]="hasError('complemento', 'required')">Complemento é obrigatório</app-error-msg>
   </div>
   <div [ngClass]="hasErrorStyle('rua')">
     <label>Rua: <input type="text" formControlName="rua"></label><br/>
@@ -57,7 +58,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class Form implements OnInit {
   formulario!: FormGroup
 
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder,
+    private http: HttpClient){}
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -95,6 +97,20 @@ export class Form implements OnInit {
     }
   }
 
+  consultaCEP() {
+    const cep = this.formulario.get('cep').value.replace(/\D/g,'')
+    if (cep != null && cep !== '' && /^[0-9]{8}$/.test(cep)) 
+      this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe(dados =>  this.populaDadosForm(dados))
+  }
+
+  populaDadosForm(dados) {
+    this.formulario.patchValue({
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+    })
+  }
 
 
 
@@ -105,7 +121,10 @@ export class Form implements OnInit {
 
 
 
-
-
-
+  
 }
+
+
+
+
+
