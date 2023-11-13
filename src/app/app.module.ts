@@ -8,13 +8,14 @@ import {  Debug } from './debug';
 import {  ErrorMsg } from './campo-control-erro';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DropdownService } from './dropdown.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     Form,
     Debug,
-    ErrorMsg
+    ErrorMsg,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ DropdownService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
