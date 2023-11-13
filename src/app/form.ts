@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { DropdownService } from './dropdown.service';
+import { EstadoBr } from './model';
 
 @Component({
   selector: 'app-form',
@@ -57,11 +59,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class Form implements OnInit {
   formulario!: FormGroup
+  estados!: EstadoBr[]
 
   constructor(private formBuilder: FormBuilder,
-    private http: HttpClient){}
+    private http: HttpClient,
+    private dropdownService: DropdownService
+    
+    ){}
 
   ngOnInit(): void {
+    this.dropdownService.getEstadosBr().subscribe(dados => console.log(dados))
+
+
+
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email]],
