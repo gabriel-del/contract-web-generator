@@ -12,37 +12,27 @@ import { formValidations } from './validations';
  <div [ngClass]="hasErrorStyle('nome')">
     <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
     <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
-    <!-- <app-error-msg [show]="hasError('nome', 'minlength')">Ao menos 3 caracteres</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('email')">
     <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
-    <!-- <app-error-msg [show]="hasError('email', 'required')">Email é obrigatório</app-error-msg> -->
-    <!-- <app-error-msg [show]="hasError('email', 'email')">Email inválido</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('cep')">
     <label>Cep: <input type="text" formControlName="cep" (blur)="consultaCEP()"></label><br/>
-    <!-- <app-error-msg [show]="hasError('cep', 'required')">Cep é obrigatório</app-error-msg> -->
-    <!-- <app-error-msg [show]="hasError('cep', 'cepInvalido')">Cep inválido</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('numero')">
     <label>Número: <input type="text" formControlName="numero"></label><br/>
-    <!-- <app-error-msg [show]="hasError('numero', 'required')">Número é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('complemento')">
     <label>Complemento: <input type="text" formControlName="complemento"></label><br/>
-    <!-- <app-error-msg [show]="hasError('complemento', 'required')">Complemento é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('rua')">
     <label>Rua: <input type="text" formControlName="rua"></label><br/>
-    <!-- <app-error-msg [show]="hasError('rua', 'required')">Rua é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('bairro')">
     <label>Bairro: <input type="text" formControlName="bairro"></label><br/>
-    <!-- <app-error-msg [show]="hasError('bairro', 'required')">Bairro é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('cidade')">
     <label>Cidade: <input type="text" formControlName="cidade"></label><br/>
-    <!-- <app-error-msg [show]="hasError('cidade', 'required')">Cidade é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('estado')">
     <label>Estado: 
@@ -51,21 +41,17 @@ import { formValidations } from './validations';
         <option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</option>
       </select>
     </label><br/>
-    <!-- <app-error-msg [show]="hasError('estado', 'required')">Estado é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('bloco')"> Bloco: 
     <label *ngFor="let item of blocosOp"><input type="radio" [value]="item.valor" formControlName="bloco">{{item.desc}}</label>  
-    <!-- <app-error-msg [show]="hasError('bloco', 'required')">Bloco é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('hasEndereco')">
     <label>Tem Endereço?<input type="checkbox" formControlName="hasEndereco"></label><br/>
-    <!-- <app-error-msg [show]="hasError('cidade', 'required')">Cidade é obrigatório</app-error-msg> -->
   </div>
   <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items: 
     <div   *ngFor="let item of formulario.get('items')['controls']; let i = index">
       <label>{{ items[i] }}<input type="checkbox" [formControlName]="i"></label><br/>
       <!-- <label>Cama<input type="checkbox" formControlName="items"></label><br/> -->
-      <!-- <app-error-msg [show]="hasError('items', 'required')">Cidade é obrigatório</app-error-msg> -->
     </div>
   </div>
   
@@ -99,15 +85,15 @@ export class Form implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
-      email: [null, [Validators.required, Validators.email]],
-      cep: [null, [Validators.required, formValidations.cepValidator]],
-      numero: [null, [Validators.required]],
-      complemento: [null, [Validators.required]],
-      rua: [null, [Validators.required]],
-      bairro: [null, [Validators.required]],
-      cidade: [null, [Validators.required]],
-      estado: [null, [Validators.required]],
-      bloco: [null, [Validators.required]],
+      email: [null, [, Validators.email]],
+      cep: [null, [, formValidations.cepValidator]],
+      numero: [null, []],
+      complemento: [null, []],
+      rua: [null, []],
+      bairro: [null, []],
+      cidade: [null, []],
+      estado: [null, []],
+      bloco: [null, []],
       hasEndereco: [true, []],
       items: this.buildItems(),
     })
