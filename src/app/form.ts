@@ -88,16 +88,12 @@ export class Form implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
     private dropdownService: DropdownService
-    
     ){}
 
   ngOnInit(): void {
     this.blocosOp = this.dropdownService.getBlocos()
     this.dropdownService.getEstadosBr().subscribe(dados => {
       this.estados = dados.estados
-      // console.log(dados)
-      console.log("estados:")
-      console.log(this.estados[0].cidades[1])
     })
 
 
@@ -115,14 +111,11 @@ export class Form implements OnInit {
       hasEndereco: [true, []],
       items: this.buildItems(),
     })
-
-    console.log(this.formulario.get('items')['controls'])
   }
 
   buildItems(){
     const values = this.items.map(v => new FormControl(false))
     return this.formBuilder.array(values)
-
   }
 
   onSubmit() {
