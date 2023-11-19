@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
 import { EstadoBr } from './model';
@@ -59,6 +59,13 @@ import { EstadoBr } from './model';
     <label>Tem Endereço?<input type="checkbox" formControlName="hasEndereco"></label><br/>
     <!-- <app-error-msg [show]="hasError('cidade', 'required')">Cidade é obrigatório</app-error-msg> -->
   </div>
+  <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items
+    <!-- <div   *ngFor="let item of formulario.get('items')?.controls"> -->
+      <label>Sofá<input type="checkbox" ></label><br/>
+      <!-- <label>Cama<input type="checkbox" formControlName="items"></label><br/> -->
+      <!-- <app-error-msg [show]="hasError('tems', 'required')">Cidade é obrigatório</app-error-msg> -->
+    <!-- </div> -->
+  </div>
   
   <button type="submit">Enviar</button>
   <button (click)="resetar()">Cancelar</button>
@@ -74,6 +81,7 @@ export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
   blocosOp!: any[]
+  items: any[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
 
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -103,7 +111,14 @@ export class Form implements OnInit {
       estado: [null, [Validators.required]],
       bloco: [null, [Validators.required]],
       hasEndereco: [true, []],
+      items: this.buildItems(),
     })
+  }
+
+  buildItems(){
+    const values = this.items.map(v => new FormControl(false))
+    return this.formBuilder.array(values)
+
   }
 
   onSubmit() {
