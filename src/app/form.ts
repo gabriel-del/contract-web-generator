@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
 import { EstadoBr } from './model';
 import { formValidations } from './validations';
-import {distinctUntilChanged, tap} from 'rxjs/operators'
+import {distinctUntilChanged, switchMap, tap} from 'rxjs/operators'
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -102,22 +103,19 @@ export class Form implements OnInit {
     this.formulario.get('cep').statusChanges
     .pipe(
       distinctUntilChanged(),
-      tap(
-        value => console.log("status cep: ", value)
-
+      tap( value => console.log("status cep: ", value) ),
+      switchMap(status => status === 'VALID' ? 
+      this.http.get(`//viacep.com.br/ws/${this.formulario.get('cep').value}/json`) :
+      empty()
       )
     )
-    .subscribe( status => {
-      if (status === 'VALID'){
-        this.http.get(`//viacep.com.br/ws/${this.formulario.get('cep').value}/json`).subscribe((dados: any)  =>  this.formulario.patchValue({
-          rua: dados.logradouro,
-          bairro: dados.bairro,
-          cidade: dados.localidade,
-          estado: dados.uf
-      }))
-      }
-    }
-    )
+    .subscribe(
+      (dados: any) => dados ? this.formulario.patchValue({
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+    }) : {} )
   }
 
   buildItems(){
