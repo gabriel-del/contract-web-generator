@@ -43,7 +43,12 @@ import { EstadoBr } from './model';
     <app-error-msg [show]="hasError('cidade', 'required')">Cidade é obrigatório</app-error-msg>
   </div>
   <div [ngClass]="hasErrorStyle('estado')">
-    <label>Estado: <input type="text" formControlName="estado"></label><br/>
+    <label>Estado: 
+      <!-- <input type="text" formControlName="estado"> -->
+      <select formControlName="estado">
+        <option *ngFor="let estado of estados">{{estado.nome}}</option>
+      </select>
+    </label><br/>
     <app-error-msg [show]="hasError('estado', 'required')">Estado é obrigatório</app-error-msg>
   </div>
   
@@ -59,7 +64,7 @@ import { EstadoBr } from './model';
 })
 export class Form implements OnInit {
   formulario!: FormGroup
-  estados!: EstadoBr[]
+  estados!: any
 
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -68,8 +73,12 @@ export class Form implements OnInit {
     ){}
 
   ngOnInit(): void {
-    this.dropdownService.getEstadosBr().subscribe(dados => console.log(dados))
-
+    this.dropdownService.getEstadosBr().subscribe(dados => {
+      this.estados = dados.estados
+      // console.log(dados)
+      console.log("estados:")
+      console.log(this.estados[0].nome)
+    })
 
 
     this.formulario = this.formBuilder.group({
