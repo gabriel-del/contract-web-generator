@@ -52,11 +52,9 @@ import { EstadoBr } from './model';
     <app-error-msg [show]="hasError('estado', 'required')">Estado é obrigatório</app-error-msg>
   </div>
   <div [ngClass]="hasErrorStyle('bloco')">
-    <label>Bloco: 
-      <label><input type="radio" formControlName="bloco">A</label>
-      <label><input type="radio" formControlName="bloco">B</label>
-  
-  </label><br/>
+    Bloco: 
+      <label *ngFor="let item of blocosOp"><input type="radio" [value]="item.valor" formControlName="bloco">{{item.desc}}</label>  
+  <br/>
     <app-error-msg [show]="hasError('bloco', 'required')">Bloco é obrigatório</app-error-msg>
   </div>
   
@@ -73,6 +71,7 @@ import { EstadoBr } from './model';
 export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
+  blocosOp!: any[]
 
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -81,6 +80,7 @@ export class Form implements OnInit {
     ){}
 
   ngOnInit(): void {
+    this.blocosOp = this.dropdownService.getBlocos()
     this.dropdownService.getEstadosBr().subscribe(dados => {
       this.estados = dados.estados
       // console.log(dados)

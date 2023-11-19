@@ -14,4 +14,12 @@ export class DropdownService {
     return this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json')
 
   }
+
+  getBlocos() {
+    return [
+      {valor: 'A', desc: 'A'},
+      {valor: 'B', desc: 'B'},
+      {valor: 'C', desc: 'C'}
+    ]
+  }
 }
