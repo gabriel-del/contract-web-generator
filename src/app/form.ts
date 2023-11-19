@@ -51,6 +51,14 @@ import { EstadoBr } from './model';
     </label><br/>
     <app-error-msg [show]="hasError('estado', 'required')">Estado é obrigatório</app-error-msg>
   </div>
+  <div [ngClass]="hasErrorStyle('bloco')">
+    <label>Bloco: 
+      <label><input type="radio" formControlName="bloco">A</label>
+      <label><input type="radio" formControlName="bloco">B</label>
+  
+  </label><br/>
+    <app-error-msg [show]="hasError('bloco', 'required')">Bloco é obrigatório</app-error-msg>
+  </div>
   
   <button type="submit">Enviar</button>
   <button (click)="resetar()">Cancelar</button>
@@ -77,7 +85,7 @@ export class Form implements OnInit {
       this.estados = dados.estados
       // console.log(dados)
       console.log("estados:")
-      console.log(this.estados[0])
+      console.log(this.estados[0].cidades[1])
     })
 
 
@@ -91,6 +99,7 @@ export class Form implements OnInit {
       bairro: [null, [Validators.required]],
       cidade: [null, [Validators.required]],
       estado: [null, [Validators.required]],
+      bloco: [null, [Validators.required]],
     })
   }
 
