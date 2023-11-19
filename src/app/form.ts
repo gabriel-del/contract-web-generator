@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
 import { EstadoBr } from './model';
+import { formValidations } from './validations';
 
 @Component({
   selector: 'app-form',
@@ -21,6 +22,7 @@ import { EstadoBr } from './model';
   <div [ngClass]="hasErrorStyle('cep')">
     <label>Cep: <input type="text" formControlName="cep" (blur)="consultaCEP()"></label><br/>
     <app-error-msg [show]="hasError('cep', 'required')">Cep é obrigatório</app-error-msg>
+    <app-error-msg [show]="hasError('cep', 'cepInvalido')">Cep inválido</app-error-msg>
   </div>
   <div [ngClass]="hasErrorStyle('numero')">
     <label>Número: <input type="text" formControlName="numero"></label><br/>
@@ -102,7 +104,7 @@ export class Form implements OnInit {
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.email]],
-      cep: [null, [Validators.required]],
+      cep: [null, [Validators.required, formValidations.cepValidator]],
       numero: [null, [Validators.required]],
       complemento: [null, [Validators.required]],
       rua: [null, [Validators.required]],
@@ -156,7 +158,7 @@ export class Form implements OnInit {
   }
 
   consultaCEP() {
-    const cep = this.formulario.get('cep')?.value.replace(/\D/g,'')
+    const cep = this.formulario.get('cep')?.value?.replace(/\D/g,'')
     if (cep != null && cep !== '' && /^[0-9]{8}$/.test(cep)) 
       this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe((dados: any)  =>  this.formulario.patchValue({
         rua: dados.logradouro,
