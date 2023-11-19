@@ -51,11 +51,13 @@ import { EstadoBr } from './model';
     </label><br/>
     <app-error-msg [show]="hasError('estado', 'required')">Estado é obrigatório</app-error-msg>
   </div>
-  <div [ngClass]="hasErrorStyle('bloco')">
-    Bloco: 
-      <label *ngFor="let item of blocosOp"><input type="radio" [value]="item.valor" formControlName="bloco">{{item.desc}}</label>  
-  <br/>
+  <div [ngClass]="hasErrorStyle('bloco')"> Bloco: 
+    <label *ngFor="let item of blocosOp"><input type="radio" [value]="item.valor" formControlName="bloco">{{item.desc}}</label>  
     <app-error-msg [show]="hasError('bloco', 'required')">Bloco é obrigatório</app-error-msg>
+  </div>
+  <div [ngClass]="hasErrorStyle('hasEndereco')">
+    <label>Tem Endereço?<input type="checkbox" formControlName="hasEndereco"></label><br/>
+    <!-- <app-error-msg [show]="hasError('cidade', 'required')">Cidade é obrigatório</app-error-msg> -->
   </div>
   
   <button type="submit">Enviar</button>
@@ -100,6 +102,7 @@ export class Form implements OnInit {
       cidade: [null, [Validators.required]],
       estado: [null, [Validators.required]],
       bloco: [null, [Validators.required]],
+      hasEndereco: [true, []],
     })
   }
 
