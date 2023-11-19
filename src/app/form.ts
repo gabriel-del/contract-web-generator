@@ -59,12 +59,12 @@ import { EstadoBr } from './model';
     <label>Tem Endereço?<input type="checkbox" formControlName="hasEndereco"></label><br/>
     <!-- <app-error-msg [show]="hasError('cidade', 'required')">Cidade é obrigatório</app-error-msg> -->
   </div>
-  <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items
-    <!-- <div   *ngFor="let item of formulario.get('items')?.controls"> -->
-      <label>Sofá<input type="checkbox" ></label><br/>
+  <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items: 
+    <div   *ngFor="let item of formulario.get('items')['controls']; let i = index">
+      <label>{{ items[i] }}<input type="checkbox" [formControlName]="i"></label><br/>
       <!-- <label>Cama<input type="checkbox" formControlName="items"></label><br/> -->
       <!-- <app-error-msg [show]="hasError('tems', 'required')">Cidade é obrigatório</app-error-msg> -->
-    <!-- </div> -->
+    </div>
   </div>
   
   <button type="submit">Enviar</button>
@@ -113,6 +113,8 @@ export class Form implements OnInit {
       hasEndereco: [true, []],
       items: this.buildItems(),
     })
+
+    console.log(this.formulario.get('items')['controls'])
   }
 
   buildItems(){
