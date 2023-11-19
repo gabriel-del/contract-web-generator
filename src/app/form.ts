@@ -46,7 +46,7 @@ import { EstadoBr } from './model';
     <label>Estado: 
       <!-- <input type="text" formControlName="estado"> -->
       <select formControlName="estado">
-        <option *ngFor="let estado of estados">{{estado.nome}}</option>
+        <option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</option>
       </select>
     </label><br/>
     <app-error-msg [show]="hasError('estado', 'required')">Estado é obrigatório</app-error-msg>
@@ -77,7 +77,7 @@ export class Form implements OnInit {
       this.estados = dados.estados
       // console.log(dados)
       console.log("estados:")
-      console.log(this.estados[0].nome)
+      console.log(this.estados[0])
     })
 
 
