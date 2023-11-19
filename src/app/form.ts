@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
 import { EstadoBr } from './model';
 import { formValidations } from './validations';
+import {distinctUntilChanged, tap} from 'rxjs/operators'
 
 @Component({
   selector: 'app-form',
@@ -17,7 +18,7 @@ import { formValidations } from './validations';
     <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
   </div>
   <div [ngClass]="hasErrorStyle('cep')">
-    <label>Cep: <input type="text" formControlName="cep" (blur)="consultaCEP()"></label><br/>
+    <label>Cep: <input type="text" formControlName="cep"></label><br/>
   </div>
   <div [ngClass]="hasErrorStyle('numero')">
     <label>Número: <input type="text" formControlName="numero"></label><br/>
@@ -97,6 +98,26 @@ export class Form implements OnInit {
       hasEndereco: [true, []],
       items: this.buildItems(),
     })
+
+    this.formulario.get('cep').statusChanges
+    .pipe(
+      distinctUntilChanged(),
+      tap(
+        value => console.log("status cep: ", value)
+
+      )
+    )
+    .subscribe( status => {
+      if (status === 'VALID'){
+        this.http.get(`//viacep.com.br/ws/${this.formulario.get('cep').value}/json`).subscribe((dados: any)  =>  this.formulario.patchValue({
+          rua: dados.logradouro,
+          bairro: dados.bairro,
+          cidade: dados.localidade,
+          estado: dados.uf
+      }))
+      }
+    }
+    )
   }
 
   buildItems(){
@@ -157,6 +178,8 @@ export class Form implements OnInit {
 
   
 }
+
+
 
 
 
