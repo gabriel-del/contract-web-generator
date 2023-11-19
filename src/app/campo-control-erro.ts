@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { formValidations } from './validations';
 
 @Component({
   selector: 'app-error-msg',
@@ -9,14 +10,15 @@ import { FormControl } from '@angular/forms';
 })
 export class ErrorMsg implements OnInit {
   @Input() show!: boolean;
+  @Input() label!: string;
   @Input() control!: FormControl 
   constructor() { }
   ngOnInit() {
   }
   get errorMessage(){
-    for (const propretyName in this.control.errors){
-      if(this.control.errors['hasOwnPropriety'](propretyName) && this.control.touched) {
-        //TODO
+    for (const propertyName in this.control.errors){
+      if(this.control.errors['hasOwnPropriety'](propertyName) && this.control.touched) {
+        return formValidations.getErrorMsg(this.label, propertyName, this.control.errors[propertyName])
       }
     }
     return null
