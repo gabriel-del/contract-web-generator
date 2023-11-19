@@ -124,6 +124,12 @@ export class Form implements OnInit {
   }
 
   onSubmit() {
+    let valueSubmit = Object.assign({}, this.formulario.value)
+    valueSubmit = Object.assign(valueSubmit, {
+      items: valueSubmit.items.map((v,i) => v ? this.items[i] : null).filter(v => v !== null)
+    })
+
+    console.log(valueSubmit)
     if (this.formulario.valid) {
       console.log(this.formulario.value)
       // this.formulario.reset()
