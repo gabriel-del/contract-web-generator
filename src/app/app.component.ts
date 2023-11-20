@@ -1,4 +1,4 @@
-import { Form } from './form';
+import { Form } from './form/form';
 import { Component } from '@angular/core';
 
 @Component({

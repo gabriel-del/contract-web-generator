@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Form } from './form';
-import {  Debug } from './debug';
-import {  ErrorMsg } from './campo-control-erro';
+import { Form } from './form/form';
+import {  Debug } from './form/debug';
+import {  ErrorMsg } from './form/campo-control-erro';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DropdownService } from './dropdown.service';
+import { DropdownService } from './form/dropdown.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
 import { Home } from './views/home';
