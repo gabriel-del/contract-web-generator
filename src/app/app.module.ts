@@ -10,7 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MaterialModule} from './material.module'
+import {MaterialModule} from './material.module';
+import { Home } from './views/home';
+import { Footer } from './views/footer';
+import { Header } from './views/header';
+import { History } from './views/history';
+import { Dev } from './views/dev'
 
 @NgModule({
   declarations: [
@@ -18,6 +23,11 @@ import {MaterialModule} from './material.module'
     Form,
     Debug,
     ErrorMsg,
+    Home,
+    Footer,
+    Header,
+    History,
+    Dev,
   ],
   imports: [
     BrowserModule,
