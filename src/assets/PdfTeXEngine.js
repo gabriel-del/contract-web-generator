@@ -70,7 +70,7 @@ var CompileResult = /** @class */ (function () {
     return CompileResult;
 }());
 exports.CompileResult = CompileResult;
-var PdfTeXEngine = /** @class */ (function () {
+export var PdfTeXEngine = /** @class */ (function () {
     function PdfTeXEngine() {
         this.latexWorker = undefined;
         this.latexWorkerStatus = EngineStatus.Init;

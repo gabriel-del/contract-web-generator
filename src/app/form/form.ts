@@ -6,9 +6,7 @@ import { EstadoBr } from './model';
 import { formValidations } from './validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { empty } from 'rxjs';
-// import * as PdfTeXEngine from './../../assets/PdfTeXEngine.js';
-// declare var PdfTeXEngine: any;
-// declare const myTest: any;
+import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 import {myTest} from './../../assets/custom.js';
 
 
@@ -211,7 +209,8 @@ export class Form implements OnInit {
     // const globalEn = await new PdfTeXEngine
     console.log("Aqui")
       // console.log(PdfTeXEngine)
-      myTest()
+      console.log(myTest)
+      console.log(PdfTeXEngine)
       // console.log(globalEn)
 
 
