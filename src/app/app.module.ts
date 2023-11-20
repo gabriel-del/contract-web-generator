@@ -15,7 +15,8 @@ import { Home } from './views/home';
 import { Footer } from './views/footer';
 import { Header } from './views/header';
 import { History } from './views/history';
-import { Dev } from './views/dev'
+import { Dev } from './views/dev';
+import { SafePipe } from './form/safe.pipe'
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { Dev } from './views/dev'
     Header,
     History,
     Dev,
+    SafePipe,
   ],
   imports: [
     BrowserModule,

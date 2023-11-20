@@ -79,7 +79,8 @@ import {myTest} from './../../assets/custom.js';
 </form>
 <div class="right">
   <button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
-      <div [innerHTML]="pdfBox"></div>
+      <!-- <div [innerHTML]="pdfBox"></div> -->
+      <embed #pdf [src]='pdfBox | safe'>
       
       <pre>{{log}}</pre>
     </div>
@@ -93,7 +94,7 @@ export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
   log!: any
-  pdfBox: any = '<h1>Hello Angular 14!</h1>'
+  pdfBox!: any
   compileMsg: string = "Compilar"
   cidades!: any[]
   texContent!: any
@@ -227,11 +228,14 @@ export class Form implements OnInit {
 
      if (r.status === 0) {
       let a = document.createElement('a');
-      console.log(r.pdf)
+      // console.log(r.pdf)
       a.href = r.pdf
-      a.download = "1234"
+      a.download = "12345"
       a.click()
-      // display pdf
+      // console.log(a)
+      // console.log(a.href)
+      this.pdfBox = r.pdf
+      // console.log(this.pdfBox)
     }
 
   
