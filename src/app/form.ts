@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
 import { EstadoBr } from './model';
 import { formValidations } from './validations';
-import {distinctUntilChanged, switchMap, tap} from 'rxjs/operators'
+import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { empty } from 'rxjs';
 
 @Component({
@@ -35,12 +35,18 @@ import { empty } from 'rxjs';
   <div [ngClass]="hasErrorStyle('bairro')">
     <label>Bairro: <input type="text" formControlName="bairro"></label><br/>
   </div>
-  <div [ngClass]="hasErrorStyle('cidade')">
+  <!-- <div [ngClass]="hasErrorStyle('cidade')">
     <label>Cidade: <input type="text" formControlName="cidade"></label><br/>
+  </div> -->
+  <div [ngClass]="hasErrorStyle('cidade')">
+    <label>Cidade: 
+      <select formControlName="cidade">
+        <option *ngFor="let cidade of cidades" [value]="cidade">{{cidade}}</option>
+      </select>
+    </label><br/>
   </div>
   <div [ngClass]="hasErrorStyle('estado')">
     <label>Estado: 
-      <!-- <input type="text" formControlName="estado"> -->
       <select formControlName="estado">
         <option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</option>
       </select>
@@ -72,6 +78,7 @@ import { empty } from 'rxjs';
 export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
+  cidades!: any[]
   blocosOp!: any[]
   items: any[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
 
@@ -118,6 +125,13 @@ export class Form implements OnInit {
         cidade: dados.localidade,
         estado: dados.uf
     }) : {} )
+
+    this.formulario.get('estado').valueChanges
+    .pipe(
+      map(estado => this.estados.filter(({sigla}) => sigla === estado)),
+      map(estado => estado[0].cidades),
+    )
+    .subscribe(cidades => this.cidades = cidades)
   }
 
   buildItems(){
