@@ -12,3 +12,20 @@
 * Substitute deprecated "empty" from rxjs
 * update Github pages
 
+
+## Form fields
+* bloco
+* apartamento
+* data
+* duracao
+* aluguel
+* vencimento
+* nome
+* cpf
+* identidade
+* nacionalidade
+* profissão
+* endereço
+* estado civil
+* objetos
+
