@@ -99,6 +99,8 @@ export class Form implements OnInit {
       this.estados = dados.estados
     })
 
+    this.texRead()
+
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
@@ -188,18 +190,21 @@ export class Form implements OnInit {
     }))
   }
 
-  compilar(){
-    let myvar = 123
-    let response
-    console.log("compilar:")
+  texRead(){
+    // let myvar = this.formulario.get('numero').value
+    let myvar = "minha var"
     this.http.get('/assets/main.tex', {responseType: 'text'})
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
       map(dados => eval(`dados = \`${dados}\``) ),
-      tap(dados => console.log(dados))
+      // tap(dados => console.log(dados))
     )
     .subscribe(dados => this.texContent = dados)
-    // console.log(this.texContent)
+  }
+
+  compilar(){
+    console.log(this.texContent)
+
   }
 
 
