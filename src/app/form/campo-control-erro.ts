@@ -5,7 +5,7 @@ import { formValidations } from './validations';
 @Component({
   selector: 'app-error-msg',
   template: `
-  <div *ngIf="errorMessage != null" >{{ errorMessage}}</div>
+  <mat-error *ngIf="errorMessage != null" >{{ errorMessage}}</mat-error>
 `
 })
 export class ErrorMsg implements OnInit {

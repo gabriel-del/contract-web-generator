@@ -11,13 +11,18 @@ import { empty } from 'rxjs';
   selector: 'app-form',
   template: `
 <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
- <div [ngClass]="hasErrorStyle('nome')">
-    <label>Nome: <input type="text" formControlName="nome"  placeholder="Nome" ></label><br/>
+<mat-form-field [ngClass]="hasErrorStyle('nome')">
+     <mat-label>Nome: </mat-label>
+     <input type="text" matInput formControlName="nome">
     <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
-  </div>
-  <div [ngClass]="hasErrorStyle('email')">
-    <label>Email: <input type="email" formControlName="email" placeholder="nome@email.com" ></label><br/>
-  </div>
+</mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Telefone</mat-label>
+    <span matPrefix>+55 &nbsp;</span>
+    <input type="tel" matInput placeholder="81 91111-1111">
+  </mat-form-field>
+
   <div [ngClass]="hasErrorStyle('cep')">
     <label>Cep: <input type="text" formControlName="cep"></label><br/>
     <app-error-msg [control]="formulario.get('cep')" label="Cep"></app-error-msg>
@@ -96,7 +101,6 @@ export class Form implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
-      email: [null, [Validators.email]],
       cep: [null, [formValidations.cepValidator]],
       numero: [null, []],
       complemento: [null, []],
