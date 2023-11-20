@@ -11,6 +11,8 @@
 * Run Eslint
 * Substitute deprecated "empty" from rxjs
 * update Github pages
+* LocalStorage
+* History
 
 
 ## Form fields
