@@ -77,8 +77,8 @@ import {myTest} from './../../assets/custom.js';
   <button (click)="resetar()">Cancelar</button>
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
+<button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
 <div class="right">
-  <button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
       <!-- <div [innerHTML]="pdfBox"></div> -->
       <!-- <embed #pdf [src]='pdfBox | safe'> -->
       <!-- <embed [src]="pdfBox | safe" style="width: 100%;height: 500px" type="application/pdf">       -->
@@ -96,7 +96,7 @@ export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
   log!: any
-  pdfBox: any = 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf'
+  pdfBox: any = ''
   compileMsg: string = "Compilar"
   cidades!: any[]
   texContent!: any
@@ -236,7 +236,9 @@ export class Form implements OnInit {
       a.click()
       console.log(a)
       console.log(a.href)
-      this.pdfBox = r.pdf
+      const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
+      const objectURL = URL.createObjectURL(pdfblob);
+      this.pdfBox = objectURL
       // console.log(this.pdfBox)
     }
 
