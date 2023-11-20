@@ -20,14 +20,14 @@ import { empty } from 'rxjs';
   <mat-form-field>
     <mat-label>Telefone</mat-label>
     <span matPrefix>+55 &nbsp;</span>
-    <input type="tel" matInput placeholder="81 91111-1111">
+    <input type="tel" matInput formControlName="telefone" placeholder="81 91111-1111">
   </mat-form-field>
 
-  <div [ngClass]="hasErrorStyle('cep')">
-    <label>Cep: <input type="text" formControlName="cep"></label><br/>
+  <!-- <mat-form-field [ngClass]="hasErrorStyle('cep')"> -->
+    <mat-label>Cep:</mat-label>
+     <input type="text" formControlName="cep">
     <app-error-msg [control]="formulario.get('cep')" label="Cep"></app-error-msg>
-
-  </div>
+  <!-- </mat-form-field> -->
   <div [ngClass]="hasErrorStyle('numero')">
     <label>Número: <input type="text" formControlName="numero"></label><br/>
   </div>
@@ -72,7 +72,7 @@ import { empty } from 'rxjs';
   
   <button type="submit">Enviar</button>
   <button (click)="resetar()">Cancelar</button>
-  <app-debug [form]="formulario"></app-debug>
+  <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
   `,
   styles: [`
@@ -101,6 +101,7 @@ export class Form implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
+      telefone: [null, []],
       cep: [null, [formValidations.cepValidator]],
       numero: [null, []],
       complemento: [null, []],
