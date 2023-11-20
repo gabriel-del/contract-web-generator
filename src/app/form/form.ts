@@ -204,6 +204,7 @@ export class Form implements OnInit {
 
   compilar(){
     console.log(this.texContent)
+    
 
   }
 
