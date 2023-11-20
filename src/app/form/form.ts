@@ -205,13 +205,13 @@ export class Form implements OnInit {
     .subscribe(dados => this.texContent = dados)
   }
 
-   compilar(){
-    // const globalEn = await new PdfTeXEngine
+   async compilar(){
+    const globalEn = await new PdfTeXEngine
     console.log("Aqui")
       // console.log(PdfTeXEngine)
-      console.log(myTest)
-      console.log(PdfTeXEngine)
-      // console.log(globalEn)
+      // console.log(myTest)
+      // console.log(PdfTeXEngine)
+      console.log(globalEn)
 
 
   }
