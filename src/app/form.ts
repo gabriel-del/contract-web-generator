@@ -20,6 +20,8 @@ import { empty } from 'rxjs';
   </div>
   <div [ngClass]="hasErrorStyle('cep')">
     <label>Cep: <input type="text" formControlName="cep"></label><br/>
+    <app-error-msg [control]="formulario.get('cep')" label="Cep"></app-error-msg>
+
   </div>
   <div [ngClass]="hasErrorStyle('numero')">
     <label>Número: <input type="text" formControlName="numero"></label><br/>
@@ -87,8 +89,8 @@ export class Form implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
-      email: [null, [, Validators.email]],
-      cep: [null, [, formValidations.cepValidator]],
+      email: [null, [Validators.email]],
+      cep: [null, [formValidations.cepValidator]],
       numero: [null, []],
       complemento: [null, []],
       rua: [null, []],
