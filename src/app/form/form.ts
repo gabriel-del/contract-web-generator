@@ -189,7 +189,7 @@ export class Form implements OnInit {
 
   compilar(){
     console.log("foi")
-    this.http.get('assets/a.md', {responseType: 'text'}).subscribe(dados => console.log(dados))
+    this.http.get('/assets/main.tex', {responseType: 'text'}).subscribe(dados => console.log(dados))
   }
 
 
