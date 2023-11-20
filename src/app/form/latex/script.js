@@ -1,5 +1,7 @@
 import { db, dbg }   from './form.js';
 
+let myvar = 9898
+
 function read (file) {
   let response
   const xhttp = new XMLHttpRequest();
@@ -13,7 +15,7 @@ function read (file) {
 document.addEventListener("DOMContentLoaded", async () => {
 
 // document.getElementById('editor').innerHTML = latex.code
-document.getElementById('editor').innerHTML = read("main.tex")
+document.getElementById('editor').innerHTML = read("/src/assets/main.tex")
 const editor = ace.edit("editor");
 editor.setTheme("ace/theme/monokai");
 editor.session.setMode("ace/mode/latex");

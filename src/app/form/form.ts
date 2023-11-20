@@ -6,6 +6,8 @@ import { EstadoBr } from './model';
 import { formValidations } from './validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { empty } from 'rxjs';
+import { PdfTeXEngine } from './../../assets/PdfTeXEngine.js';
+
 
 @Component({
   selector: 'app-form',
@@ -203,8 +205,10 @@ export class Form implements OnInit {
   }
 
   compilar(){
-    console.log(this.texContent)
-    
+    const globalEn = new PdfTeXEngine().PdfTexEngine()
+    console.log("Aqui")
+      console.log(globalEn)
+
 
   }
 
