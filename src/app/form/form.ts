@@ -226,17 +226,12 @@ export class Form implements OnInit {
      this.compileMsg = "Compilar"
 
      if (r.status === 0) {
-      const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
-      const objectURL = URL.createObjectURL(pdfblob);
-      // setTimeout(()=> URL.revokeObjectURL(objectURL) , 30000);
       let a = document.createElement('a');
-
-      a.href = objectURL
-      a.download = "123"
+      console.log(r.pdf)
+      a.href = r.pdf
+      a.download = "1234"
       a.click()
-      console.log(objectURL)
-      this.pdfBox = `<embed src="${objectURL}" width="100%" height="400px" type="application/pdf">`;
-      console.log(this.pdfBox)
+      // display pdf
     }
 
   
