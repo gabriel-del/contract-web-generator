@@ -84,6 +84,7 @@ export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
   cidades!: any[]
+  texContent!: any
   blocosOp!: any[]
   items: any[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
 
@@ -188,8 +189,15 @@ export class Form implements OnInit {
   }
 
   compilar(){
-    console.log("foi")
-    this.http.get('/assets/main.tex', {responseType: 'text'}).subscribe(dados => console.log(dados))
+    console.log("compilar:")
+    this.http.get('/assets/main.tex', {responseType: 'text'})
+    .pipe(
+      map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
+      // map(dados => eval(`response = \`${dados}\``) ),
+      tap(dados => console.log(dados))
+    )
+    .subscribe(dados => this.texContent = dados)
+    // console.log(this.texContent)
   }
 
 
