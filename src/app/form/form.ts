@@ -77,7 +77,13 @@ import {myTest} from './../../assets/custom.js';
   <button (click)="resetar()">Cancelar</button>
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
-  <button mat-fab extended color="primary" (click)="compilar()">Compilar</button>  `,
+<div class="right">
+  <button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
+      <div [innerHTML]="pdfBox"></div>
+      
+      <pre>{{log}}</pre>
+    </div>
+  `,
   styles: [`
   .has-error {
     color: red;
@@ -86,6 +92,9 @@ import {myTest} from './../../assets/custom.js';
 export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
+  log!: any
+  pdfBox: any = '<h1>Hello Angular 14!</h1>'
+  compileMsg: string = "Compilar"
   cidades!: any[]
   texContent!: any
   blocosOp!: any[]
@@ -207,8 +216,28 @@ export class Form implements OnInit {
 
    async compilar(){
      console.log("Compilar")
-    const globalEn = await new PdfTeXEngine
-    await globalEn.loadEngine()
+     this.compileMsg = "Compilando"
+     const globalEn = await new PdfTeXEngine
+     await globalEn.loadEngine()
+     globalEn.writeMemFSFile("main.tex", this.texContent);
+     globalEn.setEngineMainFile("main.tex");
+     let r = await globalEn.compileLaTeX();
+     this.log = r.log
+     this.compileMsg = "Compilar"
+
+     if (r.status === 0) {
+      const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
+      const objectURL = URL.createObjectURL(pdfblob);
+      // setTimeout(()=> URL.revokeObjectURL(objectURL) , 30000);
+      let a = document.createElement('a');
+
+      a.href = objectURL
+      a.download = "123"
+      a.click()
+      console.log(objectURL)
+      this.pdfBox = `<embed src="${objectURL}" width="100%" height="400px" type="application/pdf">`;
+      console.log(this.pdfBox)
+    }
 
   
       // console.log(globalEn.loadEngine)
