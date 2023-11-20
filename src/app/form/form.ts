@@ -80,8 +80,10 @@ import {myTest} from './../../assets/custom.js';
 <div class="right">
   <button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
       <!-- <div [innerHTML]="pdfBox"></div> -->
-      <embed #pdf [src]='pdfBox | safe'>
-      
+      <!-- <embed #pdf [src]='pdfBox | safe'> -->
+      <!-- <embed [src]="pdfBox | safe" style="width: 100%;height: 500px" type="application/pdf">       -->
+
+      <object [data]= "pdfBox | safe" width="800" height="500"> </object> 
       <pre>{{log}}</pre>
     </div>
   `,
@@ -94,7 +96,7 @@ export class Form implements OnInit {
   formulario!: FormGroup
   estados!: any
   log!: any
-  pdfBox!: any
+  pdfBox: any = 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210101201653/PDF.pdf'
   compileMsg: string = "Compilar"
   cidades!: any[]
   texContent!: any
@@ -232,8 +234,8 @@ export class Form implements OnInit {
       a.href = r.pdf
       a.download = "12345"
       a.click()
-      // console.log(a)
-      // console.log(a.href)
+      console.log(a)
+      console.log(a.href)
       this.pdfBox = r.pdf
       // console.log(this.pdfBox)
     }
