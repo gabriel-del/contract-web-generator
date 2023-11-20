@@ -206,12 +206,12 @@ export class Form implements OnInit {
   }
 
    async compilar(){
+     console.log("Compilar")
     const globalEn = await new PdfTeXEngine
-    console.log("Aqui")
-      // console.log(PdfTeXEngine)
-      // console.log(myTest)
-      // console.log(PdfTeXEngine)
-      console.log(globalEn)
+    await globalEn.loadEngine()
+
+  
+      // console.log(globalEn.loadEngine)
 
 
   }

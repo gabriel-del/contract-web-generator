@@ -22,12 +22,7 @@ editor.session.setMode("ace/mode/latex");
 editor.session.setUseWrapMode(true);
 editor.setFontSize(18);
 // console.log(dbg.objetos)
-  console.log("aquii")
-  console.log(PdfTexEngine)
   const globalEn = await new PdfTeXEngine();  
-  const globalEn2 = await new PdfTeXEngine();  
-  // console.log(globalEn)
-  // console.log(globalEn2)
   await globalEn.loadEngine();
   compile.addEventListener('click', async () => {
     compile.disabled = true;
