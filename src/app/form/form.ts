@@ -6,7 +6,10 @@ import { EstadoBr } from './model';
 import { formValidations } from './validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { empty } from 'rxjs';
-import { PdfTeXEngine } from './../../assets/PdfTeXEngine.js';
+// import * as PdfTeXEngine from './../../assets/PdfTeXEngine.js';
+// declare var PdfTeXEngine: any;
+// declare const myTest: any;
+import {myTest} from './../../assets/custom.js';
 
 
 @Component({
@@ -204,10 +207,12 @@ export class Form implements OnInit {
     .subscribe(dados => this.texContent = dados)
   }
 
-  compilar(){
-    const globalEn = new PdfTeXEngine().PdfTexEngine()
+   compilar(){
+    // const globalEn = await new PdfTeXEngine
     console.log("Aqui")
-      console.log(globalEn)
+      // console.log(PdfTeXEngine)
+      myTest()
+      // console.log(globalEn)
 
 
   }

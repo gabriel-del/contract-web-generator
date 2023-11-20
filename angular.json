@@ -60,7 +60,7 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["/src/assets/custom.js"]
           },
           "configurations": {
             "production": {
