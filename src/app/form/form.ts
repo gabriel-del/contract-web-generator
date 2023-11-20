@@ -189,11 +189,13 @@ export class Form implements OnInit {
   }
 
   compilar(){
+    let myvar = 123
+    let response
     console.log("compilar:")
     this.http.get('/assets/main.tex', {responseType: 'text'})
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
-      // map(dados => eval(`response = \`${dados}\``) ),
+      map(dados => eval(`dados = \`${dados}\``) ),
       tap(dados => console.log(dados))
     )
     .subscribe(dados => this.texContent = dados)
