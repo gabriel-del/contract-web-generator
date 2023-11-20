@@ -74,7 +74,7 @@ import { empty } from 'rxjs';
   <button (click)="resetar()">Cancelar</button>
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
-  `,
+  <button mat-fab extended color="primary" (click)="compilar()">Compilar</button>  `,
   styles: [`
   .has-error {
     color: red;
@@ -187,6 +187,10 @@ export class Form implements OnInit {
     }))
   }
 
+  compilar(){
+    console.log("foi")
+    this.http.get('assets/a.md').subscribe(dados => console.log(dados))
+  }
 
 
 
