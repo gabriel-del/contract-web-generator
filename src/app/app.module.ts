@@ -16,7 +16,8 @@ import { Footer } from './views/footer';
 import { Header } from './views/header';
 import { History } from './views/history';
 import { Dev } from './views/dev';
-import { SafePipe } from './form/safe.pipe'
+import { SafePipe } from './form/safe.pipe';
+import { Editor } from './form/editor'
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SafePipe } from './form/safe.pipe'
     History,
     Dev,
     SafePipe,
+    Editor,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +39,12 @@ import { SafePipe } from './form/safe.pipe'
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [ DropdownService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    Editor
+  ]
 })
 export class AppModule { }

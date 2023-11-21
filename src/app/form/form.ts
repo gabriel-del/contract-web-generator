@@ -86,7 +86,7 @@ import * as ace from "ace-builds";
       <!-- <div [innerHTML]="pdfBox"></div> -->
       <!-- <embed #pdf [src]='pdfBox | safe'> -->
       <!-- <embed [src]="pdfBox | safe" style="width: 100%;height: 500px" type="application/pdf">       -->
-
+      <app-editor [(text)]="texContent" mode="json" ></app-editor>
       <object [data]= "pdfBox | safe" width="800" height="500"> </object> 
       <pre>{{log}}</pre>
     </div>
@@ -235,31 +235,29 @@ export class Form implements OnInit {
   }
 
    async compilar(){
-    console.log(1)
-    console.log(this.texContent)
-    //  console.log("Compilar")
-    //  this.compileMsg = "Compilando"
-    //  const globalEn = await new PdfTeXEngine
-    //  await globalEn.loadEngine()
-    //  globalEn.writeMemFSFile("main.tex", this.texContent);
-    //  globalEn.setEngineMainFile("main.tex");
-    //  let r = await globalEn.compileLaTeX();
-    //  this.log = r.log
-    //  this.compileMsg = "Compilar"
+     console.log("Compilar")
+     this.compileMsg = "Compilando"
+     const globalEn = await new PdfTeXEngine
+     await globalEn.loadEngine()
+     globalEn.writeMemFSFile("main.tex", this.texContent);
+     globalEn.setEngineMainFile("main.tex");
+     let r = await globalEn.compileLaTeX();
+     this.log = r.log
+     this.compileMsg = "Compilar"
 
-    //  if (r.status === 0) {
-    //   let a = document.createElement('a');
-    //   // console.log(r.pdf)
-    //   a.href = r.pdf
-    //   a.download = "12345"
-    //   a.click()
-    //   console.log(a)
-    //   console.log(a.href)
-    //   const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
-    //   const objectURL = URL.createObjectURL(pdfblob);
-    //   this.pdfBox = objectURL
-    //   // console.log(this.pdfBox)
-    // }
+     if (r.status === 0) {
+      let a = document.createElement('a');
+      // console.log(r.pdf)
+      a.href = r.pdf
+      a.download = "12345"
+      a.click()
+      console.log(a)
+      console.log(a.href)
+      const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
+      const objectURL = URL.createObjectURL(pdfblob);
+      this.pdfBox = objectURL
+      // console.log(this.pdfBox)
+    }
 
   
       // console.log(globalEn.loadEngine)
