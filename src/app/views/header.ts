@@ -8,13 +8,14 @@ import { Component } from '@angular/core';
     <mat-toolbar-row>
       <span>Gerador de contratos</span>
       <span class="example-spacer"></span>
-      <button mat-icon-button><mat-icon>menu</mat-icon></button>
+      <button mat-icon-button (click)="showMenu = !showMenu"><mat-icon>menu</mat-icon></button>
     </mat-toolbar-row>
 
-
+    <ng-container *ngIf="showMenu">
     <mat-toolbar-row><a routerLink="/">Formulário </a></mat-toolbar-row>
     <mat-toolbar-row><a routerLink="/history">Histórico </a></mat-toolbar-row>
     <mat-toolbar-row><a routerLink="/dev">Desenvolvedor </a></mat-toolbar-row>
+    </ng-container>
   </mat-toolbar>
 </p>
   `,
@@ -25,5 +26,7 @@ import { Component } from '@angular/core';
   ]
 })
 export class Header {
+  showMenu: Boolean = false
+
 
 }
