@@ -2,7 +2,7 @@
 
 ## To Do
 * Refactoring
-* Generate PDF with Latex
+* Ace editor: rm old, syntax latex, change theme
 * Update form to Material Css
 * Add Validations
 * Slide Toggle on form field (with custom validation)
