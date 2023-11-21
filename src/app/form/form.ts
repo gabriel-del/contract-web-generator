@@ -8,7 +8,8 @@ import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { empty } from 'rxjs';
 import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 import {myTest} from './../../assets/custom.js';
-
+// import {} from 'https://cdn.jsdelivr.net/npm/ace-builds@1.31.2/src-min-noconflict/ace.min.js'
+import * as ace from "ace-builds";
 
 @Component({
   selector: 'app-form',
@@ -78,6 +79,9 @@ import {myTest} from './../../assets/custom.js';
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
 <button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
+<div class="app-ace-editor"
+     style="width: 500px;height: 250px;"
+     #editor id="editor">{{texContent}}</div>
 <div class="right">
       <!-- <div [innerHTML]="pdfBox"></div> -->
       <!-- <embed #pdf [src]='pdfBox | safe'> -->
@@ -99,7 +103,7 @@ export class Form implements OnInit {
   pdfBox: any = ''
   compileMsg: string = "Compilar"
   cidades!: any[]
-  texContent!: any
+  texContent: string = 'jkjkj'
   blocosOp!: any[]
   items: any[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
 
@@ -115,8 +119,21 @@ export class Form implements OnInit {
     })
 
     this.texRead()
+    ace.config.set("fontSize", "14px");
+    ace.config.set('basePath', "https://ace.c9.io/build/src-noconflict/")
 
+    const aceEditor = ace.edit("editor");
+    aceEditor.setTheme("ace/theme/monokai");
+    aceEditor.session.setMode("ace/mode/latex");
+    aceEditor.renderer.attachToShadowRoot()
+    aceEditor.setValue(this.texContent)
 
+    aceEditor.on("change", () => {
+      this.texContent = aceEditor.getValue()
+    });
+
+      console.log("texx:")
+      console.log(this.texContent)
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(3)]],
       telefone: [null, []],
@@ -218,29 +235,31 @@ export class Form implements OnInit {
   }
 
    async compilar(){
-     console.log("Compilar")
-     this.compileMsg = "Compilando"
-     const globalEn = await new PdfTeXEngine
-     await globalEn.loadEngine()
-     globalEn.writeMemFSFile("main.tex", this.texContent);
-     globalEn.setEngineMainFile("main.tex");
-     let r = await globalEn.compileLaTeX();
-     this.log = r.log
-     this.compileMsg = "Compilar"
+    console.log(1)
+    console.log(this.texContent)
+    //  console.log("Compilar")
+    //  this.compileMsg = "Compilando"
+    //  const globalEn = await new PdfTeXEngine
+    //  await globalEn.loadEngine()
+    //  globalEn.writeMemFSFile("main.tex", this.texContent);
+    //  globalEn.setEngineMainFile("main.tex");
+    //  let r = await globalEn.compileLaTeX();
+    //  this.log = r.log
+    //  this.compileMsg = "Compilar"
 
-     if (r.status === 0) {
-      let a = document.createElement('a');
-      // console.log(r.pdf)
-      a.href = r.pdf
-      a.download = "12345"
-      a.click()
-      console.log(a)
-      console.log(a.href)
-      const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
-      const objectURL = URL.createObjectURL(pdfblob);
-      this.pdfBox = objectURL
-      // console.log(this.pdfBox)
-    }
+    //  if (r.status === 0) {
+    //   let a = document.createElement('a');
+    //   // console.log(r.pdf)
+    //   a.href = r.pdf
+    //   a.download = "12345"
+    //   a.click()
+    //   console.log(a)
+    //   console.log(a.href)
+    //   const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
+    //   const objectURL = URL.createObjectURL(pdfblob);
+    //   this.pdfBox = objectURL
+    //   // console.log(this.pdfBox)
+    // }
 
   
       // console.log(globalEn.loadEngine)

@@ -35,6 +35,9 @@ dependencies:
   '@angular/router':
     specifier: ^16.2.0
     version: 16.2.11(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/platform-browser@16.2.11)(rxjs@7.8.1)
+  ace-builds:
+    specifier: ^1.31.2
+    version: 1.31.2
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1
@@ -3163,6 +3166,10 @@ packages:
       mime-types: 2.1.35
       negotiator: 0.6.3
     dev: true
+
+  /ace-builds@1.31.2:
+    resolution: {integrity: sha512-IeZI9ytPA6mB+goPxPkUPW4vXBoLuaBl5czu2tjtKrMi7mdRgyIUA/8e5JlrI1mqKoMeWHoUujzMTWkyutTdBw==}
+    dev: false
 
   /acorn-globals@6.0.0:
     resolution: {integrity: sha512-ZQl7LOWaF5ePqqcX4hLuv/bLXYQNfNWw2c0/yX/TsPRKamzHcTGQnlCjHT3TsmkOUVEPS3crCxiPfdzE/Trlhg==}
