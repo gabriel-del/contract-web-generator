@@ -8,26 +8,13 @@ import { Component } from '@angular/core';
     <mat-toolbar-row>
       <span>Gerador de contratos</span>
       <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <button mat-icon-button><mat-icon>menu</mat-icon></button>
     </mat-toolbar-row>
 
-    <div *ngIf="false">
 
-    <mat-toolbar-row>
-      <span>Formulário</span>
-      <span class="example-spacer"></span>
-    </mat-toolbar-row>
-    <mat-toolbar-row>
-      <span>Histórico</span>
-      <span class="example-spacer"></span>
-    </mat-toolbar-row>
-    <mat-toolbar-row>
-      <span>Desenvolvedor</span>
-      <span class="example-spacer"></span>
-    </mat-toolbar-row>
-  </div>
+    <mat-toolbar-row><a routerLink="/">Formulário </a></mat-toolbar-row>
+    <mat-toolbar-row><a routerLink="/history">Histórico </a></mat-toolbar-row>
+    <mat-toolbar-row><a routerLink="/dev">Desenvolvedor </a></mat-toolbar-row>
   </mat-toolbar>
 </p>
   `,
