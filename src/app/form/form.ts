@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {FormSubmit} from './form-submit'
 
 import { EstadoBr } from './model';
 import { empty } from 'rxjs';
 import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 import {myTest} from './../../assets/custom.js';
-import * as ace from "ace-builds";
 import {FormService} from './form.service'
 
 @Component({
@@ -74,17 +72,13 @@ import {FormService} from './form.service'
     </div>
   </div> -->
   <app-form-submit></app-form-submit>
-  <button type="submit">Enviar</button>
   <!-- <button (click)="resetar()">Cancelar</button> -->
-  <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
 
       <!-- <div [innerHTML]="pdfBox"></div> -->
       <!-- <embed #pdf [src]='pdfBox | safe'> -->
       <!-- <embed [src]="pdfBox | safe" style="width: 100%;height: 500px" type="application/pdf">       -->
-      <app-editor [(text)]="texContent" mode="latex" ></app-editor>
-      <object [data]= "pdfBox | safe" width="800" height="500"> </object> 
-      <pre>{{log}}</pre>
+
   `,
   styles: [`
   .has-error {
@@ -93,12 +87,8 @@ import {FormService} from './form.service'
 })
 export class Form implements OnInit {
   estados!: any
-  log!: any
-  pdfBox: any = ''
   cidades!: any[]
-  texContent: string = 'jkjkj123'
   blocosOp!: any[]
-
   formulario = this.formService.formulario
   form = this.formService
 

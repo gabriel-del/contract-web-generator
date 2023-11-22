@@ -7,6 +7,7 @@ import {FormService} from './form.service'
   selector: 'app-form-submit',
   template: `
     <button mat-fab extended color="primary" (click)="form.compilar()">{{compileMsg}}</button>  
+    <!-- <button type="submit">Enviar</button> -->
 
   `,
   styles: [
