@@ -24,8 +24,10 @@ export class FormService {
     ) { }
 
   formulario: FormGroup = this.formBuilder.group({
-    nome: [null, [Validators.required, Validators.minLength(3)]],
+    nome: ['Fulano', [Validators.required, Validators.minLength(3)]],
     telefone: [null, []],
+    nacionalidade: ['brasileiro', []],
+    estadoCivil: ['solteiro', []],
     cep: [null, []],
     // cep: [null, [formValidations.cepValidator]],
     numero: [null, []],
@@ -42,7 +44,9 @@ export class FormService {
  
   texRead(){
     let f = {
-      numero: `${this.formulario.controls['numero'].value}`
+      nome: `${this.formulario.controls['nome'].value}`,
+      nacionalidade: `${this.formulario.controls['nacionalidade'].value}`,
+      estadoCivil: `${this.formulario.controls['estadoCivil'].value}`,
     }
     this.http.get('/assets/main.tex', {responseType: 'text'})
     .pipe(
