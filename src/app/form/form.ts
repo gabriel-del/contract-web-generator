@@ -81,17 +81,13 @@ import {FormService} from './form.service'
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
 <button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
-<div class="app-ace-editor"
-     style="width: 500px;height: 250px;"
-     #editor id="editor">{{texContent}}</div>
-<div class="right">
+
       <!-- <div [innerHTML]="pdfBox"></div> -->
       <!-- <embed #pdf [src]='pdfBox | safe'> -->
       <!-- <embed [src]="pdfBox | safe" style="width: 100%;height: 500px" type="application/pdf">       -->
-      <app-editor [(text)]="texContent" mode="json" ></app-editor>
+      <app-editor [(text)]="texContent" mode="latex" ></app-editor>
       <object [data]= "pdfBox | safe" width="800" height="500"> </object> 
       <pre>{{log}}</pre>
-    </div>
   `,
   styles: [`
   .has-error {
@@ -135,25 +131,6 @@ export class Form implements OnInit {
     this.dropdownService.getEstadosBr().subscribe(dados => {
       this.estados = dados.estados
     })
-
-    console.log(this.formService.myvar)
-
-    ace.config.set("fontSize", "14px");
-    ace.config.set('basePath', "https://ace.c9.io/build/src-noconflict/")
-
-    const aceEditor = ace.edit("editor");
-    aceEditor.setTheme("ace/theme/monokai");
-    aceEditor.session.setMode("ace/mode/latex");
-    aceEditor.renderer.attachToShadowRoot()
-    aceEditor.setValue(this.texContent)
-
-    aceEditor.on("change", () => {
-      this.texContent = aceEditor.getValue()
-    });
-
-
-
-
  
   }
 
