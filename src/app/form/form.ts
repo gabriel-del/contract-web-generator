@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormService} from './form.service'
+import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
+import { empty } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-form',
@@ -34,9 +38,9 @@ import {FormService} from './form.service'
   <div [ngClass]="hasErrorStyle('bairro')">
     <label>Bairro: <input type="text" formControlName="bairro"></label><br/>
   </div>
-  <!-- <div [ngClass]="hasErrorStyle('cidade')">
+  <div [ngClass]="hasErrorStyle('cidade')">
     <label>Cidade: <input type="text" formControlName="cidade"></label><br/>
-  </div> -->
+  </div>
   <div [ngClass]="hasErrorStyle('cidade')">
     <label>Cidade: 
       <select formControlName="cidade">
@@ -80,19 +84,42 @@ import {FormService} from './form.service'
   }`]
 })
 export class Form implements OnInit {
-  estados!: any
   cidades!: any[]
   blocosOp!: any[]
   formulario = this.formService.formulario
   form = this.formService
+  estados!: any
 
-  constructor( private formService: FormService ){}
-
+  constructor( private formService: FormService ,     private http: HttpClient ){}
 
 
   ngOnInit(): void { 
+      this.form.getEstadosBr().subscribe(dados => { this.estados = dados.estados })
 
     this.formulario.statusChanges.subscribe(_ => this.form.texRead())
+    this.formulario.get('cep').statusChanges
+    .pipe(
+      distinctUntilChanged(),
+      tap( value => console.log("status cep: ", value) ),
+      switchMap(status => status === 'VALID' ? 
+      this.http.get(`//viacep.com.br/ws/${this.formulario.get('cep').value}/json`) :
+      empty()
+      )
+    )
+    .subscribe(
+      (dados: any) => dados ? this.formulario.patchValue({
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+    }) : {} )
+  
+    this.formulario.get('estado').valueChanges
+    .pipe(
+      map(estado => this.estados.filter(({sigla}) => sigla === estado)),
+      map(estado => estado[0].cidades),
+    )
+    .subscribe(cidades => this.cidades = cidades)
   }
 
   hasError(where: string, what?: string) {
@@ -112,6 +139,8 @@ export class Form implements OnInit {
   onSubmit() {
     console.log("submit!")
   }
+
+  
   
 }
 

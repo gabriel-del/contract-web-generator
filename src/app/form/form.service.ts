@@ -28,8 +28,8 @@ export class FormService {
     telefone: [null, []],
     nacionalidade: ['brasileiro', []],
     estadoCivil: ['solteiro', []],
-    cep: [null, []],
-    // cep: [null, [formValidations.cepValidator]],
+    // cep: [null, []],
+    cep: [null, [formValidations.cepValidator]],
     numero: [null, []],
     complemento: [null, []],
     rua: [null, []],
@@ -93,40 +93,18 @@ export class FormService {
   }
 
 
-  // formulario.get('cep').statusChanges
-  // .pipe(
-  //   distinctUntilChanged(),
-  //   tap( value => console.log("status cep: ", value) ),
-  //   switchMap(status => status === 'VALID' ? 
-  //   this.http.get(`//viacep.com.br/ws/${this.formulario.get('cep').value}/json`) :
-  //   empty()
-  //   )
-  // )
-  // .subscribe(
-  //   (dados: any) => dados ? this.formulario.patchValue({
-  //     rua: dados.logradouro,
-  //     bairro: dados.bairro,
-  //     cidade: dados.localidade,
-  //     estado: dados.uf
-  // }) : {} )
+ 
 
-  // formulario.get('estado').valueChanges
-  // .pipe(
-  //   map(estado => this.estados.filter(({sigla}) => sigla === estado)),
-  //   map(estado => estado[0].cidades),
-  // )
-  // .subscribe(cidades => this.cidades = cidades)
-
-  // consultaCEP() {
-  //   const cep = this.formulario.get('cep')?.value?.replace(/\D/g,'')
-  //   if (cep != null && cep !== '' && /^[0-9]{8}$/.test(cep)) 
-  //     this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe((dados: any)  =>  this.formulario.patchValue({
-  //       rua: dados.logradouro,
-  //       bairro: dados.bairro,
-  //       cidade: dados.localidade,
-  //       estado: dados.uf
-  //   }))
-  // }
+  consultaCEP() {
+    const cep = this.formulario.get('cep')?.value?.replace(/\D/g,'')
+    if (cep != null && cep !== '' && /^[0-9]{8}$/.test(cep)) 
+      this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe((dados: any)  =>  this.formulario.patchValue({
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+    }))
+  }
 
 
 
@@ -136,9 +114,7 @@ export class FormService {
 
 
   // this.blocosOp = this.dropdownService.getBlocos()
-  // this.dropdownService.getEstadosBr().subscribe(dados => {
-  //   this.estados = dados.estados
-  // })
+
 
 
 }
