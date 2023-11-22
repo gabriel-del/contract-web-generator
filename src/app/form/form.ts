@@ -80,7 +80,6 @@ import {FormService} from './form.service'
   <!-- <button (click)="resetar()">Cancelar</button> -->
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
-<button mat-fab extended color="primary" (click)="form.compilar()">{{compileMsg}}</button>  
 
       <!-- <div [innerHTML]="pdfBox"></div> -->
       <!-- <embed #pdf [src]='pdfBox | safe'> -->
@@ -98,7 +97,6 @@ export class Form implements OnInit {
   estados!: any
   log!: any
   pdfBox: any = ''
-  compileMsg: string = "Compilar"
   cidades!: any[]
   texContent: string = 'jkjkj123'
   blocosOp!: any[]
@@ -107,7 +105,6 @@ export class Form implements OnInit {
   form = this.formService
 
   constructor(
-    private http: HttpClient,
     private dropdownService: DropdownService,
     private formService: FormService,
     ){}
@@ -119,26 +116,6 @@ export class Form implements OnInit {
     })
  
   }
-
-  
-  
-
-
-  onSubmit() {
-    let valueSubmit = Object.assign({}, this.formulario.value)
-    // valueSubmit = Object.assign(valueSubmit, {
-    //   items: valueSubmit.items.map((v,i) => v ? this.items[i] : null).filter(v => v !== null)
-    // })
-
-    console.log(valueSubmit)
-    if (this.formulario.valid) {
-      console.log(this.formulario.value)
-      // this.formulario.reset()
-    } else {
-      Object.keys(this.formulario.controls).forEach(field => this.formulario.controls[field].markAsDirty())
-    }
-  }
-
 
   hasError(where: string, what?: string) {
     let field = this.formulario.controls[where]
@@ -154,16 +131,9 @@ export class Form implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
+  onSubmit() {
+    console.log("submit!")
+  }
   
 }
 
