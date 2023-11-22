@@ -4,6 +4,8 @@ import { formValidations } from './validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { EstadoBr } from './model';
 import { HttpClient } from '@angular/common/http';
+import { empty } from 'rxjs';
+
 
 
 
@@ -54,9 +56,9 @@ export class FormService {
     ]
   }
 
-  // resetar() {
-  //   this.formulario.reset()
-  // }
+  resetar() {
+    this.formulario.reset()
+  }
 
 
   // formulario.get('cep').statusChanges

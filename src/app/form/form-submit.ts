@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {FormService} from './form.service'
+import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
+import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -17,10 +20,16 @@ export class FormSubmit {
   formulario = this.formService.formulario
   form = this.formService
   compileMsg: string = "Compilar"
+  texContent: string = 'jkjkj123'
+  log!: any
+  pdfBox: any = ''
+
+
 
 
   constructor(
-    private formService: FormService
+    private formService: FormService,
+    private http: HttpClient
     ){}
 
 
@@ -40,42 +49,42 @@ export class FormSubmit {
   }
 
 
-    // texRead(){
-  //   // let myvar = this.formulario.get('numero').value
-  //   let myvar = "minha var"
-  //   this.http.get('/assets/main.tex', {responseType: 'text'})
-  //   .pipe(
-  //     map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
-  //     map(dados => eval(`dados = \`${dados}\``) ),
-  //     // tap(dados => console.log(dados))
-  //   )
-  //   .subscribe(dados => this.texContent = dados)
-  // }
+    texRead(){
+    // let myvar = this.formulario.get('numero').value
+    let myvar = "minha var"
+    this.http.get('/assets/main.tex', {responseType: 'text'})
+    .pipe(
+      map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
+      map(dados => eval(`dados = \`${dados}\``) ),
+      // tap(dados => console.log(dados))
+    )
+    .subscribe(dados => this.texContent = dados)
+  }
 
 
-    //  async compilar(){
-  //    console.log("Compilar")
-  //    this.compileMsg = "Compilando"
-  //    const globalEn = await new PdfTeXEngine
-  //    await globalEn.loadEngine()
-  //    globalEn.writeMemFSFile("main.tex", this.texContent);
-  //    globalEn.setEngineMainFile("main.tex");
-  //    let r = await globalEn.compileLaTeX();
-  //    this.log = r.log
-  //    this.compileMsg = "Compilar"
+     async compilar(){
+     console.log("Compilar")
+     this.compileMsg = "Compilando"
+     const globalEn = await new PdfTeXEngine
+     await globalEn.loadEngine()
+     globalEn.writeMemFSFile("main.tex", this.texContent);
+     globalEn.setEngineMainFile("main.tex");
+     let r = await globalEn.compileLaTeX();
+     this.log = r.log
+     this.compileMsg = "Compilar"
 
-  //    if (r.status === 0) {
-  //     let a = document.createElement('a');
-  //     // console.log(r.pdf)
-  //     a.href = r.pdf
-  //     a.download = "12345"
-  //     a.click()
-  //     console.log(a)
-  //     console.log(a.href)
-  //     const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
-  //     const objectURL = URL.createObjectURL(pdfblob);
-  //     this.pdfBox = objectURL
-  //     // console.log(this.pdfBox)
-  //   }
-  // }
+     if (r.status === 0) {
+      let a = document.createElement('a');
+      // console.log(r.pdf)
+      a.href = r.pdf
+      a.download = "12345"
+      a.click()
+      console.log(a)
+      console.log(a.href)
+      const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
+      const objectURL = URL.createObjectURL(pdfblob);
+      this.pdfBox = objectURL
+      // console.log(this.pdfBox)
+    }
+  }
 }

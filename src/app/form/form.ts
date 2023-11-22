@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-import { EstadoBr } from './model';
-import { empty } from 'rxjs';
-import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 import {FormService} from './form.service'
 
 @Component({
