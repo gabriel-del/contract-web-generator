@@ -8,7 +8,6 @@ import {  Debug } from './form/debug';
 import {  ErrorMsg } from './form/campo-control-erro';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DropdownService } from './form/dropdown.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
 import { Home } from './views/home';
@@ -43,7 +42,7 @@ import { FormSubmit } from './form/form-submit'
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [ DropdownService],
+  providers: [],
   bootstrap: [AppComponent],
   exports: [
     Editor

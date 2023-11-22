@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DropdownService } from './dropdown.service';
 import {FormSubmit} from './form-submit'
 
 import { EstadoBr } from './model';
 import { empty } from 'rxjs';
 import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 import {myTest} from './../../assets/custom.js';
-// import {} from 'https://cdn.jsdelivr.net/npm/ace-builds@1.31.2/src-min-noconflict/ace.min.js'
 import * as ace from "ace-builds";
 import {FormService} from './form.service'
 
@@ -105,17 +103,10 @@ export class Form implements OnInit {
   form = this.formService
 
   constructor(
-    private dropdownService: DropdownService,
     private formService: FormService,
     ){}
 
-  ngOnInit(): void {
-    this.blocosOp = this.dropdownService.getBlocos()
-    this.dropdownService.getEstadosBr().subscribe(dados => {
-      this.estados = dados.estados
-    })
- 
-  }
+  ngOnInit(): void { }
 
   hasError(where: string, what?: string) {
     let field = this.formulario.controls[where]

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms'
 import { formValidations } from './validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
+import { EstadoBr } from './model';
+import { HttpClient } from '@angular/common/http';
+
 
 
 
@@ -11,8 +14,12 @@ import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 export class FormService {
   items: String[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
 
+  
   myvar = 123
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private http: HttpClient
+    ) { }
+
   formulario: FormGroup = this.formBuilder.group({
     nome: [null, [Validators.required, Validators.minLength(3)]],
     telefone: [null, []],
@@ -35,7 +42,17 @@ export class FormService {
   }
 
 
+  getEstadosBr() {
+    return this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json')
+}
 
+  getBlocos() {
+    return [
+      {valor: 'A', desc: 'A'},
+      {valor: 'B', desc: 'B'},
+      {valor: 'C', desc: 'C'}
+    ]
+  }
 
   // resetar() {
   //   this.formulario.reset()
@@ -118,4 +135,12 @@ export class FormService {
   //     // console.log(this.pdfBox)
   //   }
   // }
+
+
+  // this.blocosOp = this.dropdownService.getBlocos()
+  // this.dropdownService.getEstadosBr().subscribe(dados => {
+  //   this.estados = dados.estados
+  // })
+
+
 }
