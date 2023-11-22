@@ -89,6 +89,10 @@ export class FormService {
   //   .subscribe(dados => this.texContent = dados)
   // }
 
+  compilar(){
+    console.log("compilou123")
+  }
+
   //  async compilar(){
   //    console.log("Compilar")
   //    this.compileMsg = "Compilando"

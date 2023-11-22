@@ -21,6 +21,6 @@ export class History {
 
   showVar(){
     // this.formService.myvar = 3
-    console.log(this.formService.myvar)
+    console.log(this.formService.formulario.get('numero').value)
   }
 }

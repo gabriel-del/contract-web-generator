@@ -79,7 +79,7 @@ import {FormService} from './form.service'
   <!-- <button (click)="resetar()">Cancelar</button> -->
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
-<button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
+<button mat-fab extended color="primary" (click)="form.compilar()">{{compileMsg}}</button>  
 
       <!-- <div [innerHTML]="pdfBox"></div> -->
       <!-- <embed #pdf [src]='pdfBox | safe'> -->
@@ -103,6 +103,7 @@ export class Form implements OnInit {
   blocosOp!: any[]
 
   formulario = this.formService.formulario
+  form = this.formService
 
   constructor(
     private http: HttpClient,
@@ -119,9 +120,7 @@ export class Form implements OnInit {
   }
 
   
-  compilar(){
-    console.log("compilou")
-  }
+  
 
 
   onSubmit() {
