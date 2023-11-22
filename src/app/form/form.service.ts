@@ -92,22 +92,6 @@ export class FormService {
     this.formulario.reset()
   }
 
-
- 
-
-  consultaCEP() {
-    const cep = this.formulario.get('cep')?.value?.replace(/\D/g,'')
-    if (cep != null && cep !== '' && /^[0-9]{8}$/.test(cep)) 
-      this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe((dados: any)  =>  this.formulario.patchValue({
-        rua: dados.logradouro,
-        bairro: dados.bairro,
-        cidade: dados.localidade,
-        estado: dados.uf
-    }))
-  }
-
-
-
   compilar(){
     console.log("compilou123")
   }

@@ -4,10 +4,8 @@ export class formValidations {
   
   static cepValidator( control: FormControl){
     const cep = control.value
-    if (cep != null && cep !== '' ){
-      return /^[0-9]{8}$/.test(cep) ? null : { cepInvalido: true}
-    }
-    return null
+    if (cep != null && cep !== '' && /^[0-9]{8}$/.test(cep)) return null  
+    return { cepInvalido: true}
   }
 
   static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any){
