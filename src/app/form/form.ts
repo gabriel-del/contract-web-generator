@@ -10,6 +10,7 @@ import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 import {myTest} from './../../assets/custom.js';
 // import {} from 'https://cdn.jsdelivr.net/npm/ace-builds@1.31.2/src-min-noconflict/ace.min.js'
 import * as ace from "ace-builds";
+import {FormService} from './form.service'
 
 @Component({
   selector: 'app-form',
@@ -79,6 +80,7 @@ import * as ace from "ace-builds";
   <!-- <app-debug [form]="formulario"></app-debug> -->
 </form>
 <button mat-fab extended color="primary" (click)="compilar()">{{compileMsg}}</button>  
+<button mat-fab extended color="primary" (click)="showVar()">show var</button>  
 <div class="app-ace-editor"
      style="width: 500px;height: 250px;"
      #editor id="editor">{{texContent}}</div>
@@ -109,7 +111,8 @@ export class Form implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
-    private dropdownService: DropdownService
+    private dropdownService: DropdownService,
+    private formService: FormService
     ){}
 
   ngOnInit(): void {
@@ -117,6 +120,8 @@ export class Form implements OnInit {
     this.dropdownService.getEstadosBr().subscribe(dados => {
       this.estados = dados.estados
     })
+
+    console.log(this.formService.myvar)
 
     this.texRead()
     ace.config.set("fontSize", "14px");
@@ -172,6 +177,11 @@ export class Form implements OnInit {
       map(estado => estado[0].cidades),
     )
     .subscribe(cidades => this.cidades = cidades)
+  }
+
+  showVar(){
+    this.formService.myvar = 3
+    console.log(this.formService.myvar)
   }
 
   buildItems(){
