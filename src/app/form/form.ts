@@ -68,11 +68,11 @@ import {FormService} from './form.service'
   <app-form-submit></app-form-submit>
   <!-- <button (click)="resetar()">Cancelar</button> -->
 </form>
+<button (click)="form.texRead()">update Tex</button>
+<button (click)="form.texShow()">show Tex</button>
+<button (click)="form.showVar()">show var</button>
 
-      <!-- <div [innerHTML]="pdfBox"></div> -->
-      <!-- <embed #pdf [src]='pdfBox | safe'> -->
-      <!-- <embed [src]="pdfBox | safe" style="width: 100%;height: 500px" type="application/pdf">       -->
-
+      <app-debug [form]="formulario"></app-debug>
   `,
   styles: [`
   .has-error {
@@ -86,9 +86,7 @@ export class Form implements OnInit {
   formulario = this.formService.formulario
   form = this.formService
 
-  constructor(
-    private formService: FormService,
-    ){}
+  constructor( private formService: FormService ){}
 
   ngOnInit(): void { }
 

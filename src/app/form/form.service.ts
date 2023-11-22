@@ -18,6 +18,7 @@ export class FormService {
 
   
   myvar = 123
+  texContent!: String
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient
     ) { }
@@ -37,6 +38,26 @@ export class FormService {
     hasEndereco: [true, []],
     // items: this.buildItems(),
   })
+
+  texShow(){
+    console.log(this.texContent)
+  }
+
+  showVar(){
+    console.log(this.formulario.get('numero').value)
+  }
+
+  texRead(){
+    // let myvar = this.formulario.get('numero').value
+    let myvar = this.formulario.get('numero').value
+    this.http.get('/assets/main.tex', {responseType: 'text'})
+    .pipe(
+      map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
+      map(dados => eval(`dados = \`${dados}\``) ),
+      tap(dados => console.log(dados))
+    )
+    .subscribe(dados => this.texContent = dados)
+  }
 
   buildItems(){
     const values = this.items.map(v => new FormControl(false))

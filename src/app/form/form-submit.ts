@@ -49,17 +49,7 @@ export class FormSubmit {
   }
 
 
-    texRead(){
-    // let myvar = this.formulario.get('numero').value
-    let myvar = "minha var"
-    this.http.get('/assets/main.tex', {responseType: 'text'})
-    .pipe(
-      map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
-      map(dados => eval(`dados = \`${dados}\``) ),
-      // tap(dados => console.log(dados))
-    )
-    .subscribe(dados => this.texContent = dados)
-  }
+
 
 
      async compilar(){
