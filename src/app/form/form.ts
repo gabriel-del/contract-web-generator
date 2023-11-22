@@ -69,9 +69,6 @@ import {FormService} from './form.service'
   <!-- <button (click)="resetar()">Cancelar</button> -->
 </form>
 <button (click)="form.texRead()">update Tex</button>
-<button (click)="form.texShow()">show Tex</button>
-<button (click)="form.showVar()">show var</button>
-
       <app-debug [form]="formulario"></app-debug>
   `,
   styles: [`

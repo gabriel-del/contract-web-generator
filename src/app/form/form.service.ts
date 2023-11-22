@@ -18,7 +18,7 @@ export class FormService {
 
   
   myvar = 123
-  texContent!: String
+  texContent!: string
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient
     ) { }
@@ -39,17 +39,11 @@ export class FormService {
     // items: this.buildItems(),
   })
 
-  texShow(){
-    console.log(this.texContent)
-  }
-
-  showVar(){
-    console.log(this.formulario.get('numero').value)
-  }
-
+ 
   texRead(){
-    // let myvar = this.formulario.get('numero').value
-    let myvar = this.formulario.get('numero').value
+    let f = {
+      numero: `${this.formulario.controls['numero'].value}`
+    }
     this.http.get('/assets/main.tex', {responseType: 'text'})
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),

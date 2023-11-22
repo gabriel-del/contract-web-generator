@@ -18,9 +18,9 @@ import {FormService} from '../form/form.service'
 export class Dev {
   log!: any
   pdfBox: any = ''
-  texContent: string = 'jkjkj123'
   formulario = this.formService.formulario
   form = this.formService
+  texContent: string = this.form.texContent
   constructor( private formService: FormService ){}
 
 }
