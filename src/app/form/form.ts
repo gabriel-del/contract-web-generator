@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
-import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms'
 
 import { EstadoBr } from './model';
 import { empty } from 'rxjs';
@@ -100,30 +99,15 @@ export class Form implements OnInit {
   pdfBox: any = ''
   compileMsg: string = "Compilar"
   cidades!: any[]
-  texContent: string = 'jkjkj'
+  texContent: string = 'jkjkj123'
   blocosOp!: any[]
 
-
-  formulario: FormGroup = this.formBuilder.group({
-    nome: [null, [Validators.required, Validators.minLength(3)]],
-    telefone: [null, []],
-    cep: [null, []],
-    numero: [null, []],
-    complemento: [null, []],
-    rua: [null, []],
-    bairro: [null, []],
-    cidade: [null, []],
-    estado: [null, []],
-    bloco: [null, []],
-    hasEndereco: [true, []],
-    items: [null, []],
-  })
+  formulario = this.formService.formulario
 
   constructor(
     private http: HttpClient,
     private dropdownService: DropdownService,
     private formService: FormService,
-    private formBuilder: FormBuilder
     ){}
 
   ngOnInit(): void {

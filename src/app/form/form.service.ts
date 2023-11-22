@@ -16,7 +16,8 @@ export class FormService {
   formulario: FormGroup = this.formBuilder.group({
     nome: [null, [Validators.required, Validators.minLength(3)]],
     telefone: [null, []],
-    cep: [null, [formValidations.cepValidator]],
+    cep: [null, []],
+    // cep: [null, [formValidations.cepValidator]],
     numero: [null, []],
     complemento: [null, []],
     rua: [null, []],
@@ -25,7 +26,7 @@ export class FormService {
     estado: [null, []],
     bloco: [null, []],
     hasEndereco: [true, []],
-    items: this.buildItems(),
+    // items: this.buildItems(),
   })
 
   buildItems(){
