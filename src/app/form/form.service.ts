@@ -94,47 +94,11 @@ export class FormService {
   //   }))
   // }
 
-  // texRead(){
-  //   // let myvar = this.formulario.get('numero').value
-  //   let myvar = "minha var"
-  //   this.http.get('/assets/main.tex', {responseType: 'text'})
-  //   .pipe(
-  //     map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
-  //     map(dados => eval(`dados = \`${dados}\``) ),
-  //     // tap(dados => console.log(dados))
-  //   )
-  //   .subscribe(dados => this.texContent = dados)
-  // }
+
 
   compilar(){
     console.log("compilou123")
   }
-
-  //  async compilar(){
-  //    console.log("Compilar")
-  //    this.compileMsg = "Compilando"
-  //    const globalEn = await new PdfTeXEngine
-  //    await globalEn.loadEngine()
-  //    globalEn.writeMemFSFile("main.tex", this.texContent);
-  //    globalEn.setEngineMainFile("main.tex");
-  //    let r = await globalEn.compileLaTeX();
-  //    this.log = r.log
-  //    this.compileMsg = "Compilar"
-
-  //    if (r.status === 0) {
-  //     let a = document.createElement('a');
-  //     // console.log(r.pdf)
-  //     a.href = r.pdf
-  //     a.download = "12345"
-  //     a.click()
-  //     console.log(a)
-  //     console.log(a.href)
-  //     const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
-  //     const objectURL = URL.createObjectURL(pdfblob);
-  //     this.pdfBox = objectURL
-  //     // console.log(this.pdfBox)
-  //   }
-  // }
 
 
   // this.blocosOp = this.dropdownService.getBlocos()
