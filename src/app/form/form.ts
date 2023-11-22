@@ -69,6 +69,9 @@ import {FormService} from './form.service'
   <!-- <button (click)="resetar()">Cancelar</button> -->
 </form>
 <button (click)="form.texRead()">update Tex</button>
+<button (click)="form.texShow()">show Tex</button>
+<button (click)="form.showVar()">show var</button>
+
       <app-debug [form]="formulario"></app-debug>
   `,
   styles: [`
@@ -85,7 +88,12 @@ export class Form implements OnInit {
 
   constructor( private formService: FormService ){}
 
-  ngOnInit(): void { }
+
+
+  ngOnInit(): void { 
+
+    this.formulario.statusChanges.subscribe(_ => this.form.texRead())
+  }
 
   hasError(where: string, what?: string) {
     let field = this.formulario.controls[where]

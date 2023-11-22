@@ -41,6 +41,19 @@ export class FormService {
     // items: this.buildItems(),
   })
 
+  g = {
+    nome: this.formulario.controls['nome'],
+    // nome: 'AAA',
+  }
+  showVar(){
+    console.log(this.g.nome)
+    // console.log(this.g.nome)
+  }
+
+  texShow(){
+
+  }
+
  
   texRead(){
     let f = {
@@ -52,7 +65,7 @@ export class FormService {
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
       map(dados => eval(`dados = \`${dados}\``) ),
-      tap(dados => console.log(dados))
+      // tap(dados => console.log(dados))
     )
     .subscribe(dados => this.texContent = dados)
   }
