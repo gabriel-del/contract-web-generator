@@ -17,7 +17,8 @@ import { Header } from './views/header';
 import { History } from './views/history';
 import { Dev } from './views/dev';
 import { SafePipe } from './form/safe.pipe';
-import { Editor } from './form/editor'
+import { Editor } from './form/editor';
+import { FormSubmit } from './form/form-submit'
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { Editor } from './form/editor'
     Dev,
     SafePipe,
     Editor,
+    FormSubmit,
   ],
   imports: [
     BrowserModule,

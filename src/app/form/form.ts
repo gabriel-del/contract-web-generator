@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DropdownService } from './dropdown.service';
+import {FormSubmit} from './form-submit'
 
 import { EstadoBr } from './model';
 import { empty } from 'rxjs';
@@ -74,7 +75,7 @@ import {FormService} from './form.service'
       <label>Cama<input type="checkbox" formControlName="items"></label><br/>
     </div>
   </div> -->
-  
+  <app-form-submit></app-form-submit>
   <button type="submit">Enviar</button>
   <!-- <button (click)="resetar()">Cancelar</button> -->
   <!-- <app-debug [form]="formulario"></app-debug> -->
