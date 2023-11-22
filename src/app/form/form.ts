@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { EstadoBr } from './model';
 import { empty } from 'rxjs';
 import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
-import {myTest} from './../../assets/custom.js';
 import {FormService} from './form.service'
 
 @Component({
