@@ -61,6 +61,18 @@ import { EstadoBr } from './model';
     <label>Tem Endereço?<input type="checkbox" formControlName="hasEndereco"></label><br/>
   </div>
 
+
+
+  <mat-form-field>
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+
+
   
   <!-- <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items: 
     <div   *ngFor="let item of formulario.get('items')['controls']; let i = index">
