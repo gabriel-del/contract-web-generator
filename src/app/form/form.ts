@@ -12,6 +12,7 @@ import { EstadoBr } from './model';
   template: `
 <form [formGroup]="formulario">
 
+<div>
 <mat-form-field>
   <mat-label>Input</mat-label>
   <input matInput>
@@ -78,6 +79,10 @@ Bloco:
     <input type="tel" matInput formControlName="telefone" placeholder="81 91111-1111">
   </mat-form-field>
 
+  </div>
+  <div>
+
+
   <!-- <mat-form-field [ngClass]="hasErrorStyle('cep')"> -->
     <mat-label>Cep:</mat-label>
      <input type="text" formControlName="cep">
@@ -135,9 +140,10 @@ Bloco:
       <label>Cama<input type="checkbox" formControlName="items"></label><br/>
     </div>
   </div> -->
+  </div>
+</form>
   <app-form-submit></app-form-submit>
   <!-- <button (click)="resetar()">Cancelar</button> -->
-</form>
       <app-debug [form]="formulario"></app-debug>
   `,
   styles: [`
@@ -146,14 +152,17 @@ Bloco:
   }
   form {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
+  /* min-width: 150px; */
+  /* max-width: 50%; */
+  /* width: 100%; */
+  div {
+  flex: 1
 }
-form {
-  min-width: 150px;
-  max-width: 50%;
-  width: 100%;
 }
+ 
+
 
 mat-form-field{
   width: 100%;
