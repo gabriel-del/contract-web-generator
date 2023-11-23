@@ -29,7 +29,7 @@ Bloco:
 <mat-form-field>
   <mat-label>Apartamento</mat-label>
   <mat-select >
-    <mat-option *ngFor="let apartamento of apartamentos.b" value="apartamento">{{apartamento}}</mat-option>
+    <mat-option *ngFor="let apartamento of apartamentos[formulario.get('bloco').value]" value="apartamento">{{apartamento}}</mat-option>
   </mat-select>
 </mat-form-field>
 
