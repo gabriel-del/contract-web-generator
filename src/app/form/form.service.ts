@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms'
 import { formValidations } from './validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
-import { EstadoBr } from './model';
 import { HttpClient } from '@angular/common/http';
 import { empty } from 'rxjs';
 
@@ -15,9 +14,8 @@ import { empty } from 'rxjs';
 })
 export class FormService {
   items: String[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
-
+  log!: any
   
-  myvar = 123
   texContent!: string
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient
@@ -41,20 +39,7 @@ export class FormService {
     // items: this.buildItems(),
   })
 
-  g = {
-    nome: this.formulario.controls['nome'],
-    // nome: 'AAA',
-  }
-  showVar(){
-    console.log(this.g.nome)
-    // console.log(this.g.nome)
-  }
-
-  texShow(){
-
-  }
-
- 
+   
   texRead(){
     let f = {
       nome: `${this.formulario.controls['nome'].value}`,
@@ -76,28 +61,7 @@ export class FormService {
   }
 
 
-  getEstadosBr() {
-    return this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json')
-}
 
-  getBlocos() {
-    return [
-      {valor: 'A', desc: 'A'},
-      {valor: 'B', desc: 'B'},
-      {valor: 'C', desc: 'C'}
-    ]
-  }
-
-  resetar() {
-    this.formulario.reset()
-  }
-
-  compilar(){
-    console.log("compilou123")
-  }
-
-
-  // this.blocosOp = this.dropdownService.getBlocos()
 
 
 

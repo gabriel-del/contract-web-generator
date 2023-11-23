@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import {FormService} from './form.service'
 import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
-import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
-import { HttpClient } from '@angular/common/http';
-
 
 
 @Component({
   selector: 'app-form-submit',
   template: `
-    <button mat-fab extended color="primary" (click)="form.compilar()">{{compileMsg}}</button>  
+    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg}}</button>  
     <!-- <button type="submit">Enviar</button> -->
 
   `,
@@ -20,20 +17,13 @@ export class FormSubmit {
   formulario = this.formService.formulario
   form = this.formService
   compileMsg: string = "Compilar"
-  texContent: string = 'jkjkj123'
-  log!: any
   pdfBox: any = ''
 
-
-
-
-  constructor(
-    private formService: FormService,
-    private http: HttpClient
-    ){}
+  constructor( private formService: FormService ){}
 
 
   onSubmit() {
+    console.log("entrou submit")
     let valueSubmit = Object.assign({}, this.formulario.value)
     // valueSubmit = Object.assign(valueSubmit, {
     //   items: valueSubmit.items.map((v,i) => v ? this.items[i] : null).filter(v => v !== null)
@@ -47,34 +37,27 @@ export class FormSubmit {
       Object.keys(this.formulario.controls).forEach(field => this.formulario.controls[field].markAsDirty())
     }
   }
-
-
-
-
-
-     async compilar(){
+     async compile(){
      console.log("Compilar")
+     console.log(this.formService.texContent)
      this.compileMsg = "Compilando"
      const globalEn = await new PdfTeXEngine
      await globalEn.loadEngine()
-     globalEn.writeMemFSFile("main.tex", this.texContent);
+     globalEn.writeMemFSFile("main.tex", this.formService.texContent);
      globalEn.setEngineMainFile("main.tex");
      let r = await globalEn.compileLaTeX();
-     this.log = r.log
+     this.formService.log = r.log
+     console.log(r.log)
      this.compileMsg = "Compilar"
 
      if (r.status === 0) {
       let a = document.createElement('a');
-      // console.log(r.pdf)
       a.href = r.pdf
       a.download = "12345"
       a.click()
-      console.log(a)
-      console.log(a.href)
       const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
       const objectURL = URL.createObjectURL(pdfblob);
       this.pdfBox = objectURL
-      // console.log(this.pdfBox)
     }
   }
 }

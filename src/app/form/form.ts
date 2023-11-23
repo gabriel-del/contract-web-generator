@@ -3,12 +3,14 @@ import {FormService} from './form.service'
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { empty } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { EstadoBr } from './model';
+
 
 
 @Component({
   selector: 'app-form',
   template: `
-<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+<form [formGroup]="formulario">
 <mat-form-field [ngClass]="hasErrorStyle('nome')">
      <mat-label>Nome: </mat-label>
      <input type="text" matInput formControlName="nome">
@@ -69,10 +71,6 @@ import { HttpClient } from '@angular/common/http';
   <app-form-submit></app-form-submit>
   <!-- <button (click)="resetar()">Cancelar</button> -->
 </form>
-<button (click)="form.texRead()">update Tex</button>
-<button (click)="form.texShow()">show Tex</button>
-<button (click)="form.showVar()">show var</button>
-
       <app-debug [form]="formulario"></app-debug>
   `,
   styles: [`
@@ -91,7 +89,7 @@ export class Form implements OnInit {
 
 
   ngOnInit(): void { 
-      this.form.getEstadosBr().subscribe(dados => { this.estados = dados.estados })
+    this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => { this.estados = dados.estados })
 
     this.formulario.statusChanges.subscribe(_ => this.form.texRead())
     this.formulario.get('cep').statusChanges
@@ -133,9 +131,7 @@ export class Form implements OnInit {
     }
   }
 
-  onSubmit() {
-    console.log("submit!")
-  }
+  resetar() { this.formulario.reset() }
 
   
   
