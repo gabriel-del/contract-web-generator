@@ -39,9 +39,6 @@ import { HttpClient } from '@angular/common/http';
     <label>Bairro: <input type="text" formControlName="bairro"></label><br/>
   </div>
   <div [ngClass]="hasErrorStyle('cidade')">
-    <label>Cidade: <input type="text" formControlName="cidade"></label><br/>
-  </div>
-  <div [ngClass]="hasErrorStyle('cidade')">
     <label>Cidade: 
       <select formControlName="cidade">
         <option *ngFor="let cidade of cidades" [value]="cidade">{{cidade}}</option>
