@@ -20,7 +20,7 @@
 * bloco
 * apartamento
 * data
-* duracao
+<!-- * duracao -->
 * aluguel
 * vencimento
 * nome

@@ -28,12 +28,14 @@ import { EstadoBr } from './model';
   <textarea matInput></textarea>
 </mat-form-field>
 
-<h4>Bloco: </h4>
+<p>
+Bloco:
 <mat-button-toggle-group  aria-label="Font Style">
     <mat-button-toggle value="a">A</mat-button-toggle>
     <mat-button-toggle value="b">B</mat-button-toggle>
     <mat-button-toggle value="c">C</mat-button-toggle>
   </mat-button-toggle-group>
+  </p>
 
 
   <mat-form-field >
@@ -42,6 +44,26 @@ import { EstadoBr } from './model';
     <input matInput type="number" placeholder="Ex.: 1200">
   </mat-form-field>
 
+<mat-form-field>
+  <mat-label>Apartamento</mat-label>
+  <mat-select >
+    <mat-option *ngFor="let apartamento of apartamentos.b" value="apartamento">{{apartamento}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Vencimento</mat-label>
+  <mat-select >
+    <mat-option *ngFor="let dia of vencimento" value="dia">{{dia}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Estado Civil</mat-label>
+  <mat-select >
+    <mat-option *ngFor="let option of estadoCivil" value="option">{{option}}</mat-option>
+  </mat-select>
+</mat-form-field>
 
 <mat-spinner></mat-spinner>
 
@@ -134,7 +156,7 @@ form {
   width: 100%;
 }
 
-mat-form-field {
+mat-form-field{
   width: 100%;
 }
   `]
@@ -145,6 +167,13 @@ export class Form implements OnInit {
   formulario = this.formService.formulario
   form = this.formService
   estados!: any
+  apartamentos = {
+    'a': Array(12).fill(0).map((_,i)=>i+1),
+    'b': Array(9).fill(0).map((_,i)=>i+1),
+    'c': Array(6).fill(0).map((_,i)=>i+1),
+  }
+  vencimento = Array(31).fill(0).map((_,i)=>i+1)
+  estadoCivil = ['Solteiro (a)', 'Casado (a)', 'Divorciado (a)', 'Viúvo (a)']
 
   constructor( private formService: FormService , private http: HttpClient ){}
 
