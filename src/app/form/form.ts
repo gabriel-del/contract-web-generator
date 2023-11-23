@@ -36,6 +36,13 @@ import { EstadoBr } from './model';
   </mat-button-toggle-group>
 
 
+  <mat-form-field >
+    <mat-label>Aluguel: </mat-label>
+    <span matPrefix>R$ &nbsp;</span>
+    <input matInput type="number" placeholder="Ex.: 1200">
+  </mat-form-field>
+
+
 <mat-spinner></mat-spinner>
 
 <mat-form-field [ngClass]="hasErrorStyle('nome')">
@@ -120,6 +127,15 @@ import { EstadoBr } from './model';
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+form {
+  min-width: 150px;
+  max-width: 50%;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
 }
   `]
 })
