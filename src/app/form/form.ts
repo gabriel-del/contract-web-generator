@@ -85,7 +85,7 @@ export class Form implements OnInit {
   form = this.formService
   estados!: any
 
-  constructor( private formService: FormService ,     private http: HttpClient ){}
+  constructor( private formService: FormService , private http: HttpClient ){}
 
 
   ngOnInit(): void { 

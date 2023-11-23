@@ -8,6 +8,8 @@ import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
   template: `
     <button mat-fab extended color="primary" (click)="compile()">{{compileMsg}}</button>  
     <!-- <button type="submit">Enviar</button> -->
+    <object [data]= "pdfBox | safe" width="800" height="500"> </object> 
+      <pre>{{log}}</pre>
 
   `,
   styles: [
@@ -18,6 +20,7 @@ export class FormSubmit {
   form = this.formService
   compileMsg: string = "Compilar"
   pdfBox: any = ''
+  log!: any
 
   constructor( private formService: FormService ){}
 
@@ -46,17 +49,17 @@ export class FormSubmit {
      globalEn.writeMemFSFile("main.tex", this.formService.texContent);
      globalEn.setEngineMainFile("main.tex");
      let r = await globalEn.compileLaTeX();
-     this.formService.log = r.log
-     console.log(r.log)
+     this.log = r.log
+    //  console.log(r.log)
      this.compileMsg = "Compilar"
 
      if (r.status === 0) {
-      let a = document.createElement('a');
-      a.href = r.pdf
-      a.download = "12345"
-      a.click()
-      const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
-      const objectURL = URL.createObjectURL(pdfblob);
+       const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
+       const objectURL = URL.createObjectURL(pdfblob);
+       let a = document.createElement('a');
+       a.href = objectURL
+       a.download = "aaa"
+       a.click()
       this.pdfBox = objectURL
     }
   }
