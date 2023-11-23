@@ -11,6 +11,33 @@ import { EstadoBr } from './model';
   selector: 'app-form',
   template: `
 <form [formGroup]="formulario">
+
+<mat-form-field>
+  <mat-label>Input</mat-label>
+  <input matInput>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Select</mat-label>
+  <mat-select>
+    <mat-option value="one">First option</mat-option>
+    <mat-option value="two">Second option</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Textarea</mat-label>
+  <textarea matInput></textarea>
+</mat-form-field>
+
+<h4>Bloco: </h4>
+<mat-button-toggle-group  aria-label="Font Style">
+    <mat-button-toggle value="a">A</mat-button-toggle>
+    <mat-button-toggle value="b">B</mat-button-toggle>
+    <mat-button-toggle value="c">C</mat-button-toggle>
+  </mat-button-toggle-group>
+
+
+<mat-spinner></mat-spinner>
+
 <mat-form-field [ngClass]="hasErrorStyle('nome')">
      <mat-label>Nome: </mat-label>
      <input type="text" matInput formControlName="nome">
@@ -88,7 +115,13 @@ import { EstadoBr } from './model';
   styles: [`
   .has-error {
     color: red;
-  }`]
+  }
+  form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+  `]
 })
 export class Form implements OnInit {
   cidades!: any[]
