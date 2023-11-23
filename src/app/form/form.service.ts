@@ -24,6 +24,7 @@ export class FormService {
   formulario: FormGroup = this.formBuilder.group({
     nome: ['Fulano', [Validators.required, Validators.minLength(3)]],
     telefone: [null, []],
+    identidade: [null, []],
     nacionalidade: ['brasileiro', []],
     estadoCivil: ['solteiro', []],
     // cep: [null, []],

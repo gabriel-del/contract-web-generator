@@ -17,7 +17,7 @@ import { EstadoBr } from './model';
 
 
 <p>
-Bloco:
+<span matPrefix>Bloco: </span>
 <mat-button-toggle-group formControlName="bloco" aria-label="Font Style">
     <mat-button-toggle value="a">A</mat-button-toggle>
     <mat-button-toggle value="b">B</mat-button-toggle>
@@ -72,6 +72,12 @@ Bloco:
     <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
 </mat-form-field>
 
+    <mat-form-field [ngClass]="hasErrorStyle('identidade')">
+     <mat-label>Identidade: </mat-label>
+     <input type="number" matInput formControlName="identidade">
+    <app-error-msg [control]="formulario.get('identidade')" label="Identidade"></app-error-msg>
+</mat-form-field>
+
 
     <mat-form-field>
   <mat-label>Estado Civil</mat-label>
@@ -97,6 +103,33 @@ Bloco:
     <app-error-msg [control]="formulario.get('cep')" label="Cep"></app-error-msg>
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Estado: </mat-label>
+    <mat-select formControlName="estado">
+      <mat-option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</mat-option>
+    </mat-select>
+    <app-error-msg [control]="formulario.get('estado')" label="Estado"></app-error-msg>  
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Cidade: </mat-label>
+    <mat-select formControlName="cidade">
+      <mat-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade}}</mat-option>
+    </mat-select>
+    <app-error-msg [control]="formulario.get('cidade')" label="Cidade"></app-error-msg>  
+  </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Bairro: </mat-label>
+      <input type="text" matInput formControlName="bairro" placeholder="Ex.: Porto de Galinhas">
+      <app-error-msg [control]="formulario.get('bairro')" label="Bairro"></app-error-msg>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Rua: </mat-label>
+      <input type="text" matInput formControlName="rua" placeholder="Ex.: Cavalo Marinho">
+      <app-error-msg [control]="formulario.get('rua')" label="Rua"></app-error-msg>
+    </mat-form-field>
 
   <mat-form-field>
     <mat-label>Número: </mat-label>
@@ -110,33 +143,6 @@ Bloco:
     <app-error-msg [control]="formulario.get('complemento')" label="Complemento"></app-error-msg>
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Rua: </mat-label>
-    <input type="text" matInput formControlName="rua" placeholder="Ex.: Cavalo Marinho">
-    <app-error-msg [control]="formulario.get('rua')" label="Rua"></app-error-msg>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Bairro: </mat-label>
-    <input type="text" matInput formControlName="bairro" placeholder="Ex.: Porto de Galinhas">
-    <app-error-msg [control]="formulario.get('bairro')" label="Bairro"></app-error-msg>
-  </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label>Cidade: </mat-label>
-    <mat-select formControlName="cidade">
-      <mat-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade}}</mat-option>
-    </mat-select>
-    <app-error-msg [control]="formulario.get('cidade')" label="Cidade"></app-error-msg>  
-  </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label>Estado: </mat-label>
-    <mat-select formControlName="estado">
-      <mat-option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</mat-option>
-    </mat-select>
-    <app-error-msg [control]="formulario.get('estado')" label="Estado"></app-error-msg>  
-  </mat-form-field>
   
   </ng-container>
 
