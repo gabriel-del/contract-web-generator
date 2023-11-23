@@ -13,21 +13,12 @@ import { EstadoBr } from './model';
 <form [formGroup]="formulario">
 
 <div>
+
 <mat-form-field>
-  <mat-label>Input</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Select</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Textarea</mat-label>
+  <mat-label>Objetos</mat-label>
   <textarea matInput></textarea>
 </mat-form-field>
+
 
 <p>
 Bloco:
@@ -117,6 +108,10 @@ Bloco:
   <div [ngClass]="hasErrorStyle('bloco')"> Bloco: 
     <label *ngFor="let item of blocosOp"><input type="radio" [value]="item.valor" formControlName="bloco">{{item.desc}}</label>  
   </div>
+
+
+  <mat-slide-toggle color="primary">Endereço?</mat-slide-toggle>
+
   <div [ngClass]="hasErrorStyle('hasEndereco')">
     <label>Tem Endereço?<input type="checkbox" formControlName="hasEndereco"></label><br/>
   </div>
