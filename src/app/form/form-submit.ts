@@ -6,7 +6,9 @@ import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 @Component({
   selector: 'app-form-submit',
   template: `
-    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg}}</button>  
+    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling]}} </button>  
+    <mat-spinner *ngIf="compiling"></mat-spinner>
+
     <!-- <button type="submit">Enviar</button> -->
     <object *ngIf="pdfBox != ''" [data]= "pdfBox | safe" width="800" height="500"> </object> 
       <pre>{{log}}</pre>
@@ -18,7 +20,8 @@ import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 export class FormSubmit {
   formulario = this.formService.formulario
   form = this.formService
-  compileMsg: string = "Compilar"
+  compileMsg: string[] = ["Compilar", "Compilando"]
+  compiling: boolean = false
   pdfBox: any = ''
   log!: any
 
@@ -43,14 +46,14 @@ export class FormSubmit {
      async compile(){
      console.log("Compilar")
      console.log(this.formService.texContent)
-     this.compileMsg = "Compilando"
+     this.compiling = true
      const globalEn = await new PdfTeXEngine
      await globalEn.loadEngine()
      globalEn.writeMemFSFile("main.tex", this.formService.texContent);
      globalEn.setEngineMainFile("main.tex");
      let r = await globalEn.compileLaTeX();
      this.log = r.log
-     this.compileMsg = "Compilar"
+     this.compiling = false
 
      if (r.status === 0) {
        const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});

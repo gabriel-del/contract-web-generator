@@ -65,7 +65,6 @@ Bloco:
   </mat-select>
 </mat-form-field>
 
-<mat-spinner></mat-spinner>
 
 <mat-form-field [ngClass]="hasErrorStyle('nome')">
      <mat-label>Nome: </mat-label>
