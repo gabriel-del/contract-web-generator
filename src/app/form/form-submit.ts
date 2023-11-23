@@ -8,7 +8,7 @@ import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
   template: `
     <button mat-fab extended color="primary" (click)="compile()">{{compileMsg}}</button>  
     <!-- <button type="submit">Enviar</button> -->
-    <object [data]= "pdfBox | safe" width="800" height="500"> </object> 
+    <object *ngIf="pdfBox != ''" [data]= "pdfBox | safe" width="800" height="500"> </object> 
       <pre>{{log}}</pre>
 
   `,
@@ -50,7 +50,6 @@ export class FormSubmit {
      globalEn.setEngineMainFile("main.tex");
      let r = await globalEn.compileLaTeX();
      this.log = r.log
-    //  console.log(r.log)
      this.compileMsg = "Compilar"
 
      if (r.status === 0) {
@@ -59,7 +58,7 @@ export class FormSubmit {
        let a = document.createElement('a');
        a.href = objectURL
        a.download = "aaa"
-       a.click()
+      //  a.click()
       this.pdfBox = objectURL
     }
   }
