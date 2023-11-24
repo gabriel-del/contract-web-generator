@@ -176,8 +176,10 @@ import { EstadoBr } from './model';
   /* min-width: 150px; */
   /* max-width: 50%; */
   /* width: 100%; */
+  flex-direction: row;
+  flex-wrap: wrap;
   div {
-  flex: 1;
+  flex: 1 1 0;
   padding: 10px;
   margin: 10px;
   border: 1px solid #999;
