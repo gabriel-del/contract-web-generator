@@ -12,7 +12,7 @@ import { EstadoBr } from './model';
   template: `
 <form [formGroup]="formulario">
 
-<div>
+<div >
 
 
 
@@ -26,7 +26,7 @@ import { EstadoBr } from './model';
   </p>
 
 
-<mat-form-field>
+<mat-form-field >
   <mat-label>Apartamento</mat-label>
   <mat-select >
     <mat-option *ngFor="let apartamento of apartamentos[formulario.get('bloco').value]" value="apartamento">{{apartamento}}</mat-option>
@@ -37,6 +37,7 @@ import { EstadoBr } from './model';
     <mat-label>Aluguel: </mat-label>
     <span matPrefix>R$ &nbsp;</span>
     <input matInput type="number" placeholder="Ex.: 1200">
+    <span matTextSuffix>,00</span>
   </mat-form-field>
 
 
@@ -92,11 +93,12 @@ import { EstadoBr } from './model';
     <input type="tel" matInput formControlName="telefone" placeholder="81 91111-1111">
   </mat-form-field>
 
-
+  <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
+  </div>
+    <!-- ###### DIVISÃO -->
  <!-- <div [ngClass]="hasErrorStyle('hasEndereco')"> -->
- <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
 
-<ng-container *ngIf="formulario.get('hasEndereco').value">
+<div *ngIf="formulario.get('hasEndereco').value">
   <mat-form-field>
     <mat-label>Cep: </mat-label>
     <input type="number" matInput formControlName="cep" placeholder="11111111">
@@ -119,7 +121,7 @@ import { EstadoBr } from './model';
     <app-error-msg [control]="formulario.get('cidade')" label="Cidade"></app-error-msg>  
   </mat-form-field>
   
-    <mat-form-field>
+    <mat-form-field >
       <mat-label>Bairro: </mat-label>
       <input type="text" matInput formControlName="bairro" placeholder="Ex.: Porto de Galinhas">
       <app-error-msg [control]="formulario.get('bairro')" label="Bairro"></app-error-msg>
@@ -144,7 +146,6 @@ import { EstadoBr } from './model';
   </mat-form-field>
 
   
-  </ng-container>
 
  
   
@@ -176,10 +177,36 @@ import { EstadoBr } from './model';
   /* max-width: 50%; */
   /* width: 100%; */
   div {
-  flex: 1
+  flex: 1;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #999;
+  border-radius: 12px;
+  
 }
+
 }
- 
+
+p {
+  width: 100%;
+  flex: 1 1 100%;
+  flex-direction: row;
+  span {
+    width: 25%;
+  }
+  
+  mat-button-toggle-group {
+    width: 60%;
+  }
+  
+  mat-button-toggle {
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    align-items: flex-end;
+    flex-direction: row;
+    display: flex;
+  }
+}
 
 
 mat-form-field{
