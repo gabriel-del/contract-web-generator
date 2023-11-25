@@ -171,11 +171,6 @@ import { EstadoBr } from './model';
   }
   form {
   display: flex;
-  /* flex-direction: column; */
-  /* align-items: flex-start; */
-  /* min-width: 150px; */
-  /* max-width: 50%; */
-  /* width: 100%; */
   flex-direction: row;
   flex-wrap: wrap;
   div {
@@ -190,15 +185,18 @@ import { EstadoBr } from './model';
 }
 
 p {
-  width: 100%;
+  display: flex;
   flex: 1 1 100%;
-  flex-direction: row;
+
   span {
     width: 25%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
   }
   
   mat-button-toggle-group {
-    width: 60%;
+    width: 75%;
   }
   
   mat-button-toggle {
