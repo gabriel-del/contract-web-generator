@@ -9,8 +9,6 @@ import { Component } from '@angular/core';
     </mat-toolbar>
     <style>
       mat-toolbar {
-        position: fixed;
-        bottom: 0;
         display: flex;
         justify-content: flex-end;
         font-size: 1.1rem;

@@ -20,7 +20,7 @@ import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
 export class FormSubmit {
   formulario = this.formService.formulario
   form = this.formService
-  compileMsg: string[] = ["Compilar", "Compilando"]
+  compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
   compiling: boolean = false
   pdfBox: any = ''
   log!: any
