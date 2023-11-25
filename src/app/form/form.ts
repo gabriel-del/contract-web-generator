@@ -28,15 +28,15 @@ import { EstadoBr } from './model';
 
 <mat-form-field >
   <mat-label>Apartamento</mat-label>
-  <mat-select >
-    <mat-option *ngFor="let apartamento of apartamentos[formulario.get('bloco').value]" value="apartamento">{{apartamento}}</mat-option>
+  <mat-select formControlName="apartamento">
+    <mat-option *ngFor="let apartamento of apartamentos[formulario.get('bloco').value]" [value]="apartamento">{{apartamento}}</mat-option>
   </mat-select>
 </mat-form-field>
 
   <mat-form-field >
     <mat-label>Aluguel: </mat-label>
     <span matPrefix>R$ &nbsp;</span>
-    <input matInput type="number" placeholder="Ex.: 1200">
+    <input matInput type="number" formControlName="aluguel" placeholder="Ex.: 1200">
     <span matTextSuffix>,00</span>
   </mat-form-field>
 
@@ -45,22 +45,22 @@ import { EstadoBr } from './model';
 
 <mat-form-field>
   <mat-label>Data de Início</mat-label>
-  <input matInput [matDatepicker]="picker">
+  <input matInput [matDatepicker]="picker" formControlName="dataInicio">
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
 <mat-form-field>
   <mat-label>Dia de vencimento</mat-label>
-  <mat-select >
-    <mat-option *ngFor="let dia of vencimento" value="dia">{{dia}}</mat-option>
+  <mat-select formControlName="diaVencimento">
+    <mat-option *ngFor="let dia of vencimento" [value]="dia">{{dia}}</mat-option>
   </mat-select>
 </mat-form-field>
 
 
   <mat-form-field>
   <mat-label>Objetos</mat-label>
-  <textarea matInput></textarea>
+  <textarea matInput formControlName="objetos"></textarea>
 </mat-form-field>
 
 
@@ -73,16 +73,27 @@ import { EstadoBr } from './model';
     <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
 </mat-form-field>
 
-    <mat-form-field [ngClass]="hasErrorStyle('identidade')">
-     <mat-label>Identidade: </mat-label>
-     <input type="number" matInput formControlName="identidade">
-    <app-error-msg [control]="formulario.get('identidade')" label="Identidade"></app-error-msg>
+    <mat-form-field [ngClass]="hasErrorStyle('nacionalidade')">
+     <mat-label>Nacionalidade: </mat-label>
+     <input type="text" matInput formControlName="nacionalidade">
+    <app-error-msg [control]="formulario.get('nacionalidade')" label="Nacionalidade"></app-error-msg>
 </mat-form-field>
 
+    <mat-form-field [ngClass]="hasErrorStyle('cpf')">
+     <mat-label>CPF: </mat-label>
+     <input type="number" matInput formControlName="cpf">
+    <app-error-msg [control]="formulario.get('cpf')" label="CPF"></app-error-msg>
+</mat-form-field>
+
+<mat-form-field [ngClass]="hasErrorStyle('identidade')">
+ <mat-label>Identidade: </mat-label>
+ <input type="number" matInput formControlName="identidade">
+<app-error-msg [control]="formulario.get('identidade')" label="Identidade"></app-error-msg>
+</mat-form-field>
 
     <mat-form-field>
   <mat-label>Estado Civil</mat-label>
-  <mat-select >
+  <mat-select formControlName="estadoCivil">
     <mat-option *ngFor="let option of estadoCivil" value="option">{{option}}</mat-option>
   </mat-select>
 </mat-form-field>
@@ -226,15 +237,16 @@ export class Form implements OnInit {
     'c': Array(6).fill(0).map((_,i)=>i+1),
   }
   vencimento = Array(31).fill(0).map((_,i)=>i+1)
-  estadoCivil = ['Solteiro (a)', 'Casado (a)', 'Divorciado (a)', 'Viúvo (a)']
+  estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
 
   constructor( private formService: FormService , private http: HttpClient ){}
 
 
   ngOnInit(): void { 
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => { this.estados = dados.estados })
-
-    this.formulario.statusChanges.subscribe(_ => this.form.texRead())
+    this.form.texRead()
+    // this.formulario.statusChanges.subscribe(_ => this.form.texRead())
+    this.formulario.valueChanges.subscribe(_ => this.form.texRead())
     this.formulario.get('cep').statusChanges
     .pipe(
       distinctUntilChanged(),

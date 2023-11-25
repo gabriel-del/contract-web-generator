@@ -22,21 +22,29 @@ export class FormService {
     ) { }
 
   formulario: FormGroup = this.formBuilder.group({
-    nome: ['Fulano', [Validators.required, Validators.minLength(3)]],
-    telefone: [null, []],
-    identidade: [null, []],
-    nacionalidade: ['brasileiro', []],
-    estadoCivil: ['solteiro', []],
+    bloco: [null, []],
+    apartamento: [null, []],
+    aluguel: [null, []],
+    dataInicio: [null, []],
+    diaVencimento: [null, []],
+    objetos: [null, []],
     // cep: [null, []],
+    // INQUILINO
+    nome: ['Fulano', [Validators.required, Validators.minLength(3)]],
+    nacionalidade: ['brasileiro', []],
+    cpf: [null, []],
+    identidade: [null, []],
+    estadoCivil: ['null', []],
+    telefone: [null, []],
+    // ENDEREÇO
+    hasEndereco: [true, []],
     cep: [null, [formValidations.cepValidator]],
+    estado: [null, []],
+    cidade: [null, []],
+    bairro: [null, []],
+    rua: [null, []],
     numero: [null, []],
     complemento: [null, []],
-    rua: [null, []],
-    bairro: [null, []],
-    cidade: [null, []],
-    estado: [null, []],
-    bloco: [null, []],
-    hasEndereco: [true, []],
     // items: this.buildItems(),
   })
 
