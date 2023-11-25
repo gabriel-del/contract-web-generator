@@ -30,7 +30,7 @@ export class FormService {
     objetos: [null, []],
     // cep: [null, []],
     // INQUILINO
-    nome: ['Fulano', [Validators.required, Validators.minLength(3)]],
+    nome: [null, [Validators.required, Validators.minLength(3)]],
     nacionalidade: ['brasileiro', []],
     cpf: [null, []],
     identidade: [null, []],
@@ -52,10 +52,10 @@ export class FormService {
    
   texRead(){
     let f = {
-      bloco: '',
-      nome: `${this.formulario.controls['nome'].value}`,
-      nacionalidade: `${this.formulario.controls['nacionalidade'].value}`,
-      estadoCivil: `${this.formulario.controls['estadoCivil'].value}`,
+      bloco: `Bloco: ${this.formulario.controls['bloco'].value}, `,
+      apartamento: `Apartamento: ${this.formulario.controls['apartamento'].value}, `,
+      aluguel: `Aluguel: ${this.formulario.controls['aluguel'].value}, `,
+      nome: `Nome: ${this.formulario.controls['nome'].value}`,
     }
     this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(
