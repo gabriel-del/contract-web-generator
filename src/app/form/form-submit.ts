@@ -60,8 +60,9 @@ export class FormSubmit {
        const objectURL = URL.createObjectURL(pdfblob);
        let a = document.createElement('a');
        a.href = objectURL
-       a.download = "aaa"
-      //  a.click()
+      //  a.download = `${this.formService.formulario.controls['bloco'].value}-${this.formService.formulario.controls['apartamento'].value}`
+       a.download = 'Titulo-customizado'
+       a.click()
       this.pdfBox = objectURL
     }
   }
