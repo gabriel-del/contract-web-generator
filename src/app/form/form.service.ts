@@ -48,14 +48,16 @@ export class FormService {
     // items: this.buildItems(),
   })
 
+  values(name){return name}
    
   texRead(){
     let f = {
+      bloco: '',
       nome: `${this.formulario.controls['nome'].value}`,
       nacionalidade: `${this.formulario.controls['nacionalidade'].value}`,
       estadoCivil: `${this.formulario.controls['estadoCivil'].value}`,
     }
-    this.http.get('/assets/main.tex', {responseType: 'text'})
+    this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
       map(dados => eval(`dados = \`${dados}\``) ),
