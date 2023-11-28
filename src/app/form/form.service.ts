@@ -29,8 +29,10 @@ export class FormService {
     diaVencimento: [null, []],
     objetos: [null, []],
     seeDefaults: [null, []],
+    limitePessoas: [null, []],
     allowAnimals: [null, []],
     hasParking: [null, []],
+    hasBikerack: [null, []],
     // cep: [null, []],
     // INQUILINO
     nome: [null, [Validators.required, Validators.minLength(3)]],
@@ -39,6 +41,7 @@ export class FormService {
     identidade: [null, []],
     estadoCivil: ['null', []],
     telefone: [null, []],
+    profissao: [null, []],
     // ENDEREÇO
     hasEndereco: [true, []],
     cep: [null, [formValidations.cepValidator]],
@@ -51,15 +54,38 @@ export class FormService {
     // items: this.buildItems(),
   })
 
-  values(name){return name}
-   
+  
   texRead(){
+    let value = field => this.formulario.controls[field].value
+    let getLimitePessoas = () => 1
+    let getEndereco = () => 1
+    let extenso = n => n
     let f = {
-      bloco: `Bloco: ${this.formulario.controls['bloco'].value}, `,
-      apartamento: `Apartamento: ${this.formulario.controls['apartamento'].value}, `,
-      aluguel: `Aluguel: ${this.formulario.controls['aluguel'].value}, `,
-      nome: `Nome: ${this.formulario.controls['nome'].value}`,
+      // 1 section
+      enderecoc: getEndereco(),
+      enderecoC: getEndereco(),
+      aluguel: value('aluguel'),
+      aluguelExtenso: extenso(value('aluguel')),
+      vencimentoExtenso: extenso(value('diaVencimento')),
+      objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
+      // dataFinal: value('dataFinal'),
+      // 2 section
+      garagem: value('hasParking') ? 'Cada apartamento tem direito a uma vaga de garagem rotativa.' : '',
+      bicicletas: value('hasBikerack') ? 'As bicicletas devem ser guardadas no bicicletário.' : '',
+      animais: value('allowAnimals') ? '' : 'É proibido a criação de animais.',
+      limitePessoas: getLimitePessoas(),
+      // 3 section
+      nome: `Nome: ${value('nome')}`,
+      identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
+      nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',
+      profissao: value('profissao') ? `,  ${value('profissao')}` : '',
+      cpf: value('cpf') ? `, CPF nº ${value('cpf')}` : '',
+      estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
+      // 4 section
+      endereco: value('hasEndereco') ? `, residente a rua ${value('rua')}` : '',
+      
     }
+    console.log(f)
     this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),

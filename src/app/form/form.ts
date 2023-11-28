@@ -67,8 +67,15 @@ import { EstadoBr } from './model';
 <mat-slide-toggle color="primary" formControlName="seeDefaults">Ver opções padrões</mat-slide-toggle>
 
 <ng-container *ngIf="formulario.get('seeDefaults').value" >
+<mat-form-field>
+  <mat-label>Limite de Pessoas</mat-label>
+  <mat-select formControlName="limitePessoas">
+    <mat-option *ngFor="let numero of limitePessoas" [value]="numero">{{numero}}</mat-option>
+  </mat-select>
+</mat-form-field>
   <br/><mat-slide-toggle color="primary" formControlName="allowAnimals">Permitido Animal</mat-slide-toggle>
   <br/><mat-slide-toggle color="primary" formControlName="hasParking">Garagem inclusa</mat-slide-toggle>
+  <br/><mat-slide-toggle color="primary" formControlName="hasBikerack">Tem bicicletário</mat-slide-toggle>
 </ng-container>
 
   </div><div>
@@ -96,6 +103,12 @@ import { EstadoBr } from './model';
  <mat-label>Identidade: </mat-label>
  <input type="number" matInput formControlName="identidade">
 <app-error-msg [control]="formulario.get('identidade')" label="Identidade"></app-error-msg>
+</mat-form-field>
+
+<mat-form-field [ngClass]="hasErrorStyle('profissao')">
+ <mat-label>Profissão: </mat-label>
+ <input type="number" matInput formControlName="profissao">
+<app-error-msg [control]="formulario.get('profissao')" label="Profissão"></app-error-msg>
 </mat-form-field>
 
     <mat-form-field>
@@ -244,6 +257,7 @@ export class Form implements OnInit {
     'c': Array(6).fill(0).map((_,i)=>i+1),
   }
   vencimento = Array(31).fill(0).map((_,i)=>i+1)
+  limitePessoas = Array(6).fill(0).map((_,i)=>i+1)
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
 
   constructor( private formService: FormService , private http: HttpClient ){}

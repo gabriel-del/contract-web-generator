@@ -29,7 +29,7 @@ import { Component } from '@angular/core';
 })
 export class Header {
   activeLink!: any
-  showMenu: Boolean = false
+  showMenu: Boolean = true
   links = [{label: "Formulário", link: "/"},{label: "Histórico", link: "/history"}, {label: "Dev", link: "/dev"}];
  
 }
