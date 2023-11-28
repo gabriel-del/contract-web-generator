@@ -64,6 +64,13 @@ import { EstadoBr } from './model';
 </mat-form-field>
 
 
+<mat-slide-toggle color="primary" formControlName="seeDefaults">Ver opções padrões</mat-slide-toggle>
+
+<ng-container *ngIf="formulario.get('seeDefaults').value" >
+  <br/><mat-slide-toggle color="primary" formControlName="allowAnimals">Permitido Animal</mat-slide-toggle>
+  <br/><mat-slide-toggle color="primary" formControlName="hasParking">Garagem inclusa</mat-slide-toggle>
+</ng-container>
+
   </div><div>
     <!-- ###### DIVISÃO -->
 

@@ -28,6 +28,9 @@ export class FormService {
     dataInicio: [null, []],
     diaVencimento: [null, []],
     objetos: [null, []],
+    seeDefaults: [null, []],
+    allowAnimals: [null, []],
+    hasParking: [null, []],
     // cep: [null, []],
     // INQUILINO
     nome: [null, [Validators.required, Validators.minLength(3)]],
