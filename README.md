@@ -17,6 +17,8 @@ E o mais importante: hospedado e funcionando, gerando pdfs a partir de variávei
 * Substitute deprecated "empty" from rxjs
 * LocalStorage
 * History
+* Garagem if bloco B e apt menor/= que 8
+* Add extenso
 
 
 ## Form fields

@@ -57,13 +57,22 @@ export class FormService {
   
   texRead(){
     let value = field => this.formulario.controls[field].value
-    let getLimitePessoas = () => 1
-    let getEndereco = () => 1
+    let limitePessoas = () => {
+      if (value('bloco') === 'A') return 3
+      if (value('bloco') === 'B') return value('apartamento') <= 8 ? 5 : 3
+      if (value('bloco') === 'C') return 2
+      return null
+    }
+    let endereco = {
+      A: 'Rua Cavalo Marinho, nº 180',
+      B: 'Rua Cavalo Marinho, nº 182',
+      C: 'Rua Merepe III, S\//N'
+    }
     let extenso = n => n
     let f = {
       // 1 section
-      enderecoc: getEndereco(),
-      enderecoC: getEndereco(),
+      enderecoc: endereco[value('bloco')],
+      enderecoC: endereco[value('bloco')],
       aluguel: value('aluguel'),
       aluguelExtenso: extenso(value('aluguel')),
       vencimentoExtenso: extenso(value('diaVencimento')),
@@ -73,7 +82,7 @@ export class FormService {
       garagem: value('hasParking') ? 'Cada apartamento tem direito a uma vaga de garagem rotativa.' : '',
       bicicletas: value('hasBikerack') ? 'As bicicletas devem ser guardadas no bicicletário.' : '',
       animais: value('allowAnimals') ? '' : 'É proibido a criação de animais.',
-      limitePessoas: getLimitePessoas(),
+      limitePessoas: limitePessoas(),
       // 3 section
       nome: `Nome: ${value('nome')}`,
       identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
