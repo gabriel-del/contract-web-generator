@@ -18,7 +18,9 @@ import { History } from './views/history';
 import { Dev } from './views/dev';
 import { SafePipe } from './components/safe.pipe';
 import { Editor } from './components/editor';
-import { Submit } from './components/submit'
+import { Submit } from './components/submit';
+import { Pdf } from './components/pdf';
+import { Log } from './components/log'
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { Submit } from './components/submit'
     SafePipe,
     Editor,
     Submit,
+    Pdf,
+    Log,
   ],
   imports: [
     BrowserModule,
