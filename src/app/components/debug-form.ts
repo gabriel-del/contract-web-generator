@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-debug',
+  selector: 'app-debug-form',
   template: `
   <div style="margin-top: 20px" *ngIf="form" >
   <div>Detalhes do form</div>
@@ -11,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
 </div>
   `
 })
-export class Debug implements OnInit {
+export class DebugForm implements OnInit {
 
   @Input() form: any;
 

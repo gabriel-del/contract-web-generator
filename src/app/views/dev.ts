@@ -6,7 +6,7 @@ import {FormService} from '../form/form.service'
   selector: 'app-dev',
   template: `
   <app-form-submit></app-form-submit>
-    <app-debug [form]="formulario"></app-debug>
+    <app-debug-form [form]="formulario"></app-debug-form>
     <app-editor [(text)]="texContent" mode="latex" ></app-editor>
 
   `,

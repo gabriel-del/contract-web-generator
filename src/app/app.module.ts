@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Form } from './form/form';
-import {  Debug } from './components/debug';
+import {  DebugForm } from './components/debug-form';
+import {  DebugF } from './components/debug-f';
 import {  ShowError } from './components/showError';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,7 +24,8 @@ import { Submit } from './components/submit'
   declarations: [
     AppComponent,
     Form,
-    Debug,
+    DebugForm,
+    DebugF,
     ShowError,
     Home,
     Footer,
