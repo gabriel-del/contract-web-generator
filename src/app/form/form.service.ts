@@ -22,47 +22,42 @@ export class FormService {
     ) { }
 
   formulario: FormGroup = this.formBuilder.group({
-    bloco: [null, []],
-    apartamento: [null, []],
-    aluguel: [null, []],
-    dataInicio: [null, []],
-    diaVencimento: [null, []],
-    objetos: [null, []],
-    seeDefaults: [null, []],
-    allowAnimals: [null, []],
-    hasParking: [null, []],
-    hasBikerack: [null, []],
-    limitePessoas: [null, []],
+    bloco: ['B', []],
+    apartamento: [4, []],
+    aluguel: [1500, []],
+    dataInicio: ["2023-12-01T03:00:00.000Z", []],
+    diaVencimento: [31, []],
+    objetos: ['2 camas', []],
+    seeDefaults: [true, []],
+    allowAnimals: [true, []],
+    hasParking: [true, []],
+    hasBikerack: [true, []],
+    limitePessoas: [5, []],
     // cep: [null, []],
     // INQUILINO
-    nome: [null, [Validators.required, Validators.minLength(3)]],
+    nome: ['Gabriel', [Validators.required, Validators.minLength(3)]],
     nacionalidade: ['brasileiro', []],
-    profissao: [null, []],
-    estadoCivil: ['null', []],
-    cpf: [null, []],
-    identidade: [null, []],
-    celular: [null, []],
+    profissao: ['Autônomo', []],
+    estadoCivil: ['solteiro', []],
+    cpf: ['00000000000', []],
+    identidade: ['0000000', []],
+    celular: ['900000000', []],
     // ENDEREÇO
     hasEndereco: [true, []],
-    cep: [null, [formValidations.cepValidator]],
-    estado: [null, []],
-    cidade: [null, []],
-    bairro: [null, []],
-    rua: [null, []],
-    numero: [null, []],
-    complemento: [null, []],
+    cep: [51030300, [formValidations.cepValidator]],
+    estado: ['PE', []],
+    cidade: ['Recife', []],
+    bairro: ['Porto de Galinhas', []],
+    rua: ['Cavalo Marinho', []],
+    numero: [182, []],
+    complemento: ['apt 01', []],
     // items: this.buildItems(),
   })
 
   
   texRead(){
     let value = field => this.formulario.controls[field].value
-    let limitePessoas = () => {
-      if (value('bloco') === 'A') return 3
-      if (value('bloco') === 'B') return value('apartamento') <= 8 ? 5 : 3
-      if (value('bloco') === 'C') return 2
-      return null
-    }
+  
     let endereco = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
@@ -98,7 +93,7 @@ export class FormService {
       animais: value('allowAnimals') ? '' : 'É proibido a criação de animais.',
       garagem: value('hasParking') ? 'Cada apartamento tem direito a uma vaga de garagem rotativa.' : '',
       bicicletas: value('hasBikerack') ? 'As bicicletas devem ser guardadas no bicicletário.' : '',
-      limitePessoas: limitePessoas(),
+      limitePessoas: value('limitePessoas'),
       // 3 section
       nome: `${value('nome')}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',

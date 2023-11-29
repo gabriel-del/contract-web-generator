@@ -83,14 +83,14 @@
   
   <mat-form-field [ngClass]="hasErrorStyle('profissao')">
    <mat-label>Profissão: </mat-label>
-   <input type="number" matInput formControlName="profissao">
+   <input type="text" matInput formControlName="profissao">
   <app-error-msg [control]="formulario.get('profissao')" label="Profissão"></app-error-msg>
   </mat-form-field>
   
       <mat-form-field>
     <mat-label>Estado Civil</mat-label>
     <mat-select formControlName="estadoCivil">
-      <mat-option *ngFor="let option of estadoCivil" value="option">{{option}}</mat-option>
+      <mat-option *ngFor="let option of estadoCivil" [value]="option">{{option}}</mat-option>
     </mat-select>
   </mat-form-field>
   

@@ -28,7 +28,12 @@ export class Form implements OnInit {
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
 
   constructor( private formService: FormService , private http: HttpClient ){}
-
+  setLimitePessoas = () => {
+    // if (value('bloco') === 'A') return 3
+    // if (value('bloco') === 'B') return value('apartamento') <= 8 ? 5 : 3
+    // if (value('bloco') === 'C') return 2
+    return null
+  }
 
   ngOnInit(): void { 
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => { this.estados = dados.estados })
