@@ -108,7 +108,7 @@ export class FormService {
       endereco: value('hasEndereco') ? getEndereco() : '',
       
     }
-    console.log(JSON.stringify(f, null, 2))
+    // console.log(JSON.stringify(f, null, 2))
     this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll(/}\$( )?(\r\n|\r|\n)?/g, "}")),

@@ -22,6 +22,7 @@ E o mais importante: hospedado e funcionando, gerando pdfs a partir de variávei
 * address uppercase
 * DataFinal = inicio +1
 * Show default cidade
+* format cpf, identity, phone etc.
 
 
 ## Form fields
