@@ -29,19 +29,19 @@ export class FormService {
     diaVencimento: [null, []],
     objetos: [null, []],
     seeDefaults: [null, []],
-    limitePessoas: [null, []],
     allowAnimals: [null, []],
     hasParking: [null, []],
     hasBikerack: [null, []],
+    limitePessoas: [null, []],
     // cep: [null, []],
     // INQUILINO
     nome: [null, [Validators.required, Validators.minLength(3)]],
     nacionalidade: ['brasileiro', []],
+    profissao: [null, []],
+    estadoCivil: ['null', []],
     cpf: [null, []],
     identidade: [null, []],
-    estadoCivil: ['null', []],
-    telefone: [null, []],
-    profissao: [null, []],
+    celular: [null, []],
     // ENDEREÇO
     hasEndereco: [true, []],
     cep: [null, [formValidations.cepValidator]],
@@ -69,32 +69,41 @@ export class FormService {
       C: 'Rua Merepe III, S\//N'
     }
     let extenso = n => n
+    let getDate = (n?) => {
+      let meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
+      let data = new Date(value('dataInicio'))
+      return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n ? n: 0)}`
+    }
     let f = {
       // 1 section
       enderecoc: endereco[value('bloco')],
       enderecoC: endereco[value('bloco')],
+      apartamento: value('apartamento'),
       aluguel: value('aluguel'),
       aluguelExtenso: extenso(value('aluguel')),
+      dataInicio: getDate(),
+      dataFinal: getDate(1),
       vencimentoExtenso: extenso(value('diaVencimento')),
       objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
       // dataFinal: value('dataFinal'),
       // 2 section
+      animais: value('allowAnimals') ? '' : 'É proibido a criação de animais.',
       garagem: value('hasParking') ? 'Cada apartamento tem direito a uma vaga de garagem rotativa.' : '',
       bicicletas: value('hasBikerack') ? 'As bicicletas devem ser guardadas no bicicletário.' : '',
-      animais: value('allowAnimals') ? '' : 'É proibido a criação de animais.',
       limitePessoas: limitePessoas(),
       // 3 section
-      nome: `Nome: ${value('nome')}`,
-      identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
+      nome: `${value('nome')}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',
       profissao: value('profissao') ? `,  ${value('profissao')}` : '',
-      cpf: value('cpf') ? `, CPF nº ${value('cpf')}` : '',
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
+      cpf: value('cpf') ? `, CPF nº ${value('cpf')}` : '',
+      identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
+      celular: value('celular') ? `, celular ${value('celular')}` : '',
       // 4 section
       endereco: value('hasEndereco') ? `, residente a rua ${value('rua')}` : '',
       
     }
-    console.log(f)
+    console.log(JSON.stringify(f, null, 2))
     this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(
       map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),

@@ -19,9 +19,9 @@ export class Form implements OnInit {
   form = this.formService
   estados!: any
   apartamentos = {
-    'a': Array(12).fill(0).map((_,i)=>i+1),
-    'b': Array(9).fill(0).map((_,i)=>i+1),
-    'c': Array(6).fill(0).map((_,i)=>i+1),
+    'A': Array(12).fill(0).map((_,i)=>i+1),
+    'B': Array(9).fill(0).map((_,i)=>i+1),
+    'C': Array(6).fill(0).map((_,i)=>i+1),
   }
   vencimento = Array(31).fill(0).map((_,i)=>i+1)
   limitePessoas = Array(6).fill(0).map((_,i)=>i+1)
