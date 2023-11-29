@@ -69,10 +69,18 @@ export class FormService {
       C: 'Rua Merepe III, S\//N'
     }
     let extenso = n => n
-    let getDate = (n?) => {
+    let getDate = (n? :number) => {
       let meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
       let data = new Date(value('dataInicio'))
       return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n ? n: 0)}`
+    }
+    let getEndereco = () => {
+      let bairro = value('bairro') ? `, bairro ${value('bairro')}` : ''
+      let rua = value('rua') ? `, rua ${value('rua').replace('Rua ', '').replace('rua ', '')}` : ''
+      let numero = value('numero') ? `, número ${value('numero')}` : ''
+      let complemento = value('complemento') ? `, ${value('complemento')}` : ''
+      let cep = value('cep') ? `, CEP nº ${value('cep')}` : ''
+      return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}.`
     }
     let f = {
       // 1 section
@@ -100,7 +108,7 @@ export class FormService {
       identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
       celular: value('celular') ? `, celular ${value('celular')}` : '',
       // 4 section
-      endereco: value('hasEndereco') ? `, residente a rua ${value('rua')}` : '',
+      endereco: value('hasEndereco') ? getEndereco() : '',
       
     }
     console.log(JSON.stringify(f, null, 2))
