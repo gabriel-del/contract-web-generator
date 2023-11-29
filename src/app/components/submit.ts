@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {FormService} from './form.service'
-import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
+import {FormService} from '../form/form.service'
+import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
 
 
 @Component({
@@ -17,7 +17,7 @@ import {PdfTeXEngine} from './../../assets/PdfTeXEngine.js';
   styles: [
   ]
 })
-export class FormSubmit {
+export class Submit {
   formulario = this.formService.formulario
   form = this.formService
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]

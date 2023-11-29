@@ -3,7 +3,7 @@ import {FormService} from './form.service'
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { empty } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { EstadoBr } from './model';
+import { EstadoBr } from '../components/model';
 
 
 

@@ -8,7 +8,7 @@ import { formValidations } from './validations';
   <mat-error *ngIf="errorMessage != null" >{{ errorMessage}}</mat-error>
 `
 })
-export class ErrorMsg implements OnInit {
+export class ShowError implements OnInit {
   // @Input() show!: boolean;
   @Input() label!: string;
   @Input() control!: any

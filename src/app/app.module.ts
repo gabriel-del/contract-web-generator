@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Form } from './form/form';
-import {  Debug } from './form/debug';
-import {  ErrorMsg } from './form/campo-control-erro';
+import {  Debug } from './components/debug';
+import {  ShowError } from './components/showError';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,16 +15,16 @@ import { Footer } from './views/footer';
 import { Header } from './views/header';
 import { History } from './views/history';
 import { Dev } from './views/dev';
-import { SafePipe } from './form/safe.pipe';
-import { Editor } from './form/editor';
-import { FormSubmit } from './form/form-submit'
+import { SafePipe } from './components/safe.pipe';
+import { Editor } from './components/editor';
+import { Submit } from './components/submit'
 
 @NgModule({
   declarations: [
     AppComponent,
     Form,
     Debug,
-    ErrorMsg,
+    ShowError,
     Home,
     Footer,
     Header,
@@ -32,7 +32,7 @@ import { FormSubmit } from './form/form-submit'
     Dev,
     SafePipe,
     Editor,
-    FormSubmit,
+    Submit,
   ],
   imports: [
     BrowserModule,

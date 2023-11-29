@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms'
-import { formValidations } from './validations';
+import { formValidations } from '../components/validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { empty } from 'rxjs';
