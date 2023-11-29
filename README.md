@@ -19,8 +19,9 @@ E o mais importante: hospedado e funcionando, gerando pdfs a partir de variávei
 * History
 * Garagem if bloco B e apt menor/= que 8
 * Add extenso
+* address uppercase
 * DataFinal = inicio +1
-
+* Show default cidade
 
 
 ## Form fields

@@ -75,7 +75,7 @@ export class FormService {
       let numero = value('numero') ? `, número ${value('numero')}` : ''
       let complemento = value('complemento') ? `, ${value('complemento')}` : ''
       let cep = value('cep') ? `, CEP nº ${value('cep')}` : ''
-      return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}.`
+      return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
     let f = {
       // 1 section
@@ -86,7 +86,8 @@ export class FormService {
       aluguelExtenso: extenso(value('aluguel')),
       dataInicio: getDate(),
       dataFinal: getDate(1),
-      vencimentoExtenso: extenso(value('diaVencimento')),
+      diaVencimento: extenso(value('diaVencimento')),
+      diaVencimentoExtenso: extenso(value('diaVencimento')),
       objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
       // dataFinal: value('dataFinal'),
       // 2 section
@@ -100,6 +101,7 @@ export class FormService {
       profissao: value('profissao') ? `,  ${value('profissao')}` : '',
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
       cpf: value('cpf') ? `, CPF nº ${value('cpf')}` : '',
+      // cpf.replace(/(\d{ 3 })(\d{ 3 })(\d{ 3 })(\d{ 2 })/, "$1.$2.$3-$4");
       identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
       celular: value('celular') ? `, celular ${value('celular')}` : '',
       // 4 section
@@ -109,7 +111,7 @@ export class FormService {
     console.log(JSON.stringify(f, null, 2))
     this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(
-      map(dados => dados.replaceAll("\\","\\\\").replaceAll("}$", "}")),
+      map(dados => dados.replaceAll("\\","\\\\").replaceAll(/}\$( )?(\r\n|\r|\n)?/g, "}")),
       map(dados => eval(`dados = \`${dados}\``) ),
       // tap(dados => console.log(dados))
     )
