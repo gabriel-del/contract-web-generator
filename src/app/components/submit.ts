@@ -6,6 +6,7 @@ import {FormService} from '../form/form.service'
   selector: 'app-form-submit',
   template: `
     <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling]}} </button>  
+    <button mat-fab extended color="primary" (click)="compile2()">{{compileMsg[+compiling]}} </button>  
     <mat-spinner *ngIf="compiling"></mat-spinner>
   `,
   styles: [
@@ -16,9 +17,16 @@ export class Submit {
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
   compiling: boolean = this.formService.compiling
   log!: any
-  compile = this.formService.compile
+  compile!: any
+  n = this.formService.n
 
-  constructor( private formService: FormService ){}
+  compile2(){
+    console.log(this.n)
+  }
+  constructor( private formService: FormService ){
+    this.compile = this.formService.compile
+    
+  }
 
 
   onSubmit() {

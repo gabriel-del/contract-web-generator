@@ -20,11 +20,11 @@ export class FormService {
   tex!: string
   f: any
   r: any
-  n: number = 0
+  public n: number = 0
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient
-    ) { }
+    ) {}
 
 
     async compile(){
