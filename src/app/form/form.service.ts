@@ -17,7 +17,9 @@ export class FormService {
   log!: any
   
   texContent!: string
-  constructor(private formBuilder: FormBuilder,
+  f: any = 123
+  constructor(
+    private formBuilder: FormBuilder,
     private http: HttpClient
     ) { }
 
@@ -57,7 +59,6 @@ export class FormService {
   
   texRead(){
     let value = field => this.formulario.controls[field].value
-  
     let endereco = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
@@ -108,6 +109,7 @@ export class FormService {
       endereco: value('hasEndereco') ? getEndereco() : '',
       
     }
+    this.f = f
     // console.log(JSON.stringify(f, null, 2))
     this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(

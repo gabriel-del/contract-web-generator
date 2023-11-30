@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FormService} from '../form/form.service'
 
-
 @Component({
   selector: 'app-debug-form',
   template: `
@@ -14,8 +13,6 @@ import {FormService} from '../form/form.service'
   `
 })
 export class DebugForm implements OnInit {
-
-  // @Input() form: any;
   formulario = this.formService.formulario
 
   constructor(private formService: FormService) { }
