@@ -15,8 +15,7 @@ import { EstadoBr } from '../components/model';
 export class Form implements OnInit {
   cidades!: any[]
   blocosOp!: any[]
-  formulario = this.formService.formulario
-  form = this.formService
+  form = this.formService.form
   estados!: any
   apartamentos = {
     'A': Array(12).fill(0).map((_,i)=>i+1),
@@ -37,27 +36,27 @@ export class Form implements OnInit {
 
   ngOnInit(): void { 
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => { this.estados = dados.estados })
-    this.form.texRead()
+    this.formService.texRead()
     // this.formulario.statusChanges.subscribe(_ => this.form.texRead())
-    this.formulario.valueChanges.subscribe(_ => this.form.texRead())
-    this.formulario.get('cep').statusChanges
+    this.form.valueChanges.subscribe(_ => this.formService.texRead())
+    this.form.get('cep').statusChanges
     .pipe(
       distinctUntilChanged(),
       tap( value => console.log("status cep: ", value) ),
       switchMap(status => status === 'VALID' ? 
-      this.http.get(`//viacep.com.br/ws/${this.formulario.get('cep').value}/json`) :
+      this.http.get(`//viacep.com.br/ws/${this.form.get('cep').value}/json`) :
       empty()
       )
     )
     .subscribe(
-      (dados: any) => dados ? this.formulario.patchValue({
+      (dados: any) => dados ? this.form.patchValue({
         rua: dados.logradouro,
         bairro: dados.bairro,
         cidade: dados.localidade,
         estado: dados.uf
     }) : {} )
   
-    this.formulario.get('estado').valueChanges
+    this.form.get('estado').valueChanges
     .pipe(
       map(estado => this.estados.filter(({sigla}) => sigla === estado)),
       map(estado => estado[0].cidades),
@@ -66,7 +65,7 @@ export class Form implements OnInit {
   }
 
   hasError(where: string, what?: string) {
-    let field = this.formulario.controls[where]
+    let field = this.form.controls[where]
     if (field.errors && (field.touched || field.dirty))  return !!what ?  field.errors?.[what] :  true
     return false
 
@@ -79,7 +78,7 @@ export class Form implements OnInit {
     }
   }
 
-  resetar() { this.formulario.reset() }
+  resetar() { this.form.reset() }
 
   
   

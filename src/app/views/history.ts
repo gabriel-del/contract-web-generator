@@ -17,6 +17,6 @@ export class History {
     ){}
 
   showVar(){
-    console.log(this.formService.formulario.get('numero').value)
+    // console.log(this.formService.formulario.get('numero').value)
   }
 }

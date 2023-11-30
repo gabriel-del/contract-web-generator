@@ -8,7 +8,7 @@ import {FormService} from '../form/form.service'
 })
 export class DebugF implements OnInit {
 
-  formulario = this.formService.formulario
+  form = this.formService.form
   f!: any
 
 
@@ -18,7 +18,7 @@ export class DebugF implements OnInit {
   ngOnInit() {
     this.formService.texRead()
     this.f = this.formService.f
-    this.formulario.statusChanges.subscribe(_ => {this.formService.texRead() ;this.f = this.formService.f} )
+    this.form.statusChanges.subscribe(_ => {this.formService.texRead() ;this.f = this.formService.f} )
   }
 
 }

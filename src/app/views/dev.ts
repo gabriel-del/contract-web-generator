@@ -7,7 +7,7 @@ import {FormService} from '../form/form.service'
   template: `
   <app-form-submit></app-form-submit>
     <app-debug-form></app-debug-form>
-    <app-editor [(text)]="texContent" mode="latex" ></app-editor>
+    <app-editor [(text)]="tex" mode="latex" ></app-editor>
 
   `,
   styles: [
@@ -15,9 +15,8 @@ import {FormService} from '../form/form.service'
 })
 export class Dev {
   pdfBox: any = ''
-  formulario = this.formService.formulario
-  form = this.formService
-  texContent: string = this.form.texContent
+  form = this.formService.form
+  tex: string = this.formService.tex
   constructor( private formService: FormService ){}
 
 }

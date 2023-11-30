@@ -16,14 +16,14 @@ export class FormService {
   items: String[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
   log!: any
   
-  texContent!: string
-  f: any = 123
+  tex!: string
+  f: any
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient
     ) { }
 
-  formulario: FormGroup = this.formBuilder.group({
+  form: FormGroup = this.formBuilder.group({
     bloco: ['B', []],
     apartamento: [4, []],
     aluguel: [1500, []],
@@ -58,7 +58,7 @@ export class FormService {
 
   
   texRead(){
-    let value = field => this.formulario.controls[field].value
+    let value = field => this.form.controls[field].value
     let endereco = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
@@ -117,7 +117,7 @@ export class FormService {
       map(dados => eval(`dados = \`${dados}\``) ),
       // tap(dados => console.log(dados))
     )
-    .subscribe(dados => this.texContent = dados)
+    .subscribe(dados => this.tex = dados)
   }
 
   buildItems(){

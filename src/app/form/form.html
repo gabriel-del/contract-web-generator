@@ -1,4 +1,4 @@
-<form [formGroup]="formulario">
+<form [formGroup]="form">
 
   <div >
   
@@ -17,7 +17,7 @@
   <mat-form-field >
     <mat-label>Apartamento</mat-label>
     <mat-select formControlName="apartamento">
-      <mat-option *ngFor="let apartamento of apartamentos[formulario.get('bloco').value]" [value]="apartamento">{{apartamento}}</mat-option>
+      <mat-option *ngFor="let apartamento of apartamentos[form.controls['bloco'].value]" [value]='apartamento'>{{apartamento}} </mat-option>
     </mat-select>
   </mat-form-field>
   
@@ -54,7 +54,7 @@
   
   <mat-slide-toggle color="primary" formControlName="seeDefaults">Ver opções padrões</mat-slide-toggle>
   
-  <ng-container *ngIf="formulario.get('seeDefaults').value" >
+  <ng-container *ngIf="form.get('seeDefaults').value" >
     <br/><mat-slide-toggle color="primary" formControlName="allowAnimals">Permitido Animal</mat-slide-toggle>
     <br/><mat-slide-toggle color="primary" formControlName="hasParking">Garagem inclusa</mat-slide-toggle>
     <br/><mat-slide-toggle color="primary" formControlName="hasBikerack">Tem bicicletário</mat-slide-toggle>
@@ -72,19 +72,19 @@
       <mat-form-field [ngClass]="hasErrorStyle('nome')">
        <mat-label>Nome: </mat-label>
        <input type="text" matInput formControlName="nome">
-      <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
+      <app-error-msg [control]="form.get('nome')" label="Nome"></app-error-msg>
   </mat-form-field>
   
       <mat-form-field [ngClass]="hasErrorStyle('nacionalidade')">
        <mat-label>Nacionalidade: </mat-label>
        <input type="text" matInput formControlName="nacionalidade">
-      <app-error-msg [control]="formulario.get('nacionalidade')" label="Nacionalidade"></app-error-msg>
+      <app-error-msg [control]="form.get('nacionalidade')" label="Nacionalidade"></app-error-msg>
   </mat-form-field>
   
   <mat-form-field [ngClass]="hasErrorStyle('profissao')">
    <mat-label>Profissão: </mat-label>
    <input type="text" matInput formControlName="profissao">
-  <app-error-msg [control]="formulario.get('profissao')" label="Profissão"></app-error-msg>
+  <app-error-msg [control]="form.get('profissao')" label="Profissão"></app-error-msg>
   </mat-form-field>
   
       <mat-form-field>
@@ -97,13 +97,13 @@
       <mat-form-field [ngClass]="hasErrorStyle('cpf')">
        <mat-label>CPF: </mat-label>
        <input type="number" matInput formControlName="cpf">
-      <app-error-msg [control]="formulario.get('cpf')" label="CPF"></app-error-msg>
+      <app-error-msg [control]="form.get('cpf')" label="CPF"></app-error-msg>
   </mat-form-field>
   
   <mat-form-field [ngClass]="hasErrorStyle('identidade')">
    <mat-label>Identidade: </mat-label>
    <input type="number" matInput formControlName="identidade">
-  <app-error-msg [control]="formulario.get('identidade')" label="Identidade"></app-error-msg>
+  <app-error-msg [control]="form.get('identidade')" label="Identidade"></app-error-msg>
   </mat-form-field>
   
   <mat-form-field>
@@ -117,11 +117,11 @@
       <!-- ###### DIVISÃO -->
    <!-- <div [ngClass]="hasErrorStyle('hasEndereco')"> -->
   
-  <div *ngIf="formulario.get('hasEndereco').value">
+  <div *ngIf="form.get('hasEndereco').value">
     <mat-form-field>
       <mat-label>Cep: </mat-label>
       <input type="number" matInput formControlName="cep" placeholder="11111111">
-      <app-error-msg [control]="formulario.get('cep')" label="Cep"></app-error-msg>
+      <app-error-msg [control]="form.get('cep')" label="Cep"></app-error-msg>
     </mat-form-field>
   
     <mat-form-field>
@@ -129,7 +129,7 @@
       <mat-select formControlName="estado">
         <mat-option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</mat-option>
       </mat-select>
-      <app-error-msg [control]="formulario.get('estado')" label="Estado"></app-error-msg>  
+      <app-error-msg [control]="form.get('estado')" label="Estado"></app-error-msg>  
     </mat-form-field>
     
     <mat-form-field>
@@ -137,31 +137,31 @@
       <mat-select formControlName="cidade">
         <mat-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade}}</mat-option>
       </mat-select>
-      <app-error-msg [control]="formulario.get('cidade')" label="Cidade"></app-error-msg>  
+      <app-error-msg [control]="form.get('cidade')" label="Cidade"></app-error-msg>  
     </mat-form-field>
     
       <mat-form-field >
         <mat-label>Bairro: </mat-label>
         <input type="text" matInput formControlName="bairro" placeholder="Ex.: Porto de Galinhas">
-        <app-error-msg [control]="formulario.get('bairro')" label="Bairro"></app-error-msg>
+        <app-error-msg [control]="form.get('bairro')" label="Bairro"></app-error-msg>
       </mat-form-field>
     
       <mat-form-field>
         <mat-label>Rua: </mat-label>
         <input type="text" matInput formControlName="rua" placeholder="Ex.: Cavalo Marinho">
-        <app-error-msg [control]="formulario.get('rua')" label="Rua"></app-error-msg>
+        <app-error-msg [control]="form.get('rua')" label="Rua"></app-error-msg>
       </mat-form-field>
   
     <mat-form-field>
       <mat-label>Número: </mat-label>
       <input type="number" matInput formControlName="numero" placeholder="00">
-      <app-error-msg [control]="formulario.get('numero')" label="Número"></app-error-msg>
+      <app-error-msg [control]="form.get('numero')" label="Número"></app-error-msg>
     </mat-form-field>
   
     <mat-form-field>
       <mat-label>Complemento: </mat-label>
       <input type="text" matInput formControlName="complemento" placeholder="Ex.: apt 01">
-      <app-error-msg [control]="formulario.get('complemento')" label="Complemento"></app-error-msg>
+      <app-error-msg [control]="form.get('complemento')" label="Complemento"></app-error-msg>
     </mat-form-field>
   
     

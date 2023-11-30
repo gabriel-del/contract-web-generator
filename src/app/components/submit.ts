@@ -18,8 +18,7 @@ import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
   ]
 })
 export class Submit {
-  formulario = this.formService.formulario
-  form = this.formService
+  form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
   compiling: boolean = false
   pdfBox: any = ''
@@ -30,26 +29,26 @@ export class Submit {
 
   onSubmit() {
     console.log("entrou submit")
-    let valueSubmit = Object.assign({}, this.formulario.value)
+    let valueSubmit = Object.assign({}, this.form.value)
     // valueSubmit = Object.assign(valueSubmit, {
     //   items: valueSubmit.items.map((v,i) => v ? this.items[i] : null).filter(v => v !== null)
     // })
 
     console.log(valueSubmit)
-    if (this.formulario.valid) {
-      console.log(this.formulario.value)
+    if (this.form.valid) {
+      console.log(this.form.value)
       // this.formulario.reset()
     } else {
-      Object.keys(this.formulario.controls).forEach(field => this.formulario.controls[field].markAsDirty())
+      Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsDirty())
     }
   }
      async compile(){
      console.log("Compilar")
-     console.log(this.formService.texContent)
+     console.log(this.formService.tex)
      this.compiling = true
      const globalEn = await new PdfTeXEngine
      await globalEn.loadEngine()
-     globalEn.writeMemFSFile("main.tex", this.formService.texContent);
+     globalEn.writeMemFSFile("main.tex", this.formService.tex);
      globalEn.setEngineMainFile("main.tex");
      let r = await globalEn.compileLaTeX();
      this.log = r.log
