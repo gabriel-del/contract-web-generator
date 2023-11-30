@@ -20,6 +20,7 @@ export class FormService {
   tex!: string
   f: any
   r: any
+  n: number = 0
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient
@@ -27,13 +28,15 @@ export class FormService {
 
 
     async compile(){
-      this.compiling = true
-      const globalEn = await new PdfTeXEngine
-      await globalEn.loadEngine()
-      globalEn.writeMemFSFile("main.tex", this.tex);
-      globalEn.setEngineMainFile("main.tex");
-      this.r = await globalEn.compileLaTeX();
-      this.compiling = false
+      this.n++
+      console.log(this.n)
+      // this.compiling = true
+      // const globalEn = await new PdfTeXEngine
+      // await globalEn.loadEngine()
+      // globalEn.writeMemFSFile("main.tex", this.tex);
+      // globalEn.setEngineMainFile("main.tex");
+      // this.r = await globalEn.compileLaTeX();
+      // this.compiling = false
    }
 
   form: FormGroup = this.formBuilder.group({
