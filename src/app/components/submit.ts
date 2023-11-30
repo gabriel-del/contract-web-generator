@@ -16,9 +16,11 @@ import { of } from 'rxjs';
 export class Submit implements OnInit {
   form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
-  compiling: boolean = this.formService.compiling
+  compiling = this.formService.compiling
+  // compiling: boolean = false
   log!: any
   compile: any = this.formService.compile
+  // compile: any = this.formService.compile
   n = this.formService.n
 
   compile2(){
@@ -29,6 +31,7 @@ export class Submit implements OnInit {
   ngOnInit(): void {
     // of(this.formService.n).subscribe(a => console.log('mudou'))
     this.formService.n$.subscribe(a => console.log(a))
+    this.formService.compiling$.subscribe(a => console.log(a))
   }
 
 

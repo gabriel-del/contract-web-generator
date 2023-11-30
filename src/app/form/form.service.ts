@@ -18,18 +18,22 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FormService {
   items: String[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
-  compiling: boolean = false  
+  // compiling: boolean = false  
   tex!: string
   f: any
   r: any
   n: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  compiling: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
   n$ = this.n.asObservable()
+  compiling$ = this.compiling.asObservable()
 
     async compile(){
       // this.n$.subscribe(a => this.n.next(a+1))
       // this.n$.subscribe(a => console.log(a))
       this.n.next(this.n.value + 1)
+      this.compiling.next(true)
       console.log(this.n.value)
+      console.log(this.compiling.value)
       // console.log(this.n$)
       // this.compiling = true
       // const globalEn = await new PdfTeXEngine
