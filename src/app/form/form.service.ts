@@ -4,6 +4,8 @@ import { formValidations } from '../components/validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { empty } from 'rxjs';
+import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
+
 
 
 
@@ -14,14 +16,25 @@ import { empty } from 'rxjs';
 })
 export class FormService {
   items: String[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
-  log!: any
-  
+  compiling: boolean = false  
   tex!: string
   f: any
+  r: any
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient
     ) { }
+
+
+    async compile(){
+      this.compiling = true
+      const globalEn = await new PdfTeXEngine
+      await globalEn.loadEngine()
+      globalEn.writeMemFSFile("main.tex", this.tex);
+      globalEn.setEngineMainFile("main.tex");
+      this.r = await globalEn.compileLaTeX();
+      this.compiling = false
+   }
 
   form: FormGroup = this.formBuilder.group({
     bloco: ['B', []],

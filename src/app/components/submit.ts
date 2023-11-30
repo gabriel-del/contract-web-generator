@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {FormService} from '../form/form.service'
-import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
 
 
 @Component({
@@ -8,11 +7,6 @@ import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
   template: `
     <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling]}} </button>  
     <mat-spinner *ngIf="compiling"></mat-spinner>
-
-    <!-- <button type="submit">Enviar</button> -->
-    <object *ngIf="pdfBox != ''" [data]= "pdfBox | safe" width="800" height="500"> </object> 
-      <pre>{{log}}</pre>
-
   `,
   styles: [
   ]
@@ -20,9 +14,9 @@ import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
 export class Submit {
   form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
-  compiling: boolean = false
-  pdfBox: any = ''
+  compiling: boolean = this.formService.compiling
   log!: any
+  compile = this.formService.compile
 
   constructor( private formService: FormService ){}
 
@@ -42,27 +36,5 @@ export class Submit {
       Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsDirty())
     }
   }
-     async compile(){
-     console.log("Compilar")
-     console.log(this.formService.tex)
-     this.compiling = true
-     const globalEn = await new PdfTeXEngine
-     await globalEn.loadEngine()
-     globalEn.writeMemFSFile("main.tex", this.formService.tex);
-     globalEn.setEngineMainFile("main.tex");
-     let r = await globalEn.compileLaTeX();
-     this.log = r.log
-     this.compiling = false
 
-     if (r.status === 0) {
-       const pdfblob = new Blob([r.pdf], {type : 'application/pdf'});
-       const objectURL = URL.createObjectURL(pdfblob);
-       let a = document.createElement('a');
-       a.href = objectURL
-      //  a.download = `${this.formService.formulario.controls['bloco'].value}-${this.formService.formulario.controls['apartamento'].value}`
-       a.download = 'Titulo-customizado'
-       a.click()
-      this.pdfBox = objectURL
-    }
-  }
 }
