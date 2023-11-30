@@ -5,6 +5,8 @@ import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { empty } from 'rxjs';
 import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
+import { BehaviorSubject } from 'rxjs';
+
 
 
 
@@ -20,16 +22,15 @@ export class FormService {
   tex!: string
   f: any
   r: any
-  public n: number = 0
-  constructor(
-    private formBuilder: FormBuilder,
-    private http: HttpClient
-    ) {}
-
+  n: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  n$ = this.n.asObservable()
 
     async compile(){
-      this.n++
-      console.log(this.n)
+      // this.n$.subscribe(a => this.n.next(a+1))
+      // this.n$.subscribe(a => console.log(a))
+      this.n.next(this.n.value + 1)
+      console.log(this.n.value)
+      // console.log(this.n$)
       // this.compiling = true
       // const globalEn = await new PdfTeXEngine
       // await globalEn.loadEngine()
@@ -38,6 +39,12 @@ export class FormService {
       // this.r = await globalEn.compileLaTeX();
       // this.compiling = false
    }
+
+   constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient
+    ) {}
+
 
   form: FormGroup = this.formBuilder.group({
     bloco: ['B', []],

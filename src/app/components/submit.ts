@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormService} from '../form/form.service'
+import { of } from 'rxjs';
 
 
 @Component({
@@ -12,20 +13,22 @@ import {FormService} from '../form/form.service'
   styles: [
   ]
 })
-export class Submit {
+export class Submit implements OnInit {
   form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
   compiling: boolean = this.formService.compiling
   log!: any
-  compile!: any
+  compile: any = this.formService.compile
   n = this.formService.n
 
   compile2(){
     console.log(this.n)
   }
-  constructor( private formService: FormService ){
-    this.compile = this.formService.compile
-    
+  constructor( private formService: FormService ){ }
+
+  ngOnInit(): void {
+    // of(this.formService.n).subscribe(a => console.log('mudou'))
+    this.formService.n$.subscribe(a => console.log(a))
   }
 
 
