@@ -27,8 +27,8 @@ updatePdf(){
     const objectURL = URL.createObjectURL(pdfBlob);
     let a = document.createElement('a');
     a.href = objectURL
-   //  a.download = `${this.formService.formulario.controls['bloco'].value}-${this.formService.formulario.controls['apartamento'].value}`
-    a.download = 'Titulo-customizado'
+    a.download = `${this.formService.form.controls['bloco'].value}${this.formService.form.controls['apartamento'].value}-${this.formService.form.controls['nome'].value}`
+    // a.download = 'Titulo-customizado'
     a.click()
    this.pdf = objectURL
  }
