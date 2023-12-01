@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormService} from '../form/form.service'
-import { of } from 'rxjs';
+import { of, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
 
 
 @Component({
   selector: 'app-form-submit',
   template: `
-    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling]}} </button>  
-    <button mat-fab extended color="primary" (click)="compile2()">{{compileMsg[+compiling]}} </button>  
-    <mat-spinner *ngIf="compiling"></mat-spinner>
+    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling.value]}} </button>  
+    <span>{{compiling.value}}</span>
+    <button mat-fab extended color="primary" (click)="compile2()">{{compileMsg[+compiling.value]}} </button>  
+    <mat-spinner *ngIf="compiling.value"></mat-spinner>
   `,
   styles: [
   ]
@@ -16,7 +19,7 @@ import { of } from 'rxjs';
 export class Submit implements OnInit {
   form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
-  compiling = this.formService.compiling
+  compiling: BehaviorSubject<boolean> = this.formService.compiling
   // compiling: boolean = false
   log!: any
   compile: any = this.formService.compile
@@ -31,7 +34,7 @@ export class Submit implements OnInit {
   ngOnInit(): void {
     // of(this.formService.n).subscribe(a => console.log('mudou'))
     this.formService.n$.subscribe(a => console.log(a))
-    this.formService.compiling$.subscribe(a => console.log(a))
+    // this.formService.compiling$.pipe(tap(v => console.log(v))).subscribe(a => this.compiling = a)
   }
 
 

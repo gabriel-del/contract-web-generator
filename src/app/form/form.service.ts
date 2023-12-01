@@ -28,12 +28,14 @@ export class FormService {
   compiling$ = this.compiling.asObservable()
 
     async compile(){
-      // this.n$.subscribe(a => this.n.next(a+1))
-      // this.n$.subscribe(a => console.log(a))
-      this.n.next(this.n.value + 1)
+      // this.n.next(this.n.value + 1)
       this.compiling.next(true)
-      console.log(this.n.value)
-      console.log(this.compiling.value)
+      // await new Promise(f => setTimeout(f, 1000));
+      // this.compiling.next(false)
+      // console.log(this.n.value)
+      console.log(2)
+
+      // console.log(this.compiling.value)
       // console.log(this.n$)
       // this.compiling = true
       // const globalEn = await new PdfTeXEngine
