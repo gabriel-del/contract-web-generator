@@ -93,10 +93,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "contract-web-generator:build:production"
+              "buildTarget": "contract-web-generator:build:production"
             },
             "development": {
-              "browserTarget": "contract-web-generator:build:development"
+              "buildTarget": "contract-web-generator:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -104,7 +104,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "contract-web-generator:build"
+            "buildTarget": "contract-web-generator:build"
           }
         },
         "deploy": {
