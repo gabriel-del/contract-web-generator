@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class Log implements OnInit{
   constructor( private formService: FormService ){}
-  log: any = this.formService.r.log
+  log: any = this.formService.r?.log
   compiling: BehaviorSubject<boolean|null> = this.formService.compiling
   ngOnInit(): void {
     

@@ -21,7 +21,7 @@ export class FormService {
   tex!: string
   f: any
   r: any
-  compiling: BehaviorSubject<boolean|null> = new BehaviorSubject<boolean|null>(false)
+  compiling: BehaviorSubject<boolean|null> = new BehaviorSubject<boolean|null>(null)
   compiling$ = this.compiling.asObservable()
 
     async compile(){
