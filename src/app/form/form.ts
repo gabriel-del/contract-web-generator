@@ -31,7 +31,7 @@ export class Form implements OnInit {
     return null
   }
   ngOnInit(): void {
-    this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {this.estados = dados.estados})
+    this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => this.estados = dados.estados)
     this.formService.texRead()
     // this.formulario.statusChanges.subscribe(_ => this.form.texRead())
     this.form.valueChanges.subscribe(_ => this.formService.texRead())

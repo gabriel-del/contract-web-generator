@@ -1,11 +1,9 @@
 import {db} from './form.js'
 
-const myvar = 9898
-
 function read(file) {
   let response
   const xhttp = new XMLHttpRequest()
-  xhttp.onload = function () {response = this.responseText}
+  xhttp.onload = () => response = this.responseText
   xhttp.open('GET', file, false)
   xhttp.send()
   eval(`response = \`${response.replaceAll('\\', '\\\\').replaceAll('}$', '}')}\``)

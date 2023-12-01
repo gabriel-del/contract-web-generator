@@ -62,7 +62,7 @@ function garagem(bloco, apartamento) {
 }
 function objetos(objetos) {
   let result = ''
-  objetos.forEach((objeto, i) => {
+  objetos.forEach(objeto => {
     if (objeto.quantidade === 0) return
     if (result !== '') result += ', '
     if (objeto.quantidade === 1) result += `${objeto.quantidade} ${objeto.nome}`

@@ -115,7 +115,7 @@ export class FormService {
       .subscribe(dados => this.tex = dados)
   }
   buildItems() {
-    const values = this.items.map(v => new FormControl(false))
+    const values = this.items.map(_ => new FormControl(false))
     return this.formBuilder.array(values)
   }
 }
