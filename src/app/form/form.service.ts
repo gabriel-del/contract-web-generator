@@ -53,7 +53,7 @@ export class FormService {
   })
   texRead() {
     const value = field => this.form.controls[field].value
-    const endereco = {
+    const endereco : { [_: string]: string } = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
       C: 'Rua Merepe III, S\//N'
@@ -75,7 +75,7 @@ export class FormService {
     const f = {
       // 1 section
       enderecoc: endereco[value('bloco')],
-      enderecoC: endereco[value('bloco')],
+      enderecoC: endereco[value('bloco')].toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
       aluguelExtenso: extenso(value('aluguel')),

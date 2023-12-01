@@ -2,9 +2,7 @@
 
 ### To Do
 * Add extenso
-* address uppercase
 * format cpf, identity, phone etc.
-* Run Eslint
 * Garagem if bloco B e apt menor/= que 8
 * Add default values
 
