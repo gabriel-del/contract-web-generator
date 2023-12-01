@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, booleanAttribute } from '@angular/core';
 import {FormService} from '../form/form.service'
+import { skip, tap } from 'rxjs';
 
 @Component({
   selector: 'app-pdf',
@@ -18,8 +19,11 @@ pdf :any = null
 
 ngOnInit(): void {
   this.formService.compiling$
-  // .pipe( tap(v => console.log(v)) )
-  .subscribe(a => {if(!a) this.updatePdf()})
+  .pipe( 
+    tap(v => console.log(v)), 
+    skip(1)
+    )
+  .subscribe(a => {if(a===false) this.updatePdf()})
 }
 
 updatePdf(){
@@ -27,8 +31,6 @@ updatePdf(){
     this.pdf = this.formService.r.pdf
     const pdfBlob = new Blob([this.pdf], {type : 'application/pdf'});
     const objectURL = URL.createObjectURL(pdfBlob);
-    console.log(this.savePdf)
-    console.log(this.showPdf)
     if (this.savePdf) {
       let a = document.createElement('a');
       a.href = objectURL

@@ -25,7 +25,7 @@ export class Submit implements OnInit {
 
   ngOnInit(): void {
     this.formService.compiling$
-    .pipe( tap(v => console.log(v)) )
+    // .pipe( tap(v => console.log(v)) )
     .subscribe(a => {if(!a) console.log()})
   }
 
