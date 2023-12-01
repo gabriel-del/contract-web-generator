@@ -32,7 +32,7 @@ export class Pdf implements OnInit {
       if (this.savePdf) {
         const a = document.createElement('a')
         a.href = objectURL
-        a.download = `${this.formService.form.controls['bloco'].value}${this.formService.form.controls['apartamento'].value}-${this.formService.form.controls['nome'].value}`
+        a.download = `${this.formService.form.get('bloco').value}${this.formService.form.get('apartamento').value}-${this.formService.form.get('nome').value}`
         a.click()
       }
       this.pdf = objectURL
