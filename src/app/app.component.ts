@@ -1,5 +1,4 @@
-import { Form } from './form/form';
-import { Component } from '@angular/core';
+import {Component} from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -7,9 +6,8 @@ import { Component } from '@angular/core';
           <app-header></app-header>
           <app-footer></app-footer>
   `,
-  styles: []
+  styles: [],
 })
 export class AppComponent {
-  
-  title = 'contract-web-generator';
+  title = 'contract-web-generator'
 }

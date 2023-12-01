@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core'
 
 @Component({
   selector: 'app-home',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <app-form></app-form>
   `,
   styles: [
-  ]
+  ],
 })
 export class Home {
 

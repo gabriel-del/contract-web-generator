@@ -1,40 +1,29 @@
-import { Injectable } from '@angular/core';
-import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms'
-import { formValidations } from '../components/validations';
-import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
-import { HttpClient } from '@angular/common/http';
-import { empty } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
-
-
-
-
-
-
+import {Injectable} from '@angular/core'
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
+import {map} from 'rxjs/operators'
+import {HttpClient} from '@angular/common/http'
+import {BehaviorSubject} from 'rxjs'
+import {formValidations} from '../components/validations'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FormService {
   constructor(
-  private formBuilder: FormBuilder,
-  private http: HttpClient
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
   ) {}
-
-  items: String[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
+  items: string[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
   tex!: string
   f: any
   r: any
-  compiling: BehaviorSubject<boolean|null> = new BehaviorSubject<boolean|null>(null)
+  compiling: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null)
   compiling$ = this.compiling.asObservable()
-
-
-
   form: FormGroup = this.formBuilder.group({
     bloco: ['B', []],
     apartamento: [4, []],
     aluguel: [1500, []],
-    dataInicio: ["2023-12-01T03:00:00.000Z", []],
+    dataInicio: ['2023-12-01T03:00:00.000Z', []],
     diaVencimento: [31, []],
     objetos: ['2 camas', []],
     seeDefaults: [true, []],
@@ -62,30 +51,28 @@ export class FormService {
     complemento: ['apt 01', []],
     // items: this.buildItems(),
   })
-
-  
-  texRead(){
-    let value = field => this.form.controls[field].value
-    let endereco = {
+  texRead() {
+    const value = field => this.form.controls[field].value
+    const endereco = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
-      C: 'Rua Merepe III, S\//N'
+      C: 'Rua Merepe III, S\//N',
     }
-    let extenso = n => n
-    let getDate = (n? :number) => {
-      let meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
-      let data = new Date(value('dataInicio'))
-      return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n ? n: 0)}`
+    const extenso = n => n
+    const getDate = (n?: number) => {
+      const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+      const data = new Date(value('dataInicio'))
+      return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n || 0)}`
     }
-    let getEndereco = () => {
-      let bairro = value('bairro') ? `, bairro ${value('bairro')}` : ''
-      let rua = value('rua') ? `, rua ${value('rua').replace('Rua ', '').replace('rua ', '')}` : ''
-      let numero = value('numero') ? `, número ${value('numero')}` : ''
-      let complemento = value('complemento') ? `, ${value('complemento')}` : ''
-      let cep = value('cep') ? `, CEP nº ${value('cep')}` : ''
+    const getEndereco = () => {
+      const bairro = value('bairro') ? `, bairro ${value('bairro')}` : ''
+      const rua = value('rua') ? `, rua ${value('rua').replace('Rua ', '').replace('rua ', '')}` : ''
+      const numero = value('numero') ? `, número ${value('numero')}` : ''
+      const complemento = value('complemento') ? `, ${value('complemento')}` : ''
+      const cep = value('cep') ? `, CEP nº ${value('cep')}` : ''
       return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
-    let f = {
+    const f = {
       // 1 section
       enderecoc: endereco[value('bloco')],
       enderecoC: endereco[value('bloco')],
@@ -114,28 +101,21 @@ export class FormService {
       celular: value('celular') ? `, celular ${value('celular')}` : '',
       // 4 section
       endereco: value('hasEndereco') ? getEndereco() : '',
-      
+
     }
     this.f = f
 
     // console.log(JSON.stringify(f, null, 2))
     this.http.get('assets/main.tex', {responseType: 'text'})
-    .pipe(
-      map(dados => dados.replaceAll("\\","\\\\").replaceAll(/}\$( )?(\r\n|\r|\n)?/g, "}")),
-      map(dados => eval(`dados = \`${dados}\``) ),
+      .pipe(
+        map(dados => dados.replaceAll('\\', '\\\\').replaceAll(/}\$( )?(\r\n|\r|\n)?/g, '}')),
+        map(dados => eval(`dados = \`${dados}\``)),
       // tap(dados => console.log(dados))
-    )
-    .subscribe(dados => this.tex = dados)
+      )
+      .subscribe(dados => this.tex = dados)
   }
-
-  buildItems(){
+  buildItems() {
     const values = this.items.map(v => new FormControl(false))
     return this.formBuilder.array(values)
   }
-
-
-
-
-
-
 }

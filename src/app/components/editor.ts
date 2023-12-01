@@ -9,11 +9,10 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-} from '@angular/core';
+} from '@angular/core'
 
-import { Ace, edit } from 'ace-builds';
-import 'ace-builds';
-import 'ace-builds/src-noconflict/theme-dracula';
+import {Ace, edit} from 'ace-builds'
+import 'ace-builds/src-noconflict/theme-dracula'
 
 @Component({
   selector: 'app-editor',
@@ -22,17 +21,16 @@ import 'ace-builds/src-noconflict/theme-dracula';
     width: 100%;
     min-height: 400px;
     border: 1px solid gray;
-  }`]
+  }`],
 })
 export class Editor implements OnInit, AfterViewInit, OnChanges {
-  @ViewChild('editor') editorRef!: ElementRef;
-  @Output() textChange = new EventEmitter<string>();
-  @Input() text!: string;
-  @Input() readOnly: boolean = false;
-  @Input() mode: string = 'latex';
-  @Input() prettify: boolean = true;
-
-  editor!: Ace.Editor;
+  @ViewChild('editor') editorRef!: ElementRef
+  @Output() textChange = new EventEmitter<string>()
+  @Input() text!: string
+  @Input() readOnly: boolean = false
+  @Input() mode: string = 'latex'
+  @Input() prettify: boolean = true
+  editor!: Ace.Editor
   // All possible options can be found at:
   // https://github.com/ajaxorg/ace/wiki/Configuring-Ace
   options = {
@@ -42,68 +40,56 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
     wrap: true,
     fontSize: 14,
     fontFamily: '\'Roboto Mono Regular\', monospace',
-  };
-
+  }
   constructor() {}
-
   ngOnInit(): void { }
-
   ngAfterViewInit(): void {
-    this.initEditor_();
+    this.initEditor_()
   }
-
   onTextChange(text: string): void {
-    this.textChange.emit(text);
+    this.textChange.emit(text)
   }
-
   ngOnChanges(changes: SimpleChanges): void {
-    if (!this.editor) {
-      return;
-    }
+    if (!this.editor)
+      return
 
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'text':
-            this.onExternalUpdate_();
-            break;
+            this.onExternalUpdate_()
+            break
           case 'mode':
-            this.onEditorModeChange_();
-            break;
+            this.onEditorModeChange_()
+            break
           default:
         }
       }
     }
   }
-
   private initEditor_(): void {
-    this.editor = edit(this.editorRef.nativeElement);
-    this.editor.setOptions(this.options);
-    this.editor.setValue(this.text, -1);
-    this.editor.setReadOnly(this.readOnly);
-    this.editor.setTheme('ace/theme/monokai');
-    this.setEditorMode_();
-    this.editor.session.setUseWorker(false);
-    this.editor.on('change', () => this.onEditorTextChange_());
+    this.editor = edit(this.editorRef.nativeElement)
+    this.editor.setOptions(this.options)
+    this.editor.setValue(this.text, -1)
+    this.editor.setReadOnly(this.readOnly)
+    this.editor.setTheme('ace/theme/monokai')
+    this.setEditorMode_()
+    this.editor.session.setUseWorker(false)
+    this.editor.on('change', () => this.onEditorTextChange_())
   }
-
   private onExternalUpdate_(): void {
-    const point = this.editor.getCursorPosition();
-    this.editor.setValue(this.text, -1);
-    this.editor.moveCursorToPosition(point);
+    const point = this.editor.getCursorPosition()
+    this.editor.setValue(this.text, -1)
+    this.editor.moveCursorToPosition(point)
   }
-
   private onEditorTextChange_(): void {
-    this.text = this.editor.getValue();
-    this.onTextChange(this.text);
+    this.text = this.editor.getValue()
+    this.onTextChange(this.text)
   }
-
   private onEditorModeChange_(): void {
-    this.setEditorMode_();
+    this.setEditorMode_()
   }
-
   private setEditorMode_(): void {
-    this.editor.getSession().setMode(`ace/mode/${this.mode}`);
+    this.editor.getSession().setMode(`ace/mode/${this.mode}`)
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core'
 
 @Component({
   selector: 'app-footer',
@@ -16,8 +16,8 @@ import { Component } from '@angular/core';
       }
       i, span { color: rgb(227,94,107);}
       i, strong { margin: 5px;}
-      i { vertical-align: middle;} 
+      i { vertical-align: middle;}
     </style>
-  `
+  `,
 })
 export class Footer {}

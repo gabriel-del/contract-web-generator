@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 import {FormService} from '../form/form.service'
 
 @Component({
@@ -10,14 +10,11 @@ import {FormService} from '../form/form.service'
   <!--pre>Form submetido: {{ form.submitted }}</pre -->
   <pre>Valores: <br>{{ form.value | json }}</pre>
 </div>
-  `
+  `,
 })
 export class DebugForm implements OnInit {
   form = this.formService.form
-
   constructor(private formService: FormService) { }
-
   ngOnInit() {
   }
-
 }

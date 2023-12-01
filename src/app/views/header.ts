@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core'
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
 
 <nav mat-tab-nav-bar color="primary" backgroundColor="primary" [tabPanel]="tabPanel" *ngIf="showMenu">
   <a mat-tab-link *ngFor="let link of links" [routerLink]="link.link" (click)="activeLink = link"
-      [active]="activeLink == link">{{link.label}} 
+      [active]="activeLink == link">{{link.label}}
   </a>
 </nav>
 <mat-tab-nav-panel #tabPanel>
@@ -24,12 +24,11 @@ import { Component } from '@angular/core';
   styles: [`
   .space {
   flex: 1 1 auto;
-}`
-  ]
+}`,
+  ],
 })
 export class Header {
   activeLink!: any
-  showMenu: Boolean = true
-  links = [{label: "Formulário", link: "/"},{label: "Histórico", link: "/history"}, {label: "Dev", link: "/dev"}];
- 
+  showMenu: boolean = true
+  links = [{label: 'Formulário', link: '/'}, {label: 'Histórico', link: '/history'}, {label: 'Dev', link: '/dev'}]
 }
