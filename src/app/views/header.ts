@@ -24,8 +24,8 @@ import {Component} from '@angular/core'
   styles: [`
   .space {
   flex: 1 1 auto;
-}`,
-  ],
+}`
+  ]
 })
 export class Header {
   activeLink!: any

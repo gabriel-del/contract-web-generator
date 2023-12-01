@@ -6,12 +6,12 @@ import {BehaviorSubject} from 'rxjs'
 import {formValidations} from '../components/validations'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FormService {
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
+    private http: HttpClient
   ) {}
   items: string[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
   tex!: string
@@ -48,7 +48,7 @@ export class FormService {
     bairro: ['Porto de Galinhas', []],
     rua: ['Cavalo Marinho', []],
     numero: [182, []],
-    complemento: ['apt 01', []],
+    complemento: ['apt 01', []]
     // items: this.buildItems(),
   })
   texRead() {
@@ -56,7 +56,7 @@ export class FormService {
     const endereco = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
-      C: 'Rua Merepe III, S\//N',
+      C: 'Rua Merepe III, S\//N'
     }
     const extenso = n => n
     const getDate = (n?: number) => {
@@ -100,7 +100,7 @@ export class FormService {
       identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
       celular: value('celular') ? `, celular ${value('celular')}` : '',
       // 4 section
-      endereco: value('hasEndereco') ? getEndereco() : '',
+      endereco: value('hasEndereco') ? getEndereco() : ''
 
     }
     this.f = f
@@ -109,7 +109,7 @@ export class FormService {
     this.http.get('assets/main.tex', {responseType: 'text'})
       .pipe(
         map(dados => dados.replaceAll('\\', '\\\\').replaceAll(/}\$( )?(\r\n|\r|\n)?/g, '}')),
-        map(dados => eval(`dados = \`${dados}\``)),
+        map(dados => eval(`dados = \`${dados}\``))
       // tap(dados => console.log(dados))
       )
       .subscribe(dados => this.tex = dados)

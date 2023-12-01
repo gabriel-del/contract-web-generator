@@ -8,7 +8,7 @@ import {FormService} from './form.service'
 @Component({
   selector: 'app-form',
   templateUrl: './form.html',
-  styleUrls: ['./form.scss'],
+  styleUrls: ['./form.scss']
 })
 export class Form implements OnInit {
   cidades!: any[]
@@ -18,7 +18,7 @@ export class Form implements OnInit {
   apartamentos = {
     A: Array(12).fill(0).map((_, i) => i + 1),
     B: Array(9).fill(0).map((_, i) => i + 1),
-    C: Array(6).fill(0).map((_, i) => i + 1),
+    C: Array(6).fill(0).map((_, i) => i + 1)
   }
   vencimento = Array(31).fill(0).map((_, i) => i + 1)
   limitePessoas = Array(6).fill(0).map((_, i) => i + 1)
@@ -41,8 +41,8 @@ export class Form implements OnInit {
         tap(value => console.log('status cep: ', value)),
         switchMap(status => status === 'VALID'
           ? this.http.get(`//viacep.com.br/ws/${this.form.get('cep').value}/json`)
-          : EMPTY,
-        ),
+          : EMPTY
+        )
       )
       .subscribe(
         (dados: any) => dados
@@ -50,15 +50,15 @@ export class Form implements OnInit {
             rua: dados.logradouro,
             bairro: dados.bairro,
             cidade: dados.localidade,
-            estado: dados.uf,
+            estado: dados.uf
           })
-          : {},
+          : {}
       )
 
     this.form.get('estado').valueChanges
       .pipe(
         map(estado => this.estados.filter(({sigla}) => sigla === estado)),
-        map(estado => estado[0].cidades),
+        map(estado => estado[0].cidades)
       )
       .subscribe(cidades => this.cidades = cidades)
   }
@@ -70,7 +70,7 @@ export class Form implements OnInit {
   hasErrorStyle(field: string) {
     return {
       'has-error': this.hasError(field),
-      'has-feedback': this.hasError(field),
+      'has-feedback': this.hasError(field)
     }
   }
   resetar() {this.form.reset()}

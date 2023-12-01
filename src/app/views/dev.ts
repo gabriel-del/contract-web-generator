@@ -13,7 +13,7 @@ import {FormService} from '../form/form.service'
 
   `,
   styles: [
-  ],
+  ]
 })
 export class Dev {
   pdfBox: any = ''

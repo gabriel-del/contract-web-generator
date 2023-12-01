@@ -8,11 +8,11 @@ import {Dev} from './views/dev'
 const routes: Routes = [
   {path: '', component: Home},
   {path: 'history', component: History},
-  {path: 'dev', component: Dev},
+  {path: 'dev', component: Dev}
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -8,7 +8,7 @@ import {FormService} from '../form/form.service'
      <pre *ngIf="compiling.value===false">{{log}}</pre>
   `,
   styles: [
-  ],
+  ]
 })
 export class Log implements OnInit {
   constructor(private formService: FormService) {}

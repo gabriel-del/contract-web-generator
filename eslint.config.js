@@ -18,12 +18,13 @@ export default antfu(
       'no-eval': ['warn', {allowIndirect: true}],
       'style/lines-between-class-members': ['error', 'never'],
       'ts/indent': ['error', 2],
-    },
+      'style/comma-dangle': ['error', 'never']
+    }
   },
   {
     ignores: [
       '**/assets',
-      '**/assets/**',
-    ],
-  },
+      '**/assets/**'
+    ]
+  }
 )

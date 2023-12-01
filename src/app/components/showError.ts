@@ -5,7 +5,7 @@ import {formValidations} from './validations'
   selector: 'app-error-msg',
   template: `
   <mat-error *ngIf="errorMessage != null" >{{ errorMessage}}</mat-error>
-`,
+`
 })
 export class ShowError implements OnInit {
   // @Input() show!: boolean;

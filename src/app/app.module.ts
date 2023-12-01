@@ -38,7 +38,7 @@ import {Log} from './components/log'
     Editor,
     Submit,
     Pdf,
-    Log,
+    Log
   ],
   imports: [
     BrowserModule,
@@ -46,12 +46,12 @@ import {Log} from './components/log'
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
-    Editor,
-  ],
+    Editor
+  ]
 })
 export class AppModule { }

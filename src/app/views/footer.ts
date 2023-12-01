@@ -18,6 +18,6 @@ import {Component} from '@angular/core'
       i, strong { margin: 5px;}
       i { vertical-align: middle;}
     </style>
-  `,
+  `
 })
 export class Footer {}

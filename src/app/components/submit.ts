@@ -10,7 +10,7 @@ import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js'
     <mat-spinner *ngIf="compiling.value"></mat-spinner>
   `,
   styles: [
-  ],
+  ]
 })
 export class Submit implements OnInit {
   constructor(private formService: FormService) { }

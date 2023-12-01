@@ -15,7 +15,7 @@ export const db = {
   profissao: 'autônomo',
   endereco: 'Rua Abc',
   estadoCivil: 'solteiro',
-  objetos: [{nome: 'cama', quantidade: 2}, {nome: 'guarda-roupa', quantidade: 2}],
+  objetos: [{nome: 'cama', quantidade: 2}, {nome: 'guarda-roupa', quantidade: 2}]
 }
 
 export const dbg = {
@@ -34,7 +34,7 @@ export const dbg = {
   profissao: db.profissao ? `,  ${db.profissao}` : '',
   endereco: db.endereco ? `, residente a ${db.endereco}` : '',
   estadoCivil: db.estadoCivil ? `,  ${db.estadoCivil}` : '',
-  objetos: objetos(db.objetos),
+  objetos: objetos(db.objetos)
 }
 
 function endereco(bloco) {

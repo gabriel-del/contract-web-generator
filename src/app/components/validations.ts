@@ -10,7 +10,7 @@ export class formValidations {
     const config = {
       required: `${fieldName} é obrigatório`,
       minlength: `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres`,
-      cepInvalido: `Cep Inválido`,
+      cepInvalido: `Cep Inválido`
     }
     return config[validatorName]
   }

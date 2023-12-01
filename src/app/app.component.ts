@@ -6,7 +6,7 @@ import {Component} from '@angular/core'
           <app-header></app-header>
           <app-footer></app-footer>
   `,
-  styles: [],
+  styles: []
 })
 export class AppComponent {
   title = 'contract-web-generator'

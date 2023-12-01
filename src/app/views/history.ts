@@ -8,11 +8,11 @@ import {FormService} from '../form/form.service'
 
   `,
   styles: [
-  ],
+  ]
 })
 export class History {
   constructor(
-    private formService: FormService,
+    private formService: FormService
   ) {}
   showVar() {
     // console.log(this.formService.formulario.get('numero').value)

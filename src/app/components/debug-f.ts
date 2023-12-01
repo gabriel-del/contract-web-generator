@@ -3,7 +3,7 @@ import {FormService} from '../form/form.service'
 
 @Component({
   selector: 'app-debug-f',
-  template: ` <pre>{{ f | json }}</pre> `,
+  template: ` <pre>{{ f | json }}</pre> `
 })
 export class DebugF implements OnInit {
   form = this.formService.form

@@ -8,7 +8,7 @@ import {FormService} from '../form/form.service'
     <object *ngIf="pdf && showPdf" [data]= "pdf | safe" width="800" height="500"> </object>
   `,
   styles: [
-  ],
+  ]
 })
 export class Pdf implements OnInit {
   constructor(private formService: FormService) {}
@@ -20,7 +20,7 @@ export class Pdf implements OnInit {
     this.formService.compiling$
       .pipe(
         // tap(v => console.log(v)),
-        skip(1),
+        skip(1)
       )
       .subscribe(a => {if (a === false) this.updatePdf()})
   }

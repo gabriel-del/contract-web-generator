@@ -8,7 +8,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild,
+  ViewChild
 } from '@angular/core'
 
 import {Ace, edit} from 'ace-builds'
@@ -21,7 +21,7 @@ import 'ace-builds/src-noconflict/theme-dracula'
     width: 100%;
     min-height: 400px;
     border: 1px solid gray;
-  }`],
+  }`]
 })
 export class Editor implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('editor') editorRef!: ElementRef
@@ -39,7 +39,7 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
     tabSize: 2,
     wrap: true,
     fontSize: 14,
-    fontFamily: '\'Roboto Mono Regular\', monospace',
+    fontFamily: '\'Roboto Mono Regular\', monospace'
   }
   constructor() {}
   ngOnInit(): void { }
