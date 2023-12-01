@@ -4,7 +4,6 @@ import { formValidations } from '../components/validations';
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
 import { HttpClient } from '@angular/common/http';
 import { empty } from 'rxjs';
-import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -17,6 +16,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class FormService {
+  constructor(
+  private formBuilder: FormBuilder,
+  private http: HttpClient
+  ) {}
+
   items: String[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
   tex!: string
   f: any
@@ -24,21 +28,6 @@ export class FormService {
   compiling: BehaviorSubject<boolean|null> = new BehaviorSubject<boolean|null>(null)
   compiling$ = this.compiling.asObservable()
 
-    async compile(){
-      this.compiling.next(true)
-      await new Promise(f => setTimeout(f, 1000));
-      // const globalEn = await new PdfTeXEngine
-      // await globalEn.loadEngine()
-      // globalEn.writeMemFSFile("main.tex", this.tex);
-      // globalEn.setEngineMainFile("main.tex");
-      // this.r = await globalEn.compileLaTeX();
-      this.compiling.next(false)
-   }
-
-   constructor(
-    private formBuilder: FormBuilder,
-    private http: HttpClient
-    ) {}
 
 
   form: FormGroup = this.formBuilder.group({
@@ -128,6 +117,7 @@ export class FormService {
       
     }
     this.f = f
+
     // console.log(JSON.stringify(f, null, 2))
     this.http.get('assets/main.tex', {responseType: 'text'})
     .pipe(

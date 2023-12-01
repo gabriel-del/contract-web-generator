@@ -5,6 +5,7 @@ import {FormService} from '../form/form.service'
   selector: 'app-pdf',
   template: `
     <object *ngIf="pdf != ''" [data]= "pdf | safe" width="800" height="500"> </object> 
+    
 
   `,
   styles: [

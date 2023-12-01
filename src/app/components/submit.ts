@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormService} from '../form/form.service'
 import { filter, map, of, tap } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js';
+
 
 
 
@@ -15,19 +17,33 @@ import { BehaviorSubject } from 'rxjs';
   ]
 })
 export class Submit implements OnInit {
+  constructor( private formService: FormService ){ }
   form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
   compiling: BehaviorSubject<boolean|null> = this.formService.compiling
-  compile: any = this.formService.compile
+  tex = this.formService.tex
 
-  constructor( private formService: FormService ){ }
 
   ngOnInit(): void {
+    this.formService.texRead()
     this.formService.compiling$
     .pipe( tap(v => console.log(v)) )
-    .subscribe(a => {if(!a) console.log(2)})
+    .subscribe(a => {if(!a) console.log()})
   }
 
+
+  async compile(){
+    this.formService.compiling.next(true)
+    // await new Promise(f => setTimeout(f, 1000));
+    await this.formService.texRead()
+    // console.log(this.formService.tex)
+    const globalEn = await new PdfTeXEngine
+    await globalEn.loadEngine()
+    globalEn.writeMemFSFile("main.tex", this.formService.tex);
+    globalEn.setEngineMainFile("main.tex");
+    this.formService.r = await globalEn.compileLaTeX();
+    this.formService.compiling.next(false)
+  }
 
   onSubmit() {
     console.log("entrou submit")
