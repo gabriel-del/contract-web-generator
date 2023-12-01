@@ -16,13 +16,13 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
     "noPropertyAccessFromIndexSignature": true,
     "declaration": false,
     "downlevelIteration": true,
     "importHelpers": true,
-    "sourceMap": true
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

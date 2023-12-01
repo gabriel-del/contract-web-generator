@@ -12,10 +12,18 @@ export default antfu(
       'arrow-parens': ['error', 'as-needed'],
       'antfu/if-newline': 0,
       'style/block-spacing': ['error', 'never'],
+      'style/arrow-parens': ['error', 'as-needed'],
       'promise/param-names': 'off',
       'no-new': 0,
+      'no-eval': ['warn', {allowIndirect: true}],
       'style/lines-between-class-members': ['error', 'never'],
       'ts/indent': ['error', 2],
     },
+  },
+  {
+    ignores: [
+      '**/assets',
+      '**/assets/**',
+    ],
   },
 )
