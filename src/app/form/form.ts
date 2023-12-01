@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormService} from './form.service'
 import {distinctUntilChanged, filter, map, switchMap, tap} from 'rxjs/operators'
-import { empty } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { EstadoBr } from '../components/model';
 
@@ -45,7 +45,7 @@ export class Form implements OnInit {
       tap( value => console.log("status cep: ", value) ),
       switchMap(status => status === 'VALID' ? 
       this.http.get(`//viacep.com.br/ws/${this.form.get('cep').value}/json`) :
-      empty()
+      EMPTY
       )
     )
     .subscribe(
