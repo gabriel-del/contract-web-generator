@@ -54,7 +54,8 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
       return
 
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      // if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'text':
             this.onExternalUpdate_()

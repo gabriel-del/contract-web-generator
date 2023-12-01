@@ -16,7 +16,8 @@ export class ShowError implements OnInit {
   }
   get errorMessage() {
     for (const propertyName in this.control.errors) {
-      if (this.control.errors.hasOwnProperty(propertyName) && this.control.touched)
+      // if (this.control.errors.hasOwnProperty(propertyName) && this.control.touched)
+      if (Object.prototype.hasOwnProperty.call(this.control.errors, propertyName) && this.control.touched)
         return formValidations.getErrorMsg(this.label, propertyName, this.control.errors[propertyName])
     }
     return null
