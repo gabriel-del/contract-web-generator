@@ -21,11 +21,9 @@ export class Submit implements OnInit {
   form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
   compiling: BehaviorSubject<boolean|null> = this.formService.compiling
-  tex = this.formService.tex
 
 
   ngOnInit(): void {
-    this.formService.texRead()
     this.formService.compiling$
     .pipe( tap(v => console.log(v)) )
     .subscribe(a => {if(!a) console.log()})
@@ -34,9 +32,7 @@ export class Submit implements OnInit {
 
   async compile(){
     this.formService.compiling.next(true)
-    // await new Promise(f => setTimeout(f, 1000));
-    await this.formService.texRead()
-    // console.log(this.formService.tex)
+    await new Promise(f => setTimeout(f, 1000));
     const globalEn = await new PdfTeXEngine
     await globalEn.loadEngine()
     globalEn.writeMemFSFile("main.tex", this.formService.tex);

@@ -15,7 +15,9 @@ export class Log implements OnInit{
   log: any = this.formService.r?.log
   compiling: BehaviorSubject<boolean|null> = this.formService.compiling
   ngOnInit(): void {
-    
+    this.formService.compiling$
+    // .pipe( tap(v => console.log(v)) )
+    .subscribe(a => {if(!a) this.log = this.formService.r?.log})
   }
 
   
