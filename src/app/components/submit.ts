@@ -24,16 +24,13 @@ export class Submit implements OnInit {
   log!: any
   compile: any = this.formService.compile
   // compile: any = this.formService.compile
-  n = this.formService.n
 
   compile2(){
-    console.log(this.n)
   }
   constructor( private formService: FormService ){ }
 
   ngOnInit(): void {
     // of(this.formService.n).subscribe(a => console.log('mudou'))
-    this.formService.n$.subscribe(a => console.log(a))
     // this.formService.compiling$.pipe(tap(v => console.log(v))).subscribe(a => this.compiling = a)
   }
 
