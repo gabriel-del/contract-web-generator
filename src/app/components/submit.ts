@@ -18,7 +18,6 @@ export class Submit implements OnInit {
   form = this.formService.form
   compileMsg: string[] = ["Gerar Contrato", "Gerando o Contrato, Aguarde ..."]
   compiling: BehaviorSubject<boolean|null> = this.formService.compiling
-  log!: any
   compile: any = this.formService.compile
 
   constructor( private formService: FormService ){ }
