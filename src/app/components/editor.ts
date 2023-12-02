@@ -22,7 +22,7 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
   ngOnInit(): void { 
     this.formService.tex$.subscribe(_ => {
       this.text = this.formService.tex.value
-      this.editor.setValue(this.text, -1)
+      this.editor?.setValue(this.text, -1)
     })   
   }
   ngAfterViewInit(): void {
