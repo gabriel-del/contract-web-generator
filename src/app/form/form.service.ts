@@ -53,7 +53,7 @@ export class FormService {
     // items: this.buildItems(),
   })
   texRead() {
-    const value = (field: string) => this.form.controls[field].value
+    const value = (field: string): string => this.form.controls[field].value
     const endereco: {[_: string]: string} = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
@@ -67,13 +67,14 @@ export class FormService {
       return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n || 0)}`
     }
     const getEndereco = (): string => {
-      const bairro = value('bairro') ? `, bairro ${value('bairro')}` : ''
-      const rua = value('rua') ? `, rua ${value('rua').replace('Rua ', '').replace('rua ', '')}` : ''
+      const bairro = value('bairro') ? `, bairro ${capitalize(value('bairro'))}` : ''
+      const rua = value('rua') ? `, rua ${capitalize(value('rua')).replace('Rua ', '')}` : ''
       const numero = value('numero') ? `, número ${value('numero')}` : ''
-      const complemento = value('complemento') ? `, ${value('complemento')}` : ''
+      const complemento = value('complemento') ? `, ${capitalize(value('complemento'))}` : ''
       const cep = value('cep') ? `, CEP nº ${value('cep').toString().replace(/(\d{5})(\d{3})/, '$1-$2')}` : ''
       return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
+    const capitalize = (i : string): string => i.toLocaleLowerCase().replace(/\b\w/g, c => c.toUpperCase());
     const f = {
       // 1 section
       enderecoc: endereco[value('bloco')],
@@ -88,15 +89,15 @@ export class FormService {
       objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
       // dataFinal: value('dataFinal'),
       // 2 section
-      animais: value('allowAnimals') ? '' : 'É proibido a criação de animais.',
-      garagem: value('hasParking') ? 'Cada apartamento tem direito a uma vaga de garagem rotativa.' : '',
-      bicicletas: value('hasBikerack') ? 'As bicicletas devem ser guardadas no bicicletário.' : '',
+      animais: value('allowAnimals') ? '' : '. É proibido a criação de animais',
+      garagem: value('hasParking') ? '. Cada apartamento tem direito a uma vaga de garagem rotativa' : '',
+      bicicletas: value('hasBikerack') ? '. As bicicletas devem ser guardadas no bicicletário' : '',
       limitePessoas: value('limitePessoas'),
       limitePessoasExtenso: extenso(value('limitePessoas') ?? 0),
       // 3 section
-      nome: `${value('nome')}`,
-      nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',
-      profissao: value('profissao') ? `,  ${value('profissao')}` : '',
+      nome: `${capitalize(value('nome'))}`,
+      nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade').toLocaleLowerCase()}` : '',
+      profissao: value('profissao') ? `,  ${value('profissao').toLocaleLowerCase()}` : '',
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
       cpf: value('cpf') ? `, CPF nº ${value('cpf').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}` : '',
       // cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");

@@ -1,16 +1,15 @@
 # Contract Web Generator
 
 ### To Do
-* primeira letra maiuscula no nome, ajeitar virgulas
+* Add custom validations (address)
+* sessão de objetos on tex
+* extenso: mil -> hum mil, add on tex
 * dev layout
 
-* Add custom validations (address)
 * Typescript strict
 * LocalStorage
 * History
-* Show default cidade
 * Add Item and quantity
-* extenso: mil -> hum mil
 
 
 
