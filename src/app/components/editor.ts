@@ -1,18 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild
-} from '@angular/core'
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core'
 
 import {Ace, edit} from 'ace-builds'
-import 'ace-builds/src-noconflict/theme-dracula'
+import { FormService } from '../form/form.service'
 
 @Component({
   selector: 'app-editor',
@@ -26,7 +15,7 @@ import 'ace-builds/src-noconflict/theme-dracula'
 export class Editor implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('editor') editorRef!: ElementRef
   @Output() textChange = new EventEmitter<string>()
-  @Input() text!: string
+  text: string = this.formService.tex
   @Input() readOnly: boolean = false
   @Input() mode: string = 'latex'
   @Input() prettify: boolean = true
@@ -41,8 +30,14 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
     fontSize: 14,
     fontFamily: '\'Roboto Mono Regular\', monospace'
   }
-  constructor() {}
-  ngOnInit(): void { }
+  constructor(private formService: FormService) {}
+  ngOnInit(): void { 
+    console.log(1)
+    this.formService.texRead()
+    console.log(this.formService.tex)
+    this.formService.form.valueChanges.subscribe(_ => this.formService.texRead())
+
+  }
   ngAfterViewInit(): void {
     this.initEditor_()
   }

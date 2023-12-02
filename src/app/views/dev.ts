@@ -1,10 +1,10 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {FormService} from '../form/form.service'
 
 @Component({
   selector: 'app-dev',
   template: `
-  <app-editor [(text)]="tex" mode="latex" ></app-editor>
+  <app-editor mode="latex" ></app-editor>
   <app-form-submit></app-form-submit>
   <app-log></app-log>
     <app-pdf showPdf=true savePdf=false></app-pdf>
@@ -15,9 +15,12 @@ import {FormService} from '../form/form.service'
   styles: [
   ]
 })
-export class Dev {
+export class Dev implements OnInit{
+  constructor(private formService: FormService) {}
   pdfBox: any = ''
   form = this.formService.form
   tex: string = this.formService.tex
-  constructor(private formService: FormService) {}
+  ngOnInit(): void {
+    this.formService.texRead()
+  }
 }
