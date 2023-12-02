@@ -1,7 +1,6 @@
 # Contract Web Generator
 
 ### To Do
-* format cpf, identity, phone etc.
 * Garagem if bloco B e apt menor/= que 8
 * Add default values
 

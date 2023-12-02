@@ -5,12 +5,9 @@ import {HttpClient} from '@angular/common/http'
 import {EstadoBr} from '../components/model'
 import {FormService} from './form.service'
 
-@Component({
-  selector: 'app-form',
-  templateUrl: './form.html',
-  styleUrls: ['./form.scss']
-})
+@Component({ selector: 'app-form', templateUrl: './form.html', styleUrls: ['./form.scss'] })
 export class Form implements OnInit {
+  constructor(private formService: FormService, private http: HttpClient) {}
   cidades!: any[]
   blocosOp!: any[]
   form = this.formService.form
@@ -23,13 +20,7 @@ export class Form implements OnInit {
   vencimento = Array(31).fill(0).map((_, i) => i + 1)
   limitePessoas = Array(6).fill(0).map((_, i) => i + 1)
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
-  constructor(private formService: FormService, private http: HttpClient) {}
-  setLimitePessoas = () => {
-    // if (value('bloco') === 'A') return 3
-    // if (value('bloco') === 'B') return value('apartamento') <= 8 ? 5 : 3
-    // if (value('bloco') === 'C') return 2
-    return null
-  }
+
   ngOnInit(): void {
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => this.estados = dados.estados)
     this.formService.texRead()
@@ -57,11 +48,34 @@ export class Form implements OnInit {
 
     this.form.get('estado').valueChanges
       .pipe(
-        map(estado => this.estados.filter(({sigla}) => sigla === estado)),
+        tap(v => console.log(v)),
+        map(estado => this.estados?.filter(({sigla}) => sigla === estado)),
         map(estado => estado[0].cidades)
       )
       .subscribe(cidades => this.cidades = cidades)
+      this.setDefaultValues()
+     
   }
+
+
+  setDefaultValues(){
+    this.form.get('bloco').setValue('B')
+    this.form.get('apartamento').setValue(4)
+    this.form.get('aluguel').setValue(1500)
+    this.form.get('dataInicio').setValue('2023-12-01T03:00:00.000Z')
+    this.form.get('diaVencimento').setValue(31)
+    this.form.get('objetos').setValue('2 camas')
+    this.form.get('seeDefaults').setValue(true)
+    this.form.get('allowAnimals').setValue(true)
+    this.form.get('hasParking').setValue(true)
+    this.form.get('hasBikerack').setValue(true)
+    this.form.get('limitePessoas').setValue(5)
+    // this.form.get('cep').setValue(55590000)
+    // this.form.get('estado').setValue('MA')
+
+  }
+
+
   hasError(where: string, what?: string) {
     const field = this.form.controls[where]
     if (field.errors && (field.touched || field.dirty)) return what ? field.errors?.[what] : true
@@ -74,4 +88,11 @@ export class Form implements OnInit {
     }
   }
   resetar() {this.form.reset()}
+  setLimitePessoas = () => {
+    // if (value('bloco') === 'A') return 3
+    // if (value('bloco') === 'B') return value('apartamento') <= 8 ? 5 : 3
+    // if (value('bloco') === 'C') return 2
+    return null
+  }
+
 }

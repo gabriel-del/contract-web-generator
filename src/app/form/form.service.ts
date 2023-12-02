@@ -35,7 +35,7 @@ export class FormService {
     limitePessoas: [5, []],
     // cep: [null, []],
     // INQUILINO
-    nome: ['Gabriel', [Validators.required, Validators.minLength(3)]],
+    nome: [null, [Validators.required, Validators.minLength(3)]],
     nacionalidade: ['brasileiro', []],
     profissao: ['Autônomo', []],
     estadoCivil: ['solteiro', []],
