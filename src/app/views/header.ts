@@ -30,5 +30,6 @@ import {Component} from '@angular/core'
 export class Header {
   activeLink!: any
   showMenu: boolean = true
-  links = [{label: 'Formulário', link: '/'}, {label: 'Histórico', link: '/history'}, {label: 'Dev', link: '/dev'}]
+  // links = [{label: 'Formulário', link: '/'}, {label: 'Histórico', link: '/history'}, {label: 'Dev', link: '/dev'}]
+  links = [{label: 'Formulário', link: '/'}, {label: 'Dev', link: '/dev'}]
 }
