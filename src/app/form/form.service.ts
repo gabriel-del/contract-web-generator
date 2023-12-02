@@ -3,9 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {map} from 'rxjs/operators'
 import {HttpClient} from '@angular/common/http'
 import {BehaviorSubject} from 'rxjs'
+import * as extenso from 'extenso'
 import {formValidations} from '../components/validations'
-import * as extenso from 'extenso';
-
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +54,7 @@ export class FormService {
   })
   texRead() {
     const value = (field: string) => this.form.controls[field].value
-    const endereco : { [_: string]: string } = {
+    const endereco: {[_: string]: string} = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
       C: 'Rua Merepe III, S\//N',
@@ -67,12 +66,12 @@ export class FormService {
       const data = new Date(value('dataInicio'))
       return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n || 0)}`
     }
-    const getEndereco = ():string => {
+    const getEndereco = (): string => {
       const bairro = value('bairro') ? `, bairro ${value('bairro')}` : ''
       const rua = value('rua') ? `, rua ${value('rua').replace('Rua ', '').replace('rua ', '')}` : ''
       const numero = value('numero') ? `, número ${value('numero')}` : ''
       const complemento = value('complemento') ? `, ${value('complemento')}` : ''
-      const cep = value('cep') ? `, CEP nº ${value('cep').toString().replace(/(\d{5})(\d{3})/, "$1-$2")}` : ''
+      const cep = value('cep') ? `, CEP nº ${value('cep').toString().replace(/(\d{5})(\d{3})/, '$1-$2')}` : ''
       return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
     const f = {
@@ -81,7 +80,7 @@ export class FormService {
       enderecoC: endereco[value('bloco')].toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
-      aluguelExtenso: extenso(value('aluguel')?? 0),
+      aluguelExtenso: extenso(value('aluguel') ?? 0),
       dataInicio: getDate(),
       dataFinal: getDate(1),
       diaVencimento: value('diaVencimento'),
@@ -99,10 +98,10 @@ export class FormService {
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',
       profissao: value('profissao') ? `,  ${value('profissao')}` : '',
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
-      cpf: value('cpf') ? `, CPF nº ${value('cpf').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}` : '',
+      cpf: value('cpf') ? `, CPF nº ${value('cpf').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}` : '',
       // cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-      identidade: value('identidade') ? `, identidade ${value('identidade').replace(/(\d{1})(\d{3})(\d{3})/, "$1.$2.$3").toUpperCase()}` : '',
-      celular: value('celular') ? `, celular ${value('celular').replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")}` : '',
+      identidade: value('identidade') ? `, identidade ${value('identidade').replace(/(\d{1})(\d{3})(\d{3})/, '$1.$2.$3').toUpperCase()}` : '',
+      celular: value('celular') ? `, celular ${value('celular').replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')}` : '',
       // 4 section
       endereco: value('hasEndereco') ? getEndereco() : ''
 

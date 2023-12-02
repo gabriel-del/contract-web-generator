@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http'
 import {EstadoBr} from '../components/model'
 import {FormService} from './form.service'
 
-@Component({ selector: 'app-form', templateUrl: './form.html', styleUrls: ['./form.scss'] })
+@Component({selector: 'app-form', templateUrl: './form.html', styleUrls: ['./form.scss']})
 export class Form implements OnInit {
   constructor(private formService: FormService, private http: HttpClient) {}
   cidades!: any[]
@@ -20,7 +20,6 @@ export class Form implements OnInit {
   vencimento = Array(31).fill(0).map((_, i) => i + 1)
   limitePessoas = Array(6).fill(0).map((_, i) => i + 1)
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
-
   ngOnInit(): void {
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {
       this.estados = dados.estados
@@ -56,11 +55,8 @@ export class Form implements OnInit {
         map(estado => estado[0].cidades)
       )
       .subscribe(cidades => this.cidades = cidades)
-     
   }
-
-
-  setDefaultValues(){
+  setDefaultValues() {
     this.form.get('bloco').setValue('B')
     this.form.get('apartamento').setValue(4)
     this.form.get('aluguel').setValue(1500)
@@ -88,8 +84,6 @@ export class Form implements OnInit {
     this.form.get('numero').setValue(182)
     this.form.get('complemento').setValue('apt 01')
   }
-
-
   hasError(where: string, what?: string) {
     const field = this.form.controls[where]
     if (field.errors && (field.touched || field.dirty)) return what ? field.errors?.[what] : true
@@ -108,5 +102,4 @@ export class Form implements OnInit {
     // if (value('bloco') === 'C') return 2
     return null
   }
-
 }
