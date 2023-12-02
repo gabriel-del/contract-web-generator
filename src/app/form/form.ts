@@ -32,20 +32,10 @@ export class Form implements OnInit {
       .pipe(
         distinctUntilChanged(),
         tap(value => console.log('status cep: ', value)),
-        switchMap(status => status === 'VALID'
-          ? this.http.get(`//viacep.com.br/ws/${this.form.get('cep').value}/json`)
-          : EMPTY
-        )
+        switchMap(status => status === 'VALID' ? this.http.get(`//viacep.com.br/ws/${this.form.get('cep').value}/json`) : EMPTY)
       )
-      .subscribe(
-        (dados: any) => dados
-          ? this.form.patchValue({
-            rua: dados.logradouro,
-            bairro: dados.bairro,
-            cidade: dados.localidade,
-            estado: dados.uf
-          })
-          : {}
+      .subscribe((dados: any) =>
+        dados ? this.form.patchValue({rua: dados.logradouro, bairro: dados.bairro, cidade: dados.localidade, estado: dados.uf}) : {}
       )
 
     this.form.get('estado').valueChanges
