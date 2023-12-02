@@ -12,14 +12,10 @@ export class Form implements OnInit {
   blocosOp!: any[]
   form = this.formService.form
   estados!: any
-  apartamentos = {
-    A: Array(9).fill(0).map((_, i) => i + 1),
-    B: Array(12).fill(0).map((_, i) => i + 1),
-    C: Array(6).fill(0).map((_, i) => i + 1)
-  }
-
-  vencimento = Array(31).fill(0).map((_, i) => i + 1)
-  limitePessoas = Array(6).fill(0).map((_, i) => i + 1)
+  array = n => Array(n).fill(0).map((_, i) => i + 1) 
+  apartamentos = { A: this.array(9), B: this.array(12), C: this.array(6)}
+  vencimento = this.array(31)
+  limitePessoas = this.array(6)
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
   ngOnInit(): void {
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {
