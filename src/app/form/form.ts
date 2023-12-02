@@ -12,8 +12,8 @@ export class Form implements OnInit {
   blocosOp!: any[]
   form = this.formService.form
   estados!: any
-  array = n => Array(n).fill(0).map((_, i) => i + 1) 
-  apartamentos = { A: this.array(9), B: this.array(12), C: this.array(6)}
+  array = n => Array(n).fill(0).map((_, i) => i + 1)
+  apartamentos = {A: this.array(9), B: this.array(12), C: this.array(6)}
   vencimento = this.array(31)
   limitePessoas = this.array(6)
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
@@ -39,18 +39,15 @@ export class Form implements OnInit {
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
     this.form.get('bloco').valueChanges.subscribe(v => this.blocoDefaults(v))
     this.form.get('apartamento').valueChanges.subscribe(_ => this.blocoDefaults(this.form.get('bloco').value))
-
   }
-
-  blocoDefaults(v: string){
-    if (v === 'B') v = this.form.get('apartamento').value <  9 ? 'B1' : 'B2'
-    this.form.get('aluguel').setValue({ A: 1200, B1: 1700, B2 : 1200, C: 1700 }[v])
-    this.form.get('allowAnimals').setValue({ A: false, B1: false, B2 : false, C: true }[v])
-    this.form.get('hasParking').setValue({ A: false, B1: true, B2 : false, C: false }[v])
-    this.form.get('hasBikerack').setValue({ A: true, B1: true, B2 : true, C: false }[v])
-    this.form.get('limitePessoas').setValue({ A: 3, B1: 5, B2 : 2, C: 5 }[v])
+  blocoDefaults(v: string) {
+    if (v === 'B') v = this.form.get('apartamento').value < 9 ? 'B1' : 'B2'
+    this.form.get('aluguel').setValue({A: 1200, B1: 1700, B2: 1200, C: 1700}[v])
+    this.form.get('allowAnimals').setValue({A: false, B1: false, B2: false, C: true}[v])
+    this.form.get('hasParking').setValue({A: false, B1: true, B2: false, C: false}[v])
+    this.form.get('hasBikerack').setValue({A: true, B1: true, B2: true, C: false}[v])
+    this.form.get('limitePessoas').setValue({A: 3, B1: 5, B2: 2, C: 5}[v])
   }
-
   hasError(where: string, what?: string) {
     const field = this.form.controls[where]
     if (field.errors && (field.touched || field.dirty)) return what ? field.errors?.[what] : true
@@ -63,8 +60,6 @@ export class Form implements OnInit {
     }
   }
   resetar() {this.form.reset()}
- 
-
   setDefaultValues() {
     this.form.get('bloco').setValue('B')
     this.form.get('apartamento').setValue(4)
@@ -96,5 +91,4 @@ export class Form implements OnInit {
     this.form.get('numero').setValue(182)
     this.form.get('complemento').setValue('apt 01')
   }
-
 }
