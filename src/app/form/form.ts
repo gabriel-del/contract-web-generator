@@ -26,25 +26,20 @@ export class Form implements OnInit {
       this.setDefaultValues()
     })
     this.formService.texRead()
-    // this.formulario.statusChanges.subscribe(_ => this.form.texRead())
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
-    this.form.get('cep').statusChanges
-      .pipe(
-        distinctUntilChanged(),
-        tap(value => console.log('status cep: ', value)),
-        switchMap(status => status === 'VALID' ? this.http.get(`//viacep.com.br/ws/${this.form.get('cep').value}/json`) : EMPTY)
-      )
-      .subscribe((dados: any) =>
-        dados ? this.form.patchValue({rua: dados.logradouro, bairro: dados.bairro, cidade: dados.localidade, estado: dados.uf}) : {}
-      )
+    this.form.get('cep').statusChanges.pipe(
+      distinctUntilChanged(),
+      tap(value => console.log('status cep: ', value)),
+      switchMap(status => status === 'VALID' ? this.http.get(`//viacep.com.br/ws/${this.form.get('cep').value}/json`) : EMPTY)
+    ).subscribe((dados: any) =>
+      dados ? this.form.patchValue({rua: dados.logradouro, bairro: dados.bairro, cidade: dados.localidade, estado: dados.uf}) : {}
+    )
 
-    this.form.get('estado').valueChanges
-      .pipe(
-        tap(v => console.log(v)),
-        map(estado => this.estados?.filter(({sigla}) => sigla === estado)),
-        map(estado => estado[0].cidades)
-      )
-      .subscribe(cidades => this.cidades = cidades)
+    this.form.get('estado').valueChanges.pipe(
+      tap(v => console.log(v)),
+      map(estado => this.estados?.filter(({sigla}) => sigla === estado)),
+      map(estado => estado[0].cidades)
+    ).subscribe(cidades => this.cidades = cidades)
   }
   setDefaultValues() {
     this.form.get('bloco').setValue('B')
