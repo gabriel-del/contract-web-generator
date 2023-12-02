@@ -100,7 +100,7 @@ export class FormService {
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
       cpf: value('cpf') ? `, CPF nº ${value('cpf').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}` : '',
       // cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-      identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
+      identidade: value('identidade') ? `, identidade ${value('identidade').replace(/(\d{1})(\d{3})(\d{3})/, "$1.$2.$3").toUpperCase()}` : '',
       celular: value('celular') ? `, celular ${value('celular')}` : '',
       // 4 section
       endereco: value('hasEndereco') ? getEndereco() : ''
