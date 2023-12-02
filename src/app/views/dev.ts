@@ -4,7 +4,7 @@ import {FormService} from '../form/form.service'
 @Component({
   selector: 'app-dev',
   template: `
-  <app-editor mode="latex" ></app-editor>
+  <app-editor></app-editor>
   <app-form-submit></app-form-submit>
   <app-log></app-log>
     <app-pdf showPdf=true savePdf=false></app-pdf>
