@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {map} from 'rxjs/operators'
 import {HttpClient} from '@angular/common/http'
 import {BehaviorSubject} from 'rxjs'
-import * as extenso from 'extenso'
+import * as extensoApi from 'extenso'
 import {formValidations} from '../components/validations'
 
 @Injectable({
@@ -74,18 +74,19 @@ export class FormService {
       const cep = value('cep') ? `, CEP nº ${value('cep').toString().replace(/(\d{5})(\d{3})/, '$1-$2')}` : ''
       return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
-    const capitalize = (i : string): string => i.toLocaleLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    const capitalize = (i : string): string => i.toLocaleLowerCase().replace(/\b\w/g, c => c.toUpperCase())
+    const extenso = (v: number): string => (extensoApi(v) as string).replace(/^mil\b/, "hum mil") 
     const f = {
       // 1 section
       enderecoc: endereco[value('bloco')],
       enderecoC: endereco[value('bloco')].toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
-      aluguelExtenso: extenso(value('aluguel') ?? 0),
+      aluguelExtenso: extenso(Number(value('aluguel')) ?? 0),
       dataInicio: getDate(),
       dataFinal: getDate(1),
       diaVencimento: value('diaVencimento'),
-      diaVencimentoExtenso: extenso(value('diaVencimento') ?? 0),
+      diaVencimentoExtenso: extenso(Number(value('diaVencimento')) ?? 0),
       objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
       // dataFinal: value('dataFinal'),
       // 2 section
@@ -93,7 +94,7 @@ export class FormService {
       garagem: value('hasParking') ? '. Cada apartamento tem direito a uma vaga de garagem rotativa' : '',
       bicicletas: value('hasBikerack') ? '. As bicicletas devem ser guardadas no bicicletário' : '',
       limitePessoas: value('limitePessoas'),
-      limitePessoasExtenso: extenso(value('limitePessoas') ?? 0),
+      limitePessoasExtenso: extenso(Number(value('limitePessoas')) ?? 0),
       // 3 section
       nome: `${capitalize(value('nome'))}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade').toLocaleLowerCase()}` : '',
