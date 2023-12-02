@@ -22,17 +22,17 @@ export class FormService {
   compiling: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null)
   compiling$ = this.compiling.asObservable()
   form: FormGroup = this.formBuilder.group({
-    bloco: ['B', []],
-    apartamento: [4, []],
-    aluguel: [1500, []],
-    dataInicio: ['2023-12-01T03:00:00.000Z', []],
-    diaVencimento: [31, []],
-    objetos: ['2 camas', []],
-    seeDefaults: [true, []],
-    allowAnimals: [true, []],
-    hasParking: [true, []],
-    hasBikerack: [true, []],
-    limitePessoas: [5, []],
+    bloco: [null, []],
+    apartamento: [null, []],
+    aluguel: [null, []],
+    dataInicio: [null, []],
+    diaVencimento: [null, []],
+    objetos: [null, []],
+    seeDefaults: [null, []],
+    allowAnimals: [null, []],
+    hasParking: [null, []],
+    hasBikerack: [null, []],
+    limitePessoas: [null],
     // cep: [null, []],
     // INQUILINO
     nome: [null, [Validators.required, Validators.minLength(3)]],
@@ -58,7 +58,8 @@ export class FormService {
     const endereco : { [_: string]: string } = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
-      C: 'Rua Merepe III, S\//N'
+      C: 'Rua Merepe III, S\//N',
+      null: 'null'
     }
     // const extenso = n => n
     const getDate = (n?: number) => {
@@ -66,7 +67,7 @@ export class FormService {
       const data = new Date(value('dataInicio'))
       return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n || 0)}`
     }
-    const getEndereco = () => {
+    const getEndereco = ():string => {
       const bairro = value('bairro') ? `, bairro ${value('bairro')}` : ''
       const rua = value('rua') ? `, rua ${value('rua').replace('Rua ', '').replace('rua ', '')}` : ''
       const numero = value('numero') ? `, número ${value('numero')}` : ''
@@ -80,11 +81,11 @@ export class FormService {
       enderecoC: endereco[value('bloco')].toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
-      aluguelExtenso: extenso(value('aluguel')),
+      aluguelExtenso: extenso(value('aluguel')?? 0),
       dataInicio: getDate(),
       dataFinal: getDate(1),
       diaVencimento: value('diaVencimento'),
-      diaVencimentoExtenso: extenso(value('diaVencimento')),
+      diaVencimentoExtenso: extenso(value('diaVencimento') ?? 0),
       objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
       // dataFinal: value('dataFinal'),
       // 2 section
@@ -92,7 +93,7 @@ export class FormService {
       garagem: value('hasParking') ? 'Cada apartamento tem direito a uma vaga de garagem rotativa.' : '',
       bicicletas: value('hasBikerack') ? 'As bicicletas devem ser guardadas no bicicletário.' : '',
       limitePessoas: value('limitePessoas'),
-      limitePessoasExtenso: extenso(value('limitePessoas')),
+      limitePessoasExtenso: extenso(value('limitePessoas') ?? 0),
       // 3 section
       nome: `${value('nome')}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',
