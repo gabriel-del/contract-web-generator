@@ -41,7 +41,7 @@ export class FormService {
     estadoCivil: ['solteiro', []],
     cpf: ['00000000000', []],
     identidade: ['0000000', []],
-    celular: ['900000000', []],
+    celular: ['81900000000', []],
     // ENDEREÇO
     hasEndereco: [true, []],
     cep: [51030300, [formValidations.cepValidator]],
@@ -71,7 +71,7 @@ export class FormService {
       const rua = value('rua') ? `, rua ${value('rua').replace('Rua ', '').replace('rua ', '')}` : ''
       const numero = value('numero') ? `, número ${value('numero')}` : ''
       const complemento = value('complemento') ? `, ${value('complemento')}` : ''
-      const cep = value('cep') ? `, CEP nº ${value('cep')}` : ''
+      const cep = value('cep') ? `, CEP nº ${value('cep').toString().replace(/(\d{5})(\d{3})/, "$1-$2")}` : ''
       return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
     const f = {
@@ -101,7 +101,7 @@ export class FormService {
       cpf: value('cpf') ? `, CPF nº ${value('cpf').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}` : '',
       // cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
       identidade: value('identidade') ? `, identidade ${value('identidade').replace(/(\d{1})(\d{3})(\d{3})/, "$1.$2.$3").toUpperCase()}` : '',
-      celular: value('celular') ? `, celular ${value('celular')}` : '',
+      celular: value('celular') ? `, celular ${value('celular').replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")}` : '',
       // 4 section
       endereco: value('hasEndereco') ? getEndereco() : ''
 
