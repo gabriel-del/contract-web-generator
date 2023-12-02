@@ -15,9 +15,10 @@ export class FormService {
     private http: HttpClient
   ) {}
   items: string[] = ['Cama', 'TV', 'Geladeira', 'Sofá', 'Armário']
-  tex!: string
   f: any
   r: any
+  tex: BehaviorSubject<string> = new BehaviorSubject<string>('')
+  tex$ = this.tex.asObservable()
   compiling: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null)
   compiling$ = this.compiling.asObservable()
   form: FormGroup = this.formBuilder.group({
@@ -117,7 +118,7 @@ export class FormService {
         map(dados => eval(`dados = \`${dados}\``))
       // tap(dados => console.log(dados))
       )
-      .subscribe(dados => this.tex = dados)
+      .subscribe(dados => this.tex.next(dados))
   }
   buildItems() {
     const values = this.items.map(_ => new FormControl(false))

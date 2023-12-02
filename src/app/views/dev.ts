@@ -19,7 +19,7 @@ export class Dev implements OnInit{
   constructor(private formService: FormService) {}
   pdfBox: any = ''
   form = this.formService.form
-  tex: string = this.formService.tex
+  // tex: string = this.formService.tex
   ngOnInit(): void {
     this.formService.texRead()
   }

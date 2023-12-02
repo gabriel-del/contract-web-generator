@@ -27,7 +27,7 @@ export class Submit implements OnInit {
     await new Promise(f => setTimeout(f, 1000))
     const globalEn = await new PdfTeXEngine()
     await globalEn.loadEngine()
-    globalEn.writeMemFSFile('main.tex', this.formService.tex)
+    globalEn.writeMemFSFile('main.tex', this.formService.tex.value)
     globalEn.setEngineMainFile('main.tex')
     this.formService.r = await globalEn.compileLaTeX()
     this.formService.compiling.next(false)

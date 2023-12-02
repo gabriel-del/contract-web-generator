@@ -9,6 +9,7 @@
 * LocalStorage
 * History
 * Add Item and quantity
+* organize app-editor
 
 
 

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, O
 
 import {Ace, edit} from 'ace-builds'
 import { FormService } from '../form/form.service'
+import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'app-editor',
@@ -15,7 +16,9 @@ import { FormService } from '../form/form.service'
 export class Editor implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('editor') editorRef!: ElementRef
   @Output() textChange = new EventEmitter<string>()
-  text: string = this.formService.tex
+  // text: string = this.formService.tex
+  text: string
+
   @Input() readOnly: boolean = false
   @Input() mode: string = 'latex'
   @Input() prettify: boolean = true
@@ -32,11 +35,7 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
   }
   constructor(private formService: FormService) {}
   ngOnInit(): void { 
-    console.log(1)
-    this.formService.texRead()
-    console.log(this.formService.tex)
-    this.formService.form.valueChanges.subscribe(_ => this.formService.texRead())
-
+    this.formService.tex$.subscribe(_ => {this.text = this.formService.tex.value, console.log(this.text)})   
   }
   ngAfterViewInit(): void {
     this.initEditor_()
