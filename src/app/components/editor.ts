@@ -38,11 +38,20 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
     this.formService.tex$.subscribe(_ => {this.text = this.formService.tex.value, console.log(this.text)})   
   }
   ngAfterViewInit(): void {
-    this.initEditor_()
+    
+      this.editor = edit(this.editorRef.nativeElement)
+      this.editor.setOptions(this.options)
+      this.editor.setValue(this.text, -1)
+      this.editor.setReadOnly(this.readOnly)
+      this.editor.setTheme('ace/theme/monokai')
+      this.setEditorMode_()
+      this.editor.session.setUseWorker(false)
+      this.editor.on('change', () => {
+          this.text = this.editor.getValue()
+            this.textChange.emit(this.text)
+      })
   }
-  onTextChange(text: string): void {
-    this.textChange.emit(text)
-  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (!this.editor)
       return
@@ -52,38 +61,20 @@ export class Editor implements OnInit, AfterViewInit, OnChanges {
       if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'text':
-            this.onExternalUpdate_()
+              const point = this.editor.getCursorPosition()
+              this.editor.setValue(this.text, -1)
+              this.editor.moveCursorToPosition(point)
             break
           case 'mode':
-            this.onEditorModeChange_()
+              this.setEditorMode_()
             break
           default:
         }
       }
     }
   }
-  private initEditor_(): void {
-    this.editor = edit(this.editorRef.nativeElement)
-    this.editor.setOptions(this.options)
-    this.editor.setValue(this.text, -1)
-    this.editor.setReadOnly(this.readOnly)
-    this.editor.setTheme('ace/theme/monokai')
-    this.setEditorMode_()
-    this.editor.session.setUseWorker(false)
-    this.editor.on('change', () => this.onEditorTextChange_())
-  }
-  private onExternalUpdate_(): void {
-    const point = this.editor.getCursorPosition()
-    this.editor.setValue(this.text, -1)
-    this.editor.moveCursorToPosition(point)
-  }
-  private onEditorTextChange_(): void {
-    this.text = this.editor.getValue()
-    this.onTextChange(this.text)
-  }
-  private onEditorModeChange_(): void {
-    this.setEditorMode_()
-  }
+  
+
   private setEditorMode_(): void {
     this.editor.getSession().setMode(`ace/mode/${this.mode}`)
   }
