@@ -48,20 +48,11 @@ export class Form implements OnInit {
 
   blocoDefaults(v: string){
     if (v === 'B') v = this.form.get('apartamento').value <  9 ? 'B1' : 'B2'
-    console.log(v)
-    const
-    aluguelDefaults = { A: 1200, B1: 1700, B2 : 1200, C: 1700 },
-    allowAnimalsDefaults = { A: false, B1: false, B2 : false, C: true },
-    hasParkingDefaults = { A: false, B1: true, B2 : false, C: false },
-    hasBikerackDefaults = { A: true, B1: true, B2 : true, C: false },
-    limitePessoasDefaults = { A: 3, B1: 5, B2 : 2, C: 5 }
-    // console.log(this.hasParkingDefaults[v])
-    // console.log(this.form.get('apartamento').value < 9)
-    this.form.get('aluguel').setValue(aluguelDefaults[v])
-    this.form.get('allowAnimals').setValue(allowAnimalsDefaults[v])
-    this.form.get('hasParking').setValue(hasParkingDefaults[v])
-    this.form.get('hasBikerack').setValue(hasBikerackDefaults[v])
-    this.form.get('limitePessoas').setValue(limitePessoasDefaults[v])
+    this.form.get('aluguel').setValue({ A: 1200, B1: 1700, B2 : 1200, C: 1700 }[v])
+    this.form.get('allowAnimals').setValue({ A: false, B1: false, B2 : false, C: true }[v])
+    this.form.get('hasParking').setValue({ A: false, B1: true, B2 : false, C: false }[v])
+    this.form.get('hasBikerack').setValue({ A: true, B1: true, B2 : true, C: false }[v])
+    this.form.get('limitePessoas').setValue({ A: 3, B1: 5, B2 : 2, C: 5 }[v])
   }
 
   hasError(where: string, what?: string) {
