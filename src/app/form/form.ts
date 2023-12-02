@@ -13,14 +13,34 @@ export class Form implements OnInit {
   form = this.formService.form
   estados!: any
   apartamentos = {
-    A: Array(12).fill(0).map((_, i) => i + 1),
-    B: Array(9).fill(0).map((_, i) => i + 1),
+    A: Array(9).fill(0).map((_, i) => i + 1),
+    B: Array(12).fill(0).map((_, i) => i + 1),
     C: Array(6).fill(0).map((_, i) => i + 1)
   }
   aluguelDefaults = {
-    A: this.form.get('apartamento').value <  9 ? 1700 : 1200,
-    B: 1200,
+    A: 1200,
+    B: this.form.get('apartamento').value <  9 ? 1700 : 1200,
     C: 1700
+  }
+  allowAnimalsDefaults = {
+    A: false,
+    B: this.form.get('apartamento').value <  9 ? false : false,
+    C: true
+  }
+  hasParkingDefaults = {
+    A: false,
+    B: this.form.get('apartamento').value <  9 ? true : false,
+    C: false
+  }
+  hasBikerackDefaults = {
+    A: true,
+    B: this.form.get('apartamento').value <  9 ? true : true,
+    C: false
+  }
+  limitePessoasDefaults = {
+    A: 3,
+    B: this.form.get('apartamento').value <  9 ? 5 : 2,
+    C: 5
   }
   vencimento = Array(31).fill(0).map((_, i) => i + 1)
   limitePessoas = Array(6).fill(0).map((_, i) => i + 1)
@@ -45,8 +65,19 @@ export class Form implements OnInit {
 
     this.setDefaultValues()
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
-    this.form.get('bloco').valueChanges.subscribe(v => this.form.get('aluguel').setValue(this.aluguelDefaults[v]))
+    this.form.get('bloco').valueChanges.subscribe(v => this.blocoDefaults(v))
+    this.form.get('apartamento').valueChanges.subscribe(_ => this.blocoDefaults(this.form.get('bloco').value))
 
+  }
+
+  blocoDefaults(v){
+    console.log(this.hasParkingDefaults[v])
+    console.log(this.form.get('apartamento').value < 9)
+    this.form.get('aluguel').setValue(this.aluguelDefaults[v])
+    this.form.get('allowAnimals').setValue(this.allowAnimalsDefaults[v])
+    this.form.get('hasParking').setValue(this.hasParkingDefaults[v])
+    this.form.get('hasBikerack').setValue(this.hasBikerackDefaults[v])
+    this.form.get('limitePessoas').setValue(this.limitePessoasDefaults[v])
   }
 
   hasError(where: string, what?: string) {
@@ -61,15 +92,7 @@ export class Form implements OnInit {
     }
   }
   resetar() {this.form.reset()}
-  setLimitePessoas = () => {
-    // if (value('bloco') === 'A') return 3
-    // if (value('bloco') === 'B') return value('apartamento') <= 8 ? 5 : 3
-    // if (value('bloco') === 'C') return 2
-    return null
-  }
-
-
-
+ 
 
   setDefaultValues() {
     this.form.get('bloco').setValue('B')

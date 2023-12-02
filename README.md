@@ -12,6 +12,7 @@
 * History
 * Show default cidade
 * Add Item and quantity
+* extenso: mil -> hum mil
 
 
 
