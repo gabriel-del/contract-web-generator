@@ -30,7 +30,7 @@ export class Form implements OnInit {
       dados ? this.form.patchValue({rua: dados.logradouro, bairro: dados.bairro, cidade: dados.localidade, estado: dados.uf}) : {}
     )
     this.form.get('estado').valueChanges.pipe(
-      tap(v => console.log(v)),
+      // tap(v => console.log(v)),
       map(estado => this.estados?.filter(({sigla}) => sigla === estado)),
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)

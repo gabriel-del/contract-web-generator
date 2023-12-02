@@ -82,7 +82,7 @@ export class FormService {
       enderecoC: endereco[value('bloco')].toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
-      aluguelExtenso: extenso(Number(value('aluguel')) ?? 0),
+      aluguelExtenso: extenso(Number(value('aluguel')  ?? 0)),
       dataInicio: getDate(),
       dataFinal: getDate(1),
       diaVencimento: value('diaVencimento'),

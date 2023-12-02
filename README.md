@@ -3,7 +3,6 @@
 ### To Do
 * Add custom validations (address)
 * sessão de objetos on tex
-* extenso: mil -> hum mil, add on tex
 * dev layout
 
 * Typescript strict
