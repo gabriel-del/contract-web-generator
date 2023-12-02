@@ -54,7 +54,7 @@ export class FormService {
     // items: this.buildItems(),
   })
   texRead() {
-    const value = field => this.form.controls[field].value
+    const value = (field: string) => this.form.controls[field].value
     const endereco : { [_: string]: string } = {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
@@ -98,8 +98,8 @@ export class FormService {
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',
       profissao: value('profissao') ? `,  ${value('profissao')}` : '',
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
-      cpf: value('cpf') ? `, CPF nº ${value('cpf')}` : '',
-      // cpf.replace(/(\d{ 3 })(\d{ 3 })(\d{ 3 })(\d{ 2 })/, "$1.$2.$3-$4");
+      cpf: value('cpf') ? `, CPF nº ${value('cpf').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}` : '',
+      // cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
       identidade: value('identidade') ? `, identidade ${value('identidade')}` : '',
       celular: value('celular') ? `, celular ${value('celular')}` : '',
       // 4 section

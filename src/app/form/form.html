@@ -98,13 +98,13 @@
   
       <mat-form-field [ngClass]="hasErrorStyle('cpf')">
        <mat-label>CPF: </mat-label>
-       <input type="number" matInput formControlName="cpf">
+       <input type="text" matInput formControlName="cpf">
       <app-error-msg [control]="form.get('cpf')" label="CPF"></app-error-msg>
   </mat-form-field>
   
   <mat-form-field [ngClass]="hasErrorStyle('identidade')">
    <mat-label>Identidade: </mat-label>
-   <input type="number" matInput formControlName="identidade">
+   <input type="text" matInput formControlName="identidade">
   <app-error-msg [control]="form.get('identidade')" label="Identidade"></app-error-msg>
   </mat-form-field>
   
