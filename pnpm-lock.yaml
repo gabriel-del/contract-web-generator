@@ -41,6 +41,9 @@ dependencies:
   angular-cli-ghpages:
     specifier: ^1.0.7
     version: 1.0.7(@angular-devkit/architect@0.1601.8)(@angular-devkit/core@16.2.8)(@angular-devkit/schematics@16.2.8)
+  extenso:
+    specifier: ^2.0.1
+    version: 2.0.1
   rxjs:
     specifier: ~7.8.0
     version: 7.8.1
@@ -5498,6 +5501,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /extenso@2.0.1:
+    resolution: {integrity: sha512-EXaNgWmE9UHqXCa65Fgj4bNArSxBsJh80QWJPscViClk3ch/WlNfB3otKwIid2gfXdEqJ1Hfyl5/+aKSH/Y1Pw==}
+    dev: false
 
   /external-editor@3.1.0:
     resolution: {integrity: sha512-hMQ4CX1p1izmuLYyZqLMO/qGNw10wSv9QDCPfzXfyFrOaCSSoRfqE1Kf1s5an66J5JZC62NewG+mK49jOCtQew==}

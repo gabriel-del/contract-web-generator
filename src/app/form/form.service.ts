@@ -4,6 +4,8 @@ import {map} from 'rxjs/operators'
 import {HttpClient} from '@angular/common/http'
 import {BehaviorSubject} from 'rxjs'
 import {formValidations} from '../components/validations'
+import * as extenso from 'extenso';
+
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +60,7 @@ export class FormService {
       B: 'Rua Cavalo Marinho, nº 182',
       C: 'Rua Merepe III, S\//N'
     }
-    const extenso = n => n
+    // const extenso = n => n
     const getDate = (n?: number) => {
       const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
       const data = new Date(value('dataInicio'))
@@ -81,7 +83,7 @@ export class FormService {
       aluguelExtenso: extenso(value('aluguel')),
       dataInicio: getDate(),
       dataFinal: getDate(1),
-      diaVencimento: extenso(value('diaVencimento')),
+      diaVencimento: value('diaVencimento'),
       diaVencimentoExtenso: extenso(value('diaVencimento')),
       objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
       // dataFinal: value('dataFinal'),
@@ -90,6 +92,7 @@ export class FormService {
       garagem: value('hasParking') ? 'Cada apartamento tem direito a uma vaga de garagem rotativa.' : '',
       bicicletas: value('hasBikerack') ? 'As bicicletas devem ser guardadas no bicicletário.' : '',
       limitePessoas: value('limitePessoas'),
+      limitePessoasExtenso: extenso(value('limitePessoas')),
       // 3 section
       nome: `${value('nome')}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade')}` : '',
