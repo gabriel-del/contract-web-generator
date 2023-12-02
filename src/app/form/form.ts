@@ -22,7 +22,10 @@ export class Form implements OnInit {
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
 
   ngOnInit(): void {
-    this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => this.estados = dados.estados)
+    this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {
+      this.estados = dados.estados
+      this.setDefaultValues()
+    })
     this.formService.texRead()
     // this.formulario.statusChanges.subscribe(_ => this.form.texRead())
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
@@ -53,7 +56,6 @@ export class Form implements OnInit {
         map(estado => estado[0].cidades)
       )
       .subscribe(cidades => this.cidades = cidades)
-      this.setDefaultValues()
      
   }
 
@@ -70,9 +72,21 @@ export class Form implements OnInit {
     this.form.get('hasParking').setValue(true)
     this.form.get('hasBikerack').setValue(true)
     this.form.get('limitePessoas').setValue(5)
-    // this.form.get('cep').setValue(55590000)
-    // this.form.get('estado').setValue('MA')
-
+    this.form.get('nome').setValue('Gabriel')
+    this.form.get('nacionalidade').setValue('brasileiro')
+    this.form.get('profissao').setValue('autônomo')
+    this.form.get('cpf').setValue('00000000000')
+    this.form.get('identidade').setValue('0000000')
+    this.form.get('celular').setValue('81900000000')
+    this.form.get('hasEndereco').setValue(true)
+    // this.form.get('cep').setValue('51030300')
+    // this.form.get('cep').setValue('5559000')
+    this.form.get('estado').setValue('PE')
+    this.form.get('cidade').setValue('Ipojuca')
+    this.form.get('bairro').setValue('Porto de Galinhas')
+    this.form.get('rua').setValue('Cavalo Marinho')
+    this.form.get('numero').setValue(182)
+    this.form.get('complemento').setValue('apt 01')
   }
 
 

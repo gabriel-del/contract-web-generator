@@ -36,21 +36,21 @@ export class FormService {
     // cep: [null, []],
     // INQUILINO
     nome: [null, [Validators.required, Validators.minLength(3)]],
-    nacionalidade: ['brasileiro', []],
-    profissao: ['Autônomo', []],
-    estadoCivil: ['solteiro', []],
-    cpf: ['00000000000', []],
-    identidade: ['0000000', []],
-    celular: ['81900000000', []],
+    nacionalidade: [null, []],
+    profissao: [null, []],
+    estadoCivil: [null, []],
+    cpf: [null, []],
+    identidade: [null, []],
+    celular: [null, []],
     // ENDEREÇO
-    hasEndereco: [true, []],
-    cep: [51030300, [formValidations.cepValidator]],
-    estado: ['PE', []],
-    cidade: ['Recife', []],
-    bairro: ['Porto de Galinhas', []],
-    rua: ['Cavalo Marinho', []],
-    numero: [182, []],
-    complemento: ['apt 01', []]
+    hasEndereco: [null, []],
+    cep: [null, [formValidations.cepValidator]],
+    estado: [null, []],
+    cidade: [null, []],
+    bairro: [null, []],
+    rua: [null, []],
+    numero: [null, []],
+    complemento: [null, []]
     // items: this.buildItems(),
   })
   texRead() {
