@@ -116,7 +116,7 @@ export class FormService {
       .pipe(
         map(dados => dados.replaceAll('\\', '\\\\').replaceAll(/}\$( )?(\r\n|\r|\n)?/g, '}')),
         map(dados => eval(`dados = \`${dados}\``)),
-        tap(dados => console.log(dados))
+        // tap(dados => console.log(dados))
       )
       .subscribe(dados => this.tex.next(dados))
   }

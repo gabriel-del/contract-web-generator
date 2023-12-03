@@ -6,11 +6,19 @@ import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js'
 @Component({
   selector: 'app-form-submit',
   template: `
-    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling.value]}} </button>
-    <mat-spinner *ngIf="compiling.value"></mat-spinner>
+  <div>
+    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling.value]}}</button>
+    <mat-spinner diameter="25" strokeWidth="4" *ngIf="compiling.value"></mat-spinner>
+  </div>
   `,
-  styles: [
-  ]
+  styles: [`
+  div {
+    display: flex; align-items: center;
+    button {
+      margin-right: 8px;
+    }
+  }
+  `]
 })
 export class Submit implements OnInit {
   constructor(private formService: FormService) { }
