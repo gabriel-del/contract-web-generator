@@ -20,7 +20,7 @@ export class Form implements OnInit {
   ngOnInit(): void {
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {
       this.estados = dados.estados
-      this.setDefaultValuesEndereco()
+      // this.setDefaultValuesEndereco()
     })
     this.form.get('cep').statusChanges.pipe(
       distinctUntilChanged(),
@@ -35,7 +35,7 @@ export class Form implements OnInit {
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)
 
-    this.setDefaultValues()
+    // this.setDefaultValues()
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
     this.form.get('bloco').valueChanges.subscribe(v => this.blocoDefaults(v))
     this.form.get('apartamento').valueChanges.subscribe(_ => this.blocoDefaults(this.form.get('bloco').value))

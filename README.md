@@ -2,7 +2,7 @@
 
 ### To Do
 * Add custom validations (address)
-* Check submit
+* Check submit, show errors
 * dev layout
 
 * Typescript strict
