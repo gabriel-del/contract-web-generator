@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core'
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {map} from 'rxjs/operators'
+import {map, tap} from 'rxjs/operators'
 import {HttpClient} from '@angular/common/http'
 import {BehaviorSubject} from 'rxjs'
 import * as extensoApi from 'extenso'
@@ -115,8 +115,8 @@ export class FormService {
     this.http.get('assets/main.tex', {responseType: 'text'})
       .pipe(
         map(dados => dados.replaceAll('\\', '\\\\').replaceAll(/}\$( )?(\r\n|\r|\n)?/g, '}')),
-        map(dados => eval(`dados = \`${dados}\``))
-      // tap(dados => console.log(dados))
+        map(dados => eval(`dados = \`${dados}\``)),
+        tap(dados => console.log(dados))
       )
       .subscribe(dados => this.tex.next(dados))
   }
