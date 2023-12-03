@@ -41,14 +41,10 @@ export class Submit implements OnInit {
     this.formService.compiling.next(false)
   }
   onSubmit() {
-    const valueSubmit = Object.assign({}, this.form.value)
     console.log(this.form)
-    // valueSubmit = Object.assign(valueSubmit, {
-    //   items: valueSubmit.items.map((v,i) => v ? this.items[i] : null).filter(v => v !== null)
-    // })
-
     if (this.form.valid)
       console.log(this.form.value)
+    // this.compile()
       // this.formulario.reset()
     else
       Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsDirty())

@@ -11,7 +11,8 @@
       <mat-button-toggle value="B">B</mat-button-toggle>
       <mat-button-toggle value="C">C</mat-button-toggle>
     </mat-button-toggle-group>
-    </p>
+  </p>
+  <app-error-msg [control]="form.get('bloco')" label="Bloco"></app-error-msg>
   
   
   <mat-form-field >
@@ -21,6 +22,7 @@
       {{apartamento}} 
       </mat-option>
     </mat-select>
+    <app-error-msg [control]="form.get('apartamento')" label="Apartamento"></app-error-msg>
   </mat-form-field>
   
     <mat-form-field >
@@ -28,6 +30,7 @@
       <span matPrefix>R$ &nbsp;</span>
       <input matInput type="number" formControlName="aluguel" placeholder="Ex.: 1200">
       <span matTextSuffix>,00</span>
+      <app-error-msg [control]="form.get('aluguel')" label="Valor do Aluguel"></app-error-msg>
     </mat-form-field>
   
   
@@ -38,6 +41,7 @@
     <input matInput [matDatepicker]="picker" formControlName="dataInicio">
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+    <app-error-msg [control]="form.get('dataInicio')" label="Data do Início"></app-error-msg>
   </mat-form-field>
   
   <mat-form-field>
@@ -45,6 +49,7 @@
     <mat-select formControlName="diaVencimento">
       <mat-option *ngFor="let dia of vencimento" [value]="dia">{{dia}}</mat-option>
     </mat-select>
+    <app-error-msg [control]="form.get('diaVencimento')" label="Dia do Vencimento"></app-error-msg>
   </mat-form-field>
   
   
@@ -58,13 +63,17 @@
   
   <ng-container *ngIf="form.get('seeDefaults').value" >
     <br/><mat-slide-toggle color="primary" formControlName="allowAnimals">Permitido Animal</mat-slide-toggle>
+    <app-error-msg [control]="form.get('allowAnimals')" label="Permitido Animais"></app-error-msg>
     <br/><mat-slide-toggle color="primary" formControlName="hasParking">Garagem inclusa</mat-slide-toggle>
+    <app-error-msg [control]="form.get('hasParking')" label="Tem estacionamento"></app-error-msg>
     <br/><mat-slide-toggle color="primary" formControlName="hasBikerack">Tem bicicletário</mat-slide-toggle>
+    <app-error-msg [control]="form.get('hasBikerack')" label="Tem bicicletário"></app-error-msg>
     <mat-form-field>
       <mat-label>Limite de Pessoas</mat-label>
       <mat-select formControlName="limitePessoas">
         <mat-option *ngFor="let numero of limitePessoas" [value]="numero">{{numero}}</mat-option>
       </mat-select>
+      <app-error-msg [control]="form.get('limitePessoas')" label="Limite de Pessoas"></app-error-msg>
     </mat-form-field>
   </ng-container>
   
@@ -112,6 +121,7 @@
       <mat-label>Celular</mat-label>
       <span matPrefix>+55 &nbsp;</span>
       <input type="tel" matInput formControlName="celular" placeholder="81 91111-1111">
+      <app-error-msg [control]="form.get('celular')" label="Celular"></app-error-msg>
     </mat-form-field>
   
     <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
