@@ -3,7 +3,7 @@ import {FormControl} from '@angular/forms'
 export class formValidations {
   static cepValidator(control: FormControl) {
     const cep = control.value
-    if (cep != null && cep !== '' && /^[0-9]{8}$/.test(cep)) return null
+    if (cep === null || cep === '' || /^[0-9]{8}$/.test(cep)) return null
     return {cepInvalido: true}
   }
   static getErrorMsg(validator: string, validatorName: string, validatorValue?: any) {

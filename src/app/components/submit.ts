@@ -41,8 +41,8 @@ export class Submit implements OnInit {
     this.formService.compiling.next(false)
   }
   onSubmit() {
-    console.log('entrou submit')
     const valueSubmit = Object.assign({}, this.form.value)
+    console.log(this.form)
     // valueSubmit = Object.assign(valueSubmit, {
     //   items: valueSubmit.items.map((v,i) => v ? this.items[i] : null).filter(v => v !== null)
     // })
