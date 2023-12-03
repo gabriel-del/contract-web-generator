@@ -4,6 +4,8 @@ import {EMPTY} from 'rxjs'
 import {HttpClient} from '@angular/common/http'
 import {EstadoBr} from '../components/model'
 import {FormService} from './form.service'
+import {FormControl} from '@angular/forms';
+
 
 @Component({selector: 'app-form', templateUrl: './form.html', styleUrls: ['./form.scss']})
 export class Form implements OnInit {
