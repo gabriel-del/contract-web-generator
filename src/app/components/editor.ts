@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs'
   template: `<div #editor ></div>`,
   styles: [`div {
     width: 100%;
-    min-height: 400px;
+    min-height: 700px;
     border: 1px solid gray;
   }`]
 })

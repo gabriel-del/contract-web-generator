@@ -65,7 +65,7 @@ export class FormService {
     const getDate = (n?: number) => {
       const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
       const data = new Date(value('dataInicio'))
-      return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n || 0)}`
+      return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n || 0)} `
     }
     const getEndereco = (): string => {
       const bairro = value('bairro') ? `, bairro ${capitalize(value('bairro'))}` : ''
@@ -88,18 +88,18 @@ export class FormService {
       dataFinal: getDate(1),
       diaVencimento: value('diaVencimento'),
       diaVencimentoExtenso: extenso(Number(value('diaVencimento') ?? 1)),
-      objetos: value('objetos') ? `Os objetos são: ${value('objetos')}` : '',
+      objetos: value('objetos') ? `\\item Os objetos citados nesta cláusula: ${value('objetos')};\n` : '',
       // dataFinal: value('dataFinal'),
       // 2 section
       animais: value('allowAnimals') ? '' : '. É proibido a criação de animais',
       garagem: value('hasParking') ? '. Cada apartamento tem direito a uma vaga de garagem rotativa' : '',
       bicicletas: value('hasBikerack') ? '. As bicicletas devem ser guardadas no bicicletário' : '',
       limitePessoas: value('limitePessoas'),
-      limitePessoasExtenso: extenso(Number(value('limitePessoas') ?? 1)),
+      limitePessoasExtenso: extensoApi(Number(value('limitePessoas') ?? 1), { number: { gender: 'f' } }),
       // 3 section
       nome: `${capitalize(value('nome')?? '')}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade').toLocaleLowerCase()}` : '',
-      profissao: value('profissao') ? `,  ${value('profissao').toLocaleLowerCase()}` : '',
+      profissao: value('profissao') ? `, ${value('profissao').toLocaleLowerCase()}` : '',
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',
       cpf: value('cpf') ? `, CPF nº ${value('cpf').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}` : '',
       // cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
