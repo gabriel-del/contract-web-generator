@@ -80,13 +80,15 @@
     </div><div>
       <!-- ###### DIVISÃO -->
   
-      <mat-form-field [ngClass]="hasErrorStyle('nome')">
-       <mat-label>Nome: </mat-label>
-       <input type="text" matInput formControlName="nome">
-      <app-error-msg [control]="form.get('nome')" label="Nome"></app-error-msg>
-    </mat-form-field>
+
     
-    
+    <app-field [control]="form.get('nome')" label="nome">
+      <!-- <input type="text" matInput formControlName="nome"> -->
+
+    </app-field>
+
+
+
     <mat-form-field>
       <mat-label>Nome2:</mat-label>
       <input type="text" matInput formControlName="nome" placeholder="Gabriel Del Cesare Barros">

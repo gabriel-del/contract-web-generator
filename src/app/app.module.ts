@@ -21,37 +21,38 @@ import {Editor} from './components/editor'
 import {Submit} from './components/submit'
 import {Pdf} from './components/pdf'
 import {Log} from './components/log'
+import { Field } from "./components/field";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    Form,
-    DebugForm,
-    DebugF,
-    ShowError,
-    Home,
-    Footer,
-    Header,
-    History,
-    Dev,
-    SafePipe,
-    Editor,
-    Submit,
-    Pdf,
-    Log
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  exports: [
-    Editor
-  ]
+    declarations: [
+        AppComponent,
+        Form,
+        DebugForm,
+        DebugF,
+        ShowError,
+        Home,
+        Footer,
+        Header,
+        History,
+        Dev,
+        SafePipe,
+        Editor,
+        Submit,
+        Pdf,
+        Log,
+        Field
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    exports: [
+        Editor
+    ],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MaterialModule    ]
 })
 export class AppModule { }
