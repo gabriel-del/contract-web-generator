@@ -22,6 +22,8 @@ import {Submit} from './components/submit'
 import {Pdf} from './components/pdf'
 import {Log} from './components/log'
 import { Field } from "./components/field";
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
     declarations: [
@@ -53,6 +55,9 @@ import { Field } from "./components/field";
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        MaterialModule    ]
+        MaterialModule,
+        MatFormFieldModule,
+        MatInputModule,  
+    ]
 })
 export class AppModule { }
