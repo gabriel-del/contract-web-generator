@@ -35,7 +35,7 @@ export class Form implements OnInit {
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)
 
-    // this.setDefaultValues()
+    this.setDefaultValues()
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
     this.form.get('bloco').valueChanges.subscribe(v => this.blocoDefaults(v))
     this.form.get('apartamento').valueChanges.subscribe(_ => this.blocoDefaults(this.form.get('bloco').value))
@@ -60,7 +60,11 @@ export class Form implements OnInit {
     }
   }
   resetar() {this.form.reset()}
-  setDefaultValues() {
+  setDefaultValues(){
+    this.form.get('diaVencimento').setValue(31)
+    // this.form.get('profissao').setValue('autônomo')
+  }
+  setDefaultValuesFull() {
     this.form.get('bloco').setValue('B')
     this.form.get('apartamento').setValue(4)
     this.form.get('aluguel').setValue(1500)

@@ -1,10 +1,10 @@
 # Contract Web Generator
 
 ### To Do
-* Add custom validations (address)
 * Check submit, show errors
 * dev layout
 * Remover espaços vazios dos inputs
+* reset after submit
 
 * Typescript strict
 * LocalStorage
