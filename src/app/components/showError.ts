@@ -16,7 +16,7 @@ export class ShowError implements OnInit {
   }
   get errorMessage() {
     for (const validator in this.control.errors) {
-      if (this.control.touched)
+      if (this.control.touched || this.control.dirty)
         return formValidations.getErrorMsg(validator, this.label, this.control.errors[validator])
     }
     return null

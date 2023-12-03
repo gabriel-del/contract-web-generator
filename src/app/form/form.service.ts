@@ -22,7 +22,7 @@ export class FormService {
   compiling: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null)
   compiling$ = this.compiling.asObservable()
   form: FormGroup = this.formBuilder.group({
-    bloco: [null, []],
+    bloco: [Validators.required, []],
     apartamento: [null, []],
     aluguel: [null, []],
     dataInicio: [null, []],
@@ -59,7 +59,6 @@ export class FormService {
       A: 'Rua Cavalo Marinho, nº 180',
       B: 'Rua Cavalo Marinho, nº 182',
       C: 'Rua Merepe III, S\//N',
-      null: 'null'
     }
     // const extenso = n => n
     const getDate = (n?: number) => {
@@ -79,8 +78,8 @@ export class FormService {
     const extenso = (v: number): string => (extensoApi(v) as string).replace(/^mil\b/, 'hum mil')
     const f = {
       // 1 section
-      enderecoc: endereco[value('bloco')],
-      enderecoC: endereco[value('bloco')].toUpperCase(),
+      enderecoc: endereco[value('bloco')] ?? '',
+      enderecoC: (endereco[value('bloco')] ?? '').toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
       aluguelExtenso: extenso(Number(value('aluguel') ?? 1)),

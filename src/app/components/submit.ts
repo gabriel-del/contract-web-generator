@@ -7,7 +7,7 @@ import {PdfTeXEngine} from '../../assets/PdfTeXEngine.js'
   selector: 'app-form-submit',
   template: `
   <div>
-    <button mat-fab extended color="primary" (click)="compile()">{{compileMsg[+compiling.value]}}</button>
+    <button mat-fab extended color="primary" (click)="onSubmit()">{{compileMsg[+compiling.value]}}</button>
     <mat-spinner diameter="25" strokeWidth="4" *ngIf="compiling.value"></mat-spinner>
   </div>
   `,
@@ -47,7 +47,6 @@ export class Submit implements OnInit {
     //   items: valueSubmit.items.map((v,i) => v ? this.items[i] : null).filter(v => v !== null)
     // })
 
-    console.log(valueSubmit)
     if (this.form.valid)
       console.log(this.form.value)
       // this.formulario.reset()
