@@ -67,6 +67,7 @@ export class FormService {
       const data = new Date(value('dataInicio'))
       return `${data.getDate()} de ${meses[data.getMonth()]} de ${data.getFullYear() + (n || 0)} `
     }
+    const capitalize = (i: string): string => i.toLocaleLowerCase().replace(/\b\w/g, c => c.toUpperCase())
     const getEndereco = (): string => {
       const bairro = value('bairro') ? `, bairro ${capitalize(value('bairro'))}` : ''
       const rua = value('rua') ? `, rua ${capitalize(value('rua')).replace('Rua ', '')}` : ''
@@ -75,15 +76,14 @@ export class FormService {
       const cep = value('cep') ? `, CEP nº ${value('cep').toString().replace(/(\d{5})(\d{3})/, '$1-$2')}` : ''
       return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
-    const capitalize = (i : string): string => i.toLocaleLowerCase().replace(/\b\w/g, c => c.toUpperCase())
-    const extenso = (v: number): string => (extensoApi(v) as string).replace(/^mil\b/, "hum mil") 
+    const extenso = (v: number): string => (extensoApi(v) as string).replace(/^mil\b/, 'hum mil')
     const f = {
       // 1 section
       enderecoc: endereco[value('bloco')],
       enderecoC: endereco[value('bloco')].toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
-      aluguelExtenso: extenso(Number(value('aluguel')  ?? 1)),
+      aluguelExtenso: extenso(Number(value('aluguel') ?? 1)),
       dataInicio: getDate(),
       dataFinal: getDate(1),
       diaVencimento: value('diaVencimento'),
@@ -95,9 +95,9 @@ export class FormService {
       garagem: value('hasParking') ? '. Cada apartamento tem direito a uma vaga de garagem rotativa' : '',
       bicicletas: value('hasBikerack') ? '. As bicicletas devem ser guardadas no bicicletário' : '',
       limitePessoas: value('limitePessoas'),
-      limitePessoasExtenso: extensoApi(Number(value('limitePessoas') ?? 1), { number: { gender: 'f' } }),
+      limitePessoasExtenso: extensoApi(Number(value('limitePessoas') ?? 1), {number: {gender: 'f'}}),
       // 3 section
-      nome: `${capitalize(value('nome')?? '')}`,
+      nome: `${capitalize(value('nome') ?? '')}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade').toLocaleLowerCase()}` : '',
       profissao: value('profissao') ? `, ${value('profissao').toLocaleLowerCase()}` : '',
       estadoCivil: value('estadoCivil') ? `,  ${value('estadoCivil')}` : '',

@@ -2,7 +2,7 @@
 
 ### To Do
 * Add custom validations (address)
-* sessão de objetos on tex
+* Check submit
 * dev layout
 
 * Typescript strict

@@ -15,7 +15,7 @@ import {FormService} from '../form/form.service'
   styles: [
   ]
 })
-export class Dev implements OnInit{
+export class Dev implements OnInit {
   constructor(private formService: FormService) {}
   pdfBox: any = ''
   form = this.formService.form
