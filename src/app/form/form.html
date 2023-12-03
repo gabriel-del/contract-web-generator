@@ -84,18 +84,17 @@
        <mat-label>Nome: </mat-label>
        <input type="text" matInput formControlName="nome">
       <app-error-msg [control]="form.get('nome')" label="Nome"></app-error-msg>
-  </mat-form-field>
+    </mat-form-field>
+    
+    
+    <mat-form-field>
+      <mat-label>Nome2:</mat-label>
+      <input type="text" matInput formControlName="nome" placeholder="Gabriel Del Cesare Barros">
+      <!-- <app-error-msg [control]="form.get('nome')" label="Nome"></app-error-msg> -->
+      <mat-error *ngIf="true">Email is <strong>required</strong></mat-error>
 
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Nome2:</mat-label>
-    <input type="text" matInput formControlName="nome" placeholder="Ex. pat@example.com">
-    @if (form.get('nome').hasError('email') && !form.get('nome').hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-    }
-    @if (form.get('nome').hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
-    }
+      <!-- <mat-error *ngIf="form.get('nome').hasError('required')">Email is <strong>required</strong></mat-error> -->
+    
   </mat-form-field>
 
   
@@ -212,4 +211,3 @@
     <!-- <button (click)="resetar()">Cancelar</button> -->
     <app-debug-form></app-debug-form>
          <!-- <app-debug-f></app-debug-f>  -->
-  

@@ -5,6 +5,9 @@ import {formValidations} from './validations'
   selector: 'app-error-msg',
   template: `
   <mat-error *ngIf="errorMessage != null" >{{ errorMessage}}</mat-error>
+  <!-- <mat-error *ngIf="form.get('nome').hasError('required')">Email is <strong>required</strong></mat-error> -->
+  <!-- <mat-error *ngIf="errorMessage">Email is <strong>required</strong></mat-error> -->
+
 `
 })
 export class ShowError implements OnInit {
