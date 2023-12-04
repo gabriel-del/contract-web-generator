@@ -7,11 +7,12 @@ import { FormService } from '../form/form.service';
 @Component({
   selector: 'app-field',
   template: `
-<mat-form-field >
-       <mat-label>{{label}}: </mat-label>
-       <input type="text" matInput formControlName="nome" [placeholder]="placeholder">
-  <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
-
+    <mat-form-field>
+      <mat-label>{{label}}: </mat-label>
+      <ng-container *ngIf="tag === 'input'">
+        <input type="text" matInput formControlName="nome" [placeholder]="placeholder">
+      </ng-container>
+      <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
       `,
   styles: `
@@ -25,6 +26,7 @@ export class Field implements OnInit{
   @Input() name!: string
   @Input() label!: string
   @Input() placeholder!: string
+  @Input() tag!: string
   control: any
   ngOnInit(): void {
     this.control = this.formService.form.get(this.name)
