@@ -10,7 +10,7 @@ import { FormService } from '../form/form.service';
     <mat-form-field>
       <mat-label>{{label}}: </mat-label>
       <ng-container *ngIf="tag === 'input'">
-        <input type="text" matInput formControlName="nome" [placeholder]="placeholder">
+        <input type="text" matInput [formControlName]="name" [placeholder]="placeholder">
       </ng-container>
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>

@@ -81,13 +81,9 @@
       <!-- ###### DIVISÃO -->
       
       <app-field tag="input" name='nome' label="Nome" placeholder="Gabriel Del Cesare Barros"></app-field>
+      <app-field tag="input" name='nacionalidade' label="Nacionalidade" placeholder="brasileiro"></app-field>
 
-      <mat-form-field [ngClass]="hasErrorStyle('nacionalidade')">
-       <mat-label>Nacionalidade: </mat-label>
-       <input type="text" matInput formControlName="nacionalidade">
-      <app-error-msg [control]="form.get('nacionalidade')" label="Nacionalidade"></app-error-msg>
-  </mat-form-field>
-  
+
   <mat-form-field [ngClass]="hasErrorStyle('profissao')">
    <mat-label>Profissão: </mat-label>
    <input type="text" matInput formControlName="profissao">
