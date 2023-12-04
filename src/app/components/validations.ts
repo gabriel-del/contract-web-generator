@@ -14,7 +14,7 @@ export class formValidations {
       '^[a-zA-Z ]*$': 'Apenas letras'
     }
     return {
-      required: `${validatorName} é obrigatório`,
+      required: `${validatorName} é <strong>obrigatório</strong>`,
       minlength: `${validatorName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres`,
       cepInvalido: `Cep Inválido`,
       pattern: `${validatorName} inválido: ${patternMsg[validatorValue.requiredPattern]}`

@@ -1,24 +1,41 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import {formValidations} from './validations'
+import { FormService } from '../form/form.service';
+
 
 @Component({
   selector: 'app-field',
   template: `
 <mat-form-field >
-       <mat-label>Nome: </mat-label>
-       <input type="text" matInput formControlName="nome">
-      <!-- <app-error-msg [control]="control" label="Nome"></app-error-msg> -->
-      <mat-error *ngIf="true">Email is <strong>required</strong></mat-error>
+       <mat-label>{{label}}: </mat-label>
+       <input type="text" matInput formControlName="nome" [placeholder]="placeholder">
+  <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
 
     </mat-form-field>
       `,
-  styles: ``,
+  styles: `
+  mat-form-field{ width: 100%;}
+  `,
   viewProviders:[{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
-export class Field {
-  @Input() control!: any
+export class Field implements OnInit{
+  constructor(private formService: FormService) {}
+
+  @Input() name!: string
   @Input() label!: string
+  @Input() placeholder!: string
+  control: any
+  ngOnInit(): void {
+    this.control = this.formService.form.get(this.name)
+  }
 
-
+  get errorMessage() {
+    for (const validator in this.control?.errors) {
+      if (this.control.touched || this.control.dirty)
+        return formValidations.getErrorMsg(validator, this.label, this.control.errors[validator])
+    }
+    return null
+  }
 
 }
