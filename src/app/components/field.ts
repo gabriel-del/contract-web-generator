@@ -9,6 +9,9 @@ import { FormService } from '../form/form.service';
   template: `
     <mat-form-field>
       <mat-label>{{label}}: </mat-label>
+      <!-- <span matPrefix>+55 &nbsp;</span> -->
+      <span *ngIf="prefix" matPrefix>{{prefix}}</span>
+
       <ng-container *ngIf="tag === 'input'">
         <input type="text" matInput [formControlName]="name" [placeholder]="placeholder">
       </ng-container>
@@ -27,6 +30,7 @@ export class Field implements OnInit{
   @Input() label!: string
   @Input() placeholder!: string
   @Input() tag!: string
+  @Input() prefix!: string
   control: any
   ngOnInit(): void {
     this.control = this.formService.form.get(this.name)

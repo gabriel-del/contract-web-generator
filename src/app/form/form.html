@@ -94,15 +94,8 @@
   
   <app-field tag="input" name='cpf' label="cpf" placeholder="00000000000"></app-field>
   <app-field tag="input" name='identidade' label="Identidade" placeholder="0000000"></app-field>
+  <app-field tag="input" name='celular' label="Celular" placeholder="81900000000" prefix="+55 &nbsp;"></app-field>
 
-
-  
-  <mat-form-field>
-      <mat-label>Celular</mat-label>
-      <span matPrefix>+55 &nbsp;</span>
-      <input type="tel" matInput formControlName="celular" placeholder="81 91111-1111">
-      <app-error-msg [control]="form.get('celular')" label="Celular"></app-error-msg>
-    </mat-form-field>
   
     <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
     </div>
