@@ -81,15 +81,10 @@
       <!-- ###### DIVISÃO -->
       
       <app-field tag="input" name='nome' label="Nome" placeholder="Gabriel Del Cesare Barros"></app-field>
-      <app-field tag="input" name='nacionalidade' label="Nacionalidade" placeholder="brasileiro"></app-field>
-
-
-  <mat-form-field [ngClass]="hasErrorStyle('profissao')">
-   <mat-label>Profissão: </mat-label>
-   <input type="text" matInput formControlName="profissao">
-  <app-error-msg [control]="form.get('profissao')" label="Profissão"></app-error-msg>
-  </mat-form-field>
-  
+      <app-field tag="input" name='nacionalidade' label="Nacionalidade" placeholder="Brasileiro"></app-field>
+      <app-field tag="input" name='profissao' label="Profissão" placeholder="Autônomo"></app-field>
+      
+      
       <mat-form-field>
     <mat-label>Estado Civil</mat-label>
     <mat-select formControlName="estadoCivil">
@@ -97,17 +92,10 @@
     </mat-select>
   </mat-form-field>
   
-      <mat-form-field [ngClass]="hasErrorStyle('cpf')">
-       <mat-label>CPF: </mat-label>
-       <input type="text" matInput formControlName="cpf">
-      <app-error-msg [control]="form.get('cpf')" label="CPF"></app-error-msg>
-  </mat-form-field>
-  
-  <mat-form-field [ngClass]="hasErrorStyle('identidade')">
-   <mat-label>Identidade: </mat-label>
-   <input type="text" matInput formControlName="identidade">
-  <app-error-msg [control]="form.get('identidade')" label="Identidade"></app-error-msg>
-  </mat-form-field>
+  <app-field tag="input" name='cpf' label="cpf" placeholder="00000000000"></app-field>
+  <app-field tag="input" name='identidade' label="Identidade" placeholder="0000000"></app-field>
+
+
   
   <mat-form-field>
       <mat-label>Celular</mat-label>
