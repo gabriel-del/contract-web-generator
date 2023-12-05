@@ -7,7 +7,7 @@ import { FormService } from '../form/form.service';
 @Component({
   selector: 'app-field',
   template: `
-    <mat-form-field *ngIf="tag === 'input' || tag === 'select'">
+    <mat-form-field *ngIf="pattern.test(tag)">
       <mat-label>{{label}}: </mat-label>
       <span *ngIf="prefix" matPrefix>{{prefix}}</span>
       
@@ -23,7 +23,7 @@ import { FormService } from '../form/form.service';
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
 
-    <mat-slide-toggle *ngIf="tag === 'slide'" color="primary" [formControlName]="name">{{label}}</mat-slide-toggle>
+    <mat-slide-toggle *ngIf="!pattern.test(tag)" color="primary" [formControlName]="name">{{label}}</mat-slide-toggle>
 
       `,
   styles: `
@@ -45,6 +45,7 @@ export class Field implements OnInit{
   @Input() arrayName!: string
   @Input() type: string = "text"
   control: any
+  pattern = /^(input|select)$/
   ngOnInit(): void {
     this.control = this.formService.form.get(this.name)
   }
