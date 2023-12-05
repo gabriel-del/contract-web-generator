@@ -16,31 +16,4 @@ border-radius: 12px;
 
 }
 
-p {
-display: flex;
-flex: 1 1 100%;
 
-span {
-  width: 25%;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-}
-
-mat-button-toggle-group {
-  width: 75%;
-}
-
-mat-button-toggle {
-  flex: 1 1 100%;
-  box-sizing: border-box;
-  align-items: flex-end;
-  flex-direction: row;
-  display: flex;
-}
-}
-
-
-mat-form-field{
-width: 100%;
-}

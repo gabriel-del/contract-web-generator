@@ -1,31 +1,18 @@
 <form [formGroup]="form">
   <div>
-    <p>
-      <span matPrefix>Bloco: </span>
-      <mat-button-toggle-group formControlName="bloco" aria-label="Font Style">
-        <mat-button-toggle value="A">A</mat-button-toggle>
-        <mat-button-toggle value="B">B</mat-button-toggle>
-        <mat-button-toggle value="C">C</mat-button-toggle>
-      </mat-button-toggle-group>
-    </p>
-    <app-error-msg [control]="form.get('bloco')" label="Bloco"></app-error-msg>
-
+    <app-field name='bloco' label="Bloco" tag="button" [array]="blocos"> </app-field>
     <app-field name='apartamento' label="Apartamento" tag="select" [array]="apartamentos[form.get('bloco'). value]"></app-field>
     <app-field name='aluguel' label="Aluguel" placeholder="1700" prefix="R$ &nbsp;" suffix=",00"></app-field>
-
-    
     <app-field tag="datepicker" name='dataInicio' label="Data de Início"></app-field>
     <app-field name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento"></app-field>
     <app-field tag="textarea" name="objetos" label="Objetos" placeholder="2 camas, 2 ares-condicionados, 1 geladeira"></app-field>
     <app-field tag="slide" name='seeDefaults' label="Ver opções padrões"></app-field>
-
     <ng-container *ngIf="form.get('seeDefaults').value">
       <app-field tag="slide" name='allowAnimals' label="Permitido Animal"></app-field>
       <app-field tag="slide" name='hasParking' label="Tem estacionamento"></app-field>
       <app-field tag="slide" name='hasBikerack' label="Tem bicicletário"></app-field>
       <app-field name='limitePessoas' label="Limite de Pessoas" tag="select" [array]="limitePessoas"> </app-field>
     </ng-container>
-
   </div><div>
     <app-field name='nome' label="Nome" placeholder="Gabriel Del Cesare Barros"></app-field>
     <app-field name='nacionalidade' label="Nacionalidade" placeholder="Brasileiro"></app-field>
@@ -35,11 +22,9 @@
     <app-field name='identidade' label="Identidade" placeholder="0000000"></app-field>
     <app-field name='celular' label="Celular" placeholder="81900000000" prefix="+55 &nbsp;"></app-field>
     <app-field tag="slide" name='hasEndereco' label="Tem endereço?"></app-field>
-
   </div><div *ngIf="form.get('hasEndereco').value">
     <app-field name='cep' label="Cep" placeholder="0000000" type="number"></app-field>
-    <app-field name='estado' label="Estado" tag="select" [array]="estados" arrayValue="sigla" arrayName="nome">
-    </app-field>
+    <app-field name='estado' label="Estado" tag="select" [array]="estados" arrayValue="sigla" arrayName="nome"></app-field>
     <app-field name='cidade' label="Cidade" tag="select" [array]="cidades"> </app-field>
     <app-field name='bairro' label="Bairro" placeholder="Porto de Galinhas"></app-field>
     <app-field name='rua' label="Rua" placeholder="Cavalo Marinho"></app-field>

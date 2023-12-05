@@ -30,12 +30,46 @@ import {formValidations} from './validations'
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
 
+    <ng-container *ngIf="tag === 'button'">
+      <p  >
+      <span matPrefix>{{label}}</span>
+      <mat-button-toggle-group [formControlName]="name" aria-label="Font Style">
+        <mat-button-toggle  *ngFor="let element of array" [value]="element">{{element}}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </p>
+    <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
+  </ng-container>
+
     <mat-slide-toggle *ngIf="tag === 'slide'" color="primary" [formControlName]="name">{{label}}</mat-slide-toggle>
 
       `,
   styles: `
   mat-form-field{ width: 100%;}
   mat-slide-toggle{display: block;margin: 8px;}
+  p {
+display: flex;
+flex: 1 1 100%;
+
+span {
+  width: 25%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+mat-button-toggle-group {
+  width: 75%;
+}
+
+mat-button-toggle {
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  align-items: flex-end;
+  flex-direction: row;
+  display: flex;
+}
+}
+
   `,
   viewProviders: [{provide: ControlContainer, useExisting: FormGroupDirective}]
 })

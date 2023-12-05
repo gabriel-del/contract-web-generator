@@ -16,6 +16,7 @@ export class Form implements OnInit {
   apartamentos = {A: this.array(9), B: this.array(12), C: this.array(6)}
   vencimento = this.array(31)
   limitePessoas = this.array(6)
+  blocos = ['A', 'B', 'C']
   estadoCivil = ['solteiro', 'solteira', 'casado', 'casada', 'divorciado', 'divorciada', 'viúvo', 'viúva']
   ngOnInit(): void {
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {
