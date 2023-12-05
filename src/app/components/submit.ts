@@ -47,6 +47,7 @@ export class Submit implements OnInit {
     // this.compile()
       // this.formulario.reset()
     else
-      Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsDirty())
+      // Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsDirty())
+      Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsTouched())
   }
 }
