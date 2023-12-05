@@ -59,7 +59,7 @@ export class Form implements OnInit {
   }
   defaultValues: ((string | number)[] | (string | boolean)[])[] = [
     ['bloco', 'B'],
-    ['apartamento', '4'],
+    ['apartamento', 4],
     ['aluguel', '1500'],
     ['dataInicio', '2023-12-01T03:00:00.000Z'],
     ['diaVencimento', 31],
@@ -96,7 +96,9 @@ export class Form implements OnInit {
     this.form.get('complemento').setValue('apt 01')
   }
   setDefaultValuesFull() {
-    // this.defaultValues.forEach(v => this.form.get(v[0]).setValue(v[1]))
+    let array = ['aluguel', 'diaVencimento' ]
+    this.defaultValues.filter((v: any[]) => array.includes(v[0])).forEach((v: any[]) => this.form.get(v[0]).setValue(v[1]))
+    // this.defaultValues.forEach((v: any[]) => console.log(this.form.get(v[0]).value))
     // this.form.get('bloco').setValue('B')
     // this.form.get('apartamento').setValue(4)
     // this.form.get('aluguel').setValue(1500)
