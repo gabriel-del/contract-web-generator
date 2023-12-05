@@ -14,6 +14,11 @@ import { FormService } from '../form/form.service';
       <ng-container *ngIf="tag === 'input'">
         <input [type]="type" matInput [formControlName]="name" [placeholder]="placeholder">
       </ng-container>
+      <ng-container *ngIf="tag === 'select'">
+      <mat-select [formControlName]="name">
+      <mat-option *ngFor="let element of array" [value]="element">{{element}}</mat-option>
+      </mat-select>
+      </ng-container>
       <span *ngIf="suffix" matTextSuffix>{{suffix}}</span>
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
@@ -32,6 +37,7 @@ export class Field implements OnInit{
   @Input() tag: string = "input"
   @Input() prefix!: string
   @Input() suffix!: string
+  @Input() array!: any
   @Input() type: string = "text"
   control: any
   ngOnInit(): void {

@@ -37,14 +37,10 @@
     <mat-datepicker #picker></mat-datepicker>
     <app-error-msg [control]="form.get('dataInicio')" label="Data do Início"></app-error-msg>
   </mat-form-field>
-  
-  <mat-form-field>
-    <mat-label>Dia de vencimento</mat-label>
-    <mat-select formControlName="diaVencimento">
-      <mat-option *ngFor="let dia of vencimento" [value]="dia">{{dia}}</mat-option>
-    </mat-select>
-    <app-error-msg [control]="form.get('diaVencimento')" label="Dia do Vencimento"></app-error-msg>
-  </mat-form-field>
+
+  <app-field  name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento">
+  </app-field>
+
   
   
     <mat-form-field>
