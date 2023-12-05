@@ -41,11 +41,10 @@ export class Submit implements OnInit {
     this.formService.compiling.next(false)
   }
   onSubmit() {
-    // this.formService.form.reset()
-    if (this.form.valid)
-      // console.log(this.form.value)
-    this.compile()
-    else
-      Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsTouched())
+    console.log(this.formService.form)
+    // if (this.form.valid)
+    // this.compile()
+    // else
+    //   Object.keys(this.form.controls).forEach(field => this.form.controls[field].markAsTouched())
   }
 }

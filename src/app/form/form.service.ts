@@ -24,7 +24,7 @@ export class FormService {
   form: FormGroup = this.formBuilder.group({
     bloco: [null, [Validators.required]],
     apartamento: [null, [Validators.required]],
-    aluguel: [null, [Validators.required]],
+    aluguel: [null, [Validators.required, Validators.pattern('^(?!\\s)(?!.*\\s$).*$'), Validators.pattern('[0-9]{3,4}')]],
     dataInicio: [null, [Validators.required]],
     diaVencimento: [null, [Validators.required]],
     objetos: [null, []],
@@ -35,7 +35,7 @@ export class FormService {
     limitePessoas: [null, [Validators.required]],
     // cep: [null, []],
     // INQUILINO
-    nome: [null, [Validators.required, Validators.minLength(3), Validators.pattern('[A-zÀ-ú ]*')]],
+    nome: [null, [Validators.required, Validators.minLength(3), Validators.pattern('[A-zÀ-ú ]*'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     nacionalidade: [null, [Validators.pattern('[A-zÀ-ú ]*')]],
     profissao: [null, [Validators.pattern('[A-zÀ-ú ]*')]],
     estadoCivil: [null, []],
@@ -75,18 +75,23 @@ export class FormService {
       const cep = value('cep') ? `, CEP nº ${value('cep').toString().replace(/(\d{5})(\d{3})/, '$1-$2')}` : ''
       return `, residente a  ${value('cidade')}-${value('estado')}${bairro}${rua}${numero}${complemento}${cep}`
     }
-    const extenso = (v: number): string => (extensoApi(v) as string).replace(/^mil\b/, 'hum mil')
+    const extenso = (v: any, g: string = 'm'): string => {
+      v = Number(v)
+      if(isNaN(v)) return ''
+      if(v === 0) return 'zero'
+      return (extensoApi(v, {number: {gender: g}}) as string).replace(/^mil\b/, 'hum mil')
+    } 
     const f = {
       // 1 section
       enderecoc: endereco[value('bloco')] ?? '',
       enderecoC: (endereco[value('bloco')] ?? '').toUpperCase(),
       apartamento: value('apartamento'),
       aluguel: value('aluguel'),
-      aluguelExtenso: extenso(Number(value('aluguel') ?? 1)),
+      aluguelExtenso: extenso(value('aluguel')),
       dataInicio: getDate(),
       dataFinal: getDate(1),
       diaVencimento: value('diaVencimento'),
-      diaVencimentoExtenso: extenso(Number(value('diaVencimento') ?? 1)),
+      diaVencimentoExtenso: extenso(value('diaVencimento')),
       objetos: value('objetos') ? `\\item Os objetos citados nesta cláusula: ${value('objetos')};\n` : '',
       // dataFinal: value('dataFinal'),
       // 2 section
@@ -94,7 +99,7 @@ export class FormService {
       garagem: value('hasParking') ? '. Cada apartamento tem direito a uma vaga de garagem rotativa' : '',
       bicicletas: value('hasBikerack') ? '. As bicicletas devem ser guardadas no bicicletário' : '',
       limitePessoas: value('limitePessoas'),
-      limitePessoasExtenso: extensoApi(Number(value('limitePessoas') ?? 1), {number: {gender: 'f'}}),
+      limitePessoasExtenso: extenso(value('limitePessoas'), 'f'),
       // 3 section
       nome: `${capitalize(value('nome') ?? '')}`,
       nacionalidade: value('nacionalidade') ? `, ${value('nacionalidade').toLocaleLowerCase()}` : '',
