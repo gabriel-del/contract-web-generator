@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core'
-import {distinctUntilChanged, map, switchMap, tap} from 'rxjs/operators'
+import {distinctUntilChanged, map, switchMap} from 'rxjs/operators'
 import {EMPTY} from 'rxjs'
 import {HttpClient} from '@angular/common/http'
 import {EstadoBr} from '../components/model'
 import {FormService} from './form.service'
-import {FormControl} from '@angular/forms';
-
 
 @Component({selector: 'app-form', templateUrl: './form.html', styleUrls: ['./form.scss']})
 export class Form implements OnInit {
@@ -62,7 +60,7 @@ export class Form implements OnInit {
     }
   }
   resetar() {this.form.reset()}
-  setDefaultValues(){
+  setDefaultValues() {
     // this.form.get('diaVencimento').setValue(31)
     // this.form.get('profissao').setValue('autônomo')
     this.form.get('seeDefaults').setValue(true)

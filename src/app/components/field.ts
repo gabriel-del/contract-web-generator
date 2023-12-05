@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, ContentChild } from '@angular/core';
-import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core'
+import {ControlContainer, FormGroupDirective} from '@angular/forms'
+import {FormService} from '../form/form.service'
 import {formValidations} from './validations'
-import { FormService } from '../form/form.service';
-
 
 @Component({
   selector: 'app-field',
@@ -10,7 +9,7 @@ import { FormService } from '../form/form.service';
     <mat-form-field *ngIf="pattern.test(tag)">
       <mat-label>{{label}}: </mat-label>
       <span *ngIf="prefix" matPrefix>{{prefix}}</span>
-      
+
       <input *ngIf="tag === 'input'" [type]="type" matInput [formControlName]="name" [placeholder]="placeholder">
       <mat-select *ngIf="tag === 'select'" [formControlName]="name">
         <mat-option *ngFor="let element of array" [value]="arrayValue ? element[arrayValue]: element">
@@ -30,27 +29,25 @@ import { FormService } from '../form/form.service';
   mat-form-field{ width: 100%;}
   mat-slide-toggle{display: block;margin: 8px;}
   `,
-  viewProviders:[{ provide: ControlContainer, useExisting: FormGroupDirective }]
+  viewProviders: [{provide: ControlContainer, useExisting: FormGroupDirective}]
 })
-export class Field implements OnInit{
+export class Field implements OnInit {
   constructor(private formService: FormService) {}
-
   @Input() name!: string
   @Input() label!: string
   @Input() placeholder!: string
-  @Input() tag: string = "input"
+  @Input() tag: string = 'input'
   @Input() prefix!: string
   @Input() suffix!: string
   @Input() array!: any
   @Input() arrayValue!: string
   @Input() arrayName!: string
-  @Input() type: string = "text"
+  @Input() type: string = 'text'
   control: any
   pattern = /^(input|select)$/
   ngOnInit(): void {
     this.control = this.formService.form.get(this.name)
   }
-
   get errorMessage() {
     for (const validator in this.control?.errors) {
       if (this.control.touched || this.control.dirty)
@@ -58,5 +55,4 @@ export class Field implements OnInit{
     }
     return null
   }
-
 }

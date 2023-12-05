@@ -7,7 +7,7 @@ export class formValidations {
     return {cepInvalido: true}
   }
   static getErrorMsg(validator: string, validatorName: string, validatorValue?: any) {
-    let patternMsg = {
+    const patternMsg = {
       '^[0-9]{11}$': '<strong>11 dígitos</strong> sequenciais',
       '^[0-9]{7}$': '<strong>7 dígitos</strong> sequenciais',
       '^[0-9]{10,11}$': '<strong>11 dígitos</strong> sequenciais',

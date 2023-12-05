@@ -4,6 +4,8 @@ import {BrowserModule} from '@angular/platform-browser'
 import {ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatInputModule} from '@angular/material/input'
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {Form} from './form/form'
@@ -21,43 +23,41 @@ import {Editor} from './components/editor'
 import {Submit} from './components/submit'
 import {Pdf} from './components/pdf'
 import {Log} from './components/log'
-import { Field } from "./components/field";
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatInputModule } from '@angular/material/input'
+import {Field} from './components/field'
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        Form,
-        DebugForm,
-        DebugF,
-        ShowError,
-        Home,
-        Footer,
-        Header,
-        History,
-        Dev,
-        SafePipe,
-        Editor,
-        Submit,
-        Pdf,
-        Log,
-        Field
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
-    exports: [
-        Editor
-    ],
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        MatFormFieldModule,
-        MatInputModule,  
-    ]
+  declarations: [
+    AppComponent,
+    Form,
+    DebugForm,
+    DebugF,
+    ShowError,
+    Home,
+    Footer,
+    Header,
+    History,
+    Dev,
+    SafePipe,
+    Editor,
+    Submit,
+    Pdf,
+    Log,
+    Field
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+  exports: [
+    Editor
+  ],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    MatFormFieldModule,
+    MatInputModule
+  ]
 })
 export class AppModule { }
