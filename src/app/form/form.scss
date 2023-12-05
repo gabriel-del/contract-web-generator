@@ -1,19 +1,14 @@
-.has-error {
-  color: red;
-}
 form {
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-div {
-flex: 1 1 0;
-padding: 10px;
-margin: 10px;
-border: 1px solid #999;
-border-radius: 12px;
-
-}
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  div {
+    flex: 1 1 0;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #999;
+    border-radius: 12px;
+  }
 }
 
 

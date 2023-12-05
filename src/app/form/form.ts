@@ -49,23 +49,11 @@ export class Form implements OnInit {
     this.form.get('hasBikerack').setValue({A: true, B1: true, B2: true, C: false}[v])
     this.form.get('limitePessoas').setValue({A: 3, B1: 5, B2: 2, C: 5}[v])
   }
-  hasError(where: string, what?: string) {
-    const field = this.form.controls[where]
-    if (field.errors && (field.touched || field.dirty)) return what ? field.errors?.[what] : true
-    return false
-  }
-  hasErrorStyle(field: string) {
-    return {
-      'has-error': this.hasError(field),
-      'has-feedback': this.hasError(field)
-    }
-  }
   resetar() {this.form.reset()}
   setDefaultValues() {
     // this.form.get('diaVencimento').setValue(31)
     // this.form.get('profissao').setValue('autônomo')
     this.form.get('seeDefaults').setValue(true)
-
     this.form.get('hasEndereco').setValue(true)
   }
   setDefaultValuesFull() {
