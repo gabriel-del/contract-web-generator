@@ -16,7 +16,7 @@ import { FormService } from '../form/form.service';
       </ng-container>
       <ng-container *ngIf="tag === 'select'">
       <mat-select [formControlName]="name">
-      <mat-option *ngFor="let element of array" [value]="element">{{element}}</mat-option>
+      <mat-option *ngFor="let element of array" [value]="arrayValue ? element[arrayValue]: element">{{arrayName ? element[arrayName] : element}}</mat-option>
       </mat-select>
       </ng-container>
       <span *ngIf="suffix" matTextSuffix>{{suffix}}</span>
@@ -38,6 +38,8 @@ export class Field implements OnInit{
   @Input() prefix!: string
   @Input() suffix!: string
   @Input() array!: any
+  @Input() arrayValue!: string
+  @Input() arrayName!: string
   @Input() type: string = "text"
   control: any
   ngOnInit(): void {

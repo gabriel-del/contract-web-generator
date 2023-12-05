@@ -67,26 +67,12 @@
   
   <div *ngIf="form.get('hasEndereco').value">
     <app-field name='cep' label="Cep" placeholder="0000000" type="number"></app-field>
-
-  
-    <mat-form-field>
-      <mat-label>Estado: </mat-label>
-      <mat-select formControlName="estado">
-        <mat-option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.nome}}</mat-option>
-      </mat-select>
-      <app-error-msg [control]="form.get('estado')" label="Estado"></app-error-msg>  
-    </mat-form-field>
-    
-    
+    <app-field  name='estado' label="Estado" tag="select" [array]="estados" arrayValue="sigla" arrayName="nome"> </app-field>
     <app-field  name='cidade' label="Cidade" tag="select" [array]="cidades"> </app-field>
-
-    
     <app-field  name='bairro' label="Bairro" placeholder="Porto de Galinhas"></app-field>
     <app-field  name='rua' label="Rua" placeholder="Cavalo Marinho"></app-field>
     <app-field  name='numero' label="Número" placeholder="00" type="number"></app-field>
     <app-field  name='complemento' label="Complemento" placeholder="apt 01"></app-field>
-
-    
     
     <!-- <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items: 
       <div   *ngFor="let item of formulario.get('items')['controls']; let i = index">
