@@ -13,22 +13,10 @@
     <app-field name='apartamento' label="Apartamento" tag="select" [array]="apartamentos[form.get('bloco'). value]"></app-field>
     <app-field name='aluguel' label="Aluguel" placeholder="1700" prefix="R$ &nbsp;" suffix=",00"></app-field>
 
-
-    <mat-form-field>
-      <mat-label>Data de Início</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dataInicio">
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <app-error-msg [control]="form.get('dataInicio')" label="Data do Início"></app-error-msg>
-    </mat-form-field>
-
-    <app-field name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento">
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </app-field>
-
+    
+    <app-field tag="datepicker" name='dataInicio' label="Data de Início"></app-field>
+    <app-field name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento"></app-field>
     <app-field tag="textarea" name="objetos" label="Objetos" placeholder="2 camas, 2 ares-condicionados, 1 geladeira"></app-field>
-
     <app-field tag="slide" name='seeDefaults' label="Ver opções padrões"></app-field>
 
     <ng-container *ngIf="form.get('seeDefaults').value">

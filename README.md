@@ -5,6 +5,7 @@
 * dev layout
 * Remover espaços vazios dos inputs
 * reset after submit
+* fix data-field datapicker
 
 * Typescript strict
 * LocalStorage

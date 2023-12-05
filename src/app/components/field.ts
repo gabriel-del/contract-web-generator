@@ -18,8 +18,15 @@ import {formValidations} from './validations'
       </mat-select>
       <textarea *ngIf="tag === 'textarea'" matInput [placeholder]="placeholder" [formControlName]="name"></textarea>
 
-
       <span *ngIf="suffix" matTextSuffix>{{suffix}}</span>
+      <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
+    </mat-form-field>
+    
+    <mat-form-field *ngIf="tag === 'datepicker'">
+      <mat-label>{{label}}: </mat-label>
+      <input  matInput [matDatepicker]="picker" [formControlName]="name" >
+      <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
 
