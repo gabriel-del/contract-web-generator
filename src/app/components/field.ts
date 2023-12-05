@@ -11,14 +11,14 @@ import { FormService } from '../form/form.service';
       <mat-label>{{label}}: </mat-label>
       <span *ngIf="prefix" matPrefix>{{prefix}}</span>
       
-      <ng-container *ngIf="tag === 'input'">
-        <input [type]="type" matInput [formControlName]="name" [placeholder]="placeholder">
-      </ng-container>
-      <ng-container *ngIf="tag === 'select'">
-      <mat-select [formControlName]="name">
-      <mat-option *ngFor="let element of array" [value]="arrayValue ? element[arrayValue]: element">{{arrayName ? element[arrayName] : element}}</mat-option>
+      <input *ngIf="tag === 'input'" [type]="type" matInput [formControlName]="name" [placeholder]="placeholder">
+      <mat-select *ngIf="tag === 'select'" [formControlName]="name">
+        <mat-option *ngFor="let element of array" [value]="arrayValue ? element[arrayValue]: element">
+          {{arrayName ? element[arrayName] : element}}
+        </mat-option>
       </mat-select>
-      </ng-container>
+
+
       <span *ngIf="suffix" matTextSuffix>{{suffix}}</span>
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
