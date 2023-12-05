@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {distinctUntilChanged, map, switchMap} from 'rxjs/operators'
+import {distinctUntilChanged, filter, map, switchMap} from 'rxjs/operators'
 import {EMPTY} from 'rxjs'
 import {HttpClient} from '@angular/common/http'
 import {EstadoBr} from '../components/model'
@@ -32,6 +32,7 @@ export class Form implements OnInit {
     )
     this.form.get('estado').valueChanges.pipe(
       // tap(v => console.log(v)),
+      filter(estado => !!estado),
       map(estado => this.estados?.filter(({sigla}) => sigla === estado)),
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)

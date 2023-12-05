@@ -1,10 +1,10 @@
 # Contract Web Generator
 
 ### To Do
-* Check submit, show errors
-* dev layout
-* Remover espaços vazios dos inputs
 * reset after submit
+* Remover espaços vazios dos inputs
+
+* dev layout
 * fix data-field datapicker and button
 * join debug-form and debug-f
 
