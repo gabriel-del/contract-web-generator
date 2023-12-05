@@ -121,8 +121,7 @@ export class FormService {
         map(dados => dados.replaceAll('\\', '\\\\').replaceAll(/}\$( )?(\r\n|\r|\n)?/g, '}')),
         map(dados => eval(`dados = \`${dados}\``))
         // tap(dados => console.log(dados))
-      )
-      .subscribe(dados => this.tex.next(dados))
+      ).subscribe(dados => this.tex.next(dados))
   }
   buildItems() {
     const values = this.items.map(_ => new FormControl(false))

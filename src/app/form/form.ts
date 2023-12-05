@@ -21,7 +21,7 @@ export class Form implements OnInit {
   ngOnInit(): void {
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {
       this.estados = dados.estados
-      this.setDefaultValues(['cep', 'estado', 'cidade', 'bairro', 'rua', 'numero', 'complemento'])
+      // this.setDefaultValues(['cep', 'estado', 'cidade', 'bairro', 'rua', 'numero', 'complemento'])
     })
     this.form.get('cep').statusChanges.pipe(
       distinctUntilChanged(),
@@ -37,8 +37,8 @@ export class Form implements OnInit {
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)
     
-    // this.setDefaultValues(['diaVencimento', 'profissao', 'seeDefaults'])
-    this.setDefaultValues(['bloco', 'apartamento', 'aluguel', 'dataInicio', 'diaVencimento', 'objetos', 'seeDefaults', 'allowAnimals', 'hasParking', 'hasBikerack', 'limitePessoas', 'nome', 'nacionalidade', 'profissao', 'estadoCivil', 'cpf', 'identidade', 'celular', 'hasEndereco' ])
+    this.setDefaultValues(['diaVencimento'])
+    // this.setDefaultValues(['bloco', 'apartamento', 'aluguel', 'dataInicio', 'diaVencimento', 'objetos', 'seeDefaults', 'allowAnimals', 'hasParking', 'hasBikerack', 'limitePessoas', 'nome', 'nacionalidade', 'profissao', 'estadoCivil', 'cpf', 'identidade', 'celular', 'hasEndereco' ])
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
     this.form.get('bloco').valueChanges.subscribe(v => this.blocoDefaults(v))
     this.form.get('apartamento').valueChanges.subscribe(_ => this.blocoDefaults(this.form.get('bloco').value))
