@@ -23,11 +23,12 @@ import { FormService } from '../form/form.service';
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
 
-    <mat-slide-toggle *ngIf="!pattern.test(tag)" color="primary" [formControlName]="name">{{label}}</mat-slide-toggle>
+    <mat-slide-toggle *ngIf="tag === 'slide'" color="primary" [formControlName]="name">{{label}}</mat-slide-toggle>
 
       `,
   styles: `
   mat-form-field{ width: 100%;}
+  mat-slide-toggle{display: block;margin: 8px;}
   `,
   viewProviders:[{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })

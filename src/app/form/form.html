@@ -38,13 +38,9 @@
   <app-field tag="slide" name='seeDefaults' label="Ver opções padrões"></app-field>
   
   <ng-container *ngIf="form.get('seeDefaults').value" >
-    <br/><mat-slide-toggle color="primary" formControlName="allowAnimals">Permitido Animal</mat-slide-toggle>
-    <app-error-msg [control]="form.get('allowAnimals')" label="Permitido Animais"></app-error-msg>
-    <br/><mat-slide-toggle color="primary" formControlName="hasParking">Garagem inclusa</mat-slide-toggle>
-    <app-error-msg [control]="form.get('hasParking')" label="Tem estacionamento"></app-error-msg>
-    <br/><mat-slide-toggle color="primary" formControlName="hasBikerack">Tem bicicletário</mat-slide-toggle>
-    <app-error-msg [control]="form.get('hasBikerack')" label="Tem bicicletário"></app-error-msg>
-   
+    <app-field tag="slide" name='allowAnimals' label="Permitido Animal"></app-field>
+    <app-field tag="slide" name='hasParking' label="Tem estacionamento"></app-field>
+    <app-field tag="slide" name='hasBikerack' label="Tem bicicletário"></app-field>
     <app-field  name='limitePessoas' label="Limite de Pessoas" tag="select" [array]="limitePessoas"> </app-field>
   </ng-container>
 
@@ -61,12 +57,9 @@
   <app-field name='identidade' label="Identidade" placeholder="0000000"></app-field>
   <app-field name='celular' label="Celular" placeholder="81900000000" prefix="+55 &nbsp;"></app-field>
   
-  <!-- <mat-form-field> -->
-  <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
-  <!-- </mat-form-field> -->
+    <app-field tag="slide" name='hasEndereco' label="Tem endereço?"></app-field>
+
 </div>
-<!-- ###### DIVISÃO -->
-<!-- <div [ngClass]="hasErrorStyle('hasEndereco')"> -->
   
   
   <div *ngIf="form.get('hasEndereco').value">
@@ -78,18 +71,24 @@
     <app-field  name='numero' label="Número" placeholder="00" type="number"></app-field>
     <app-field  name='complemento' label="Complemento" placeholder="apt 01"></app-field>
     
-    <!-- <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items: 
-      <div   *ngFor="let item of formulario.get('items')['controls']; let i = index">
-        <label>{{ items[i] }}<input type="checkbox" [formControlName]="i"></label><br/>
-        <label>Cama<input type="checkbox" formControlName="items"></label><br/>
-      </div>
-    </div> -->
-    </div>
-  </form>
-    <app-form-submit></app-form-submit>
-    <!-- <app-editor></app-editor> -->
-    <app-log></app-log>
-    <app-pdf showPdf=false savePdf=true></app-pdf>
-    <!-- <button (click)="resetar()">Cancelar</button> -->
+  </div>
+</form>
+<app-form-submit></app-form-submit>
+<!-- <app-editor></app-editor> -->
+<app-log></app-log>
+<app-pdf showPdf=false savePdf=true></app-pdf>
+<!-- <button (click)="resetar()">Cancelar</button> -->
     <app-debug-form></app-debug-form>
          <!-- <app-debug-f></app-debug-f>  -->
+         
+
+
+
+
+         
+         <!-- <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items: 
+           <div   *ngFor="let item of formulario.get('items')['controls']; let i = index">
+             <label>{{ items[i] }}<input type="checkbox" [formControlName]="i"></label><br/>
+             <label>Cama<input type="checkbox" formControlName="items"></label><br/>
+           </div>
+         </div> -->
