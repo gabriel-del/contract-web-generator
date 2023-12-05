@@ -21,7 +21,7 @@ export class Form implements OnInit {
   ngOnInit(): void {
     this.http.get<EstadoBr>('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json').subscribe(dados => {
       this.estados = dados.estados
-      // this.setDefaultValuesEndereco()
+      this.setDefaultValues(['cep', 'estado', 'cidade', 'bairro', 'rua', 'numero', 'complemento'])
     })
     this.form.get('cep').statusChanges.pipe(
       distinctUntilChanged(),
@@ -35,9 +35,9 @@ export class Form implements OnInit {
       map(estado => this.estados?.filter(({sigla}) => sigla === estado)),
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)
-
-    // this.setDefaultValues()
-    this.setDefaultValuesFull()
+    
+    // this.setDefaultValues(['diaVencimento', 'profissao', 'seeDefaults', 'hasEndereco'])
+    this.setDefaultValues(['bloco', 'apartamento', 'aluguel', 'dataInicio', 'diaVencimento', 'objetos', 'seeDefaults', 'allowAnimals', 'hasParking', 'hasBikerack', 'limitePessoas', 'nome', 'nacionalidade', 'profissao', 'estadoCivil', 'cpf', 'identidade', 'celular', 'hasEndereco' ])
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
     this.form.get('bloco').valueChanges.subscribe(v => this.blocoDefaults(v))
     this.form.get('apartamento').valueChanges.subscribe(_ => this.blocoDefaults(this.form.get('bloco').value))
@@ -51,12 +51,7 @@ export class Form implements OnInit {
     this.form.get('limitePessoas').setValue({A: 3, B1: 5, B2: 2, C: 5}[v])
   }
   resetar() {this.form.reset()}
-  setDefaultValues() {
-    // this.form.get('diaVencimento').setValue(31)
-    // this.form.get('profissao').setValue('autônomo')
-    this.form.get('seeDefaults').setValue(true)
-    this.form.get('hasEndereco').setValue(true)
-  }
+
   defaultValues: ((string | number)[] | (string | boolean)[])[] = [
     ['bloco', 'B'],
     ['apartamento', 4],
@@ -85,39 +80,9 @@ export class Form implements OnInit {
     ['numero', 182],
     ['complemento', 'apt 01']
   ]
-  setDefaultValuesEndereco() {
-    // this.form.get('cep').setValue('51030300')
-    // this.form.get('cep').setValue('5559000')
-    this.form.get('estado').setValue('PE')
-    this.form.get('cidade').setValue('Ipojuca')
-    this.form.get('bairro').setValue('Porto de Galinhas')
-    this.form.get('rua').setValue('Cavalo Marinho')
-    this.form.get('numero').setValue(182)
-    this.form.get('complemento').setValue('apt 01')
-  }
-  setDefaultValuesFull() {
-    let array = ['aluguel', 'diaVencimento' ]
+  setDefaultValues(array) {
+  
     this.defaultValues.filter((v: any[]) => array.includes(v[0])).forEach((v: any[]) => this.form.get(v[0]).setValue(v[1]))
-    // this.defaultValues.forEach((v: any[]) => console.log(this.form.get(v[0]).value))
-    // this.form.get('bloco').setValue('B')
-    // this.form.get('apartamento').setValue(4)
-    // this.form.get('aluguel').setValue(1500)
-    // this.form.get('dataInicio').setValue('2023-12-01T03:00:00.000Z')
-    // this.form.get('diaVencimento').setValue(31)
-    // this.form.get('objetos').setValue('2 camas')
-    // this.form.get('seeDefaults').setValue(true)
-    // this.form.get('allowAnimals').setValue(true)
-    // this.form.get('hasParking').setValue(true)
-    // this.form.get('hasBikerack').setValue(true)
-    // this.form.get('limitePessoas').setValue(5)
-    // this.form.get('nome').setValue('Gabriel')
-    // this.form.get('nacionalidade').setValue('brasileiro')
-    // this.form.get('profissao').setValue('autônomo')
-    // this.form.get('estadoCivil').setValue('solteiro')
-    // this.form.get('cpf').setValue('00000000000')
-    // this.form.get('identidade').setValue('0000000')
-    // this.form.get('celular').setValue('81900000000')
-    // this.form.get('hasEndereco').setValue(true)
   }
 
 }
