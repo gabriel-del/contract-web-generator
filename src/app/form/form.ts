@@ -36,7 +36,8 @@ export class Form implements OnInit {
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)
 
-    this.setDefaultValues()
+    // this.setDefaultValues()
+    this.setDefaultValuesFull()
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
     this.form.get('bloco').valueChanges.subscribe(v => this.blocoDefaults(v))
     this.form.get('apartamento').valueChanges.subscribe(_ => this.blocoDefaults(this.form.get('bloco').value))
@@ -56,7 +57,7 @@ export class Form implements OnInit {
     this.form.get('seeDefaults').setValue(true)
     this.form.get('hasEndereco').setValue(true)
   }
-  defaultValues = [
+  defaultValues: ((string | number)[] | (string | boolean)[])[] = [
     ['bloco', 'B'],
     ['apartamento', '4'],
     ['aluguel', '1500'],
@@ -82,8 +83,7 @@ export class Form implements OnInit {
     ['Bairro', 'Porto de Galinhas'],
     ['rua', 'Cavalo Marinho'],
     ['numero', 182],
-    ['complemento', 'apt 01'],
-    ['', ],
+    ['complemento', 'apt 01']
   ]
   setDefaultValuesEndereco() {
     // this.form.get('cep').setValue('51030300')
@@ -96,25 +96,26 @@ export class Form implements OnInit {
     this.form.get('complemento').setValue('apt 01')
   }
   setDefaultValuesFull() {
-    this.form.get('bloco').setValue('B')
-    this.form.get('apartamento').setValue(4)
-    this.form.get('aluguel').setValue(1500)
-    this.form.get('dataInicio').setValue('2023-12-01T03:00:00.000Z')
-    this.form.get('diaVencimento').setValue(31)
-    this.form.get('objetos').setValue('2 camas')
-    this.form.get('seeDefaults').setValue(true)
-    this.form.get('allowAnimals').setValue(true)
-    this.form.get('hasParking').setValue(true)
-    this.form.get('hasBikerack').setValue(true)
-    this.form.get('limitePessoas').setValue(5)
-    this.form.get('nome').setValue('Gabriel')
-    this.form.get('nacionalidade').setValue('brasileiro')
-    this.form.get('profissao').setValue('autônomo')
-    this.form.get('estadoCivil').setValue('solteiro')
-    this.form.get('cpf').setValue('00000000000')
-    this.form.get('identidade').setValue('0000000')
-    this.form.get('celular').setValue('81900000000')
-    this.form.get('hasEndereco').setValue(true)
+    // this.defaultValues.forEach(v => this.form.get(v[0]).setValue(v[1]))
+    // this.form.get('bloco').setValue('B')
+    // this.form.get('apartamento').setValue(4)
+    // this.form.get('aluguel').setValue(1500)
+    // this.form.get('dataInicio').setValue('2023-12-01T03:00:00.000Z')
+    // this.form.get('diaVencimento').setValue(31)
+    // this.form.get('objetos').setValue('2 camas')
+    // this.form.get('seeDefaults').setValue(true)
+    // this.form.get('allowAnimals').setValue(true)
+    // this.form.get('hasParking').setValue(true)
+    // this.form.get('hasBikerack').setValue(true)
+    // this.form.get('limitePessoas').setValue(5)
+    // this.form.get('nome').setValue('Gabriel')
+    // this.form.get('nacionalidade').setValue('brasileiro')
+    // this.form.get('profissao').setValue('autônomo')
+    // this.form.get('estadoCivil').setValue('solteiro')
+    // this.form.get('cpf').setValue('00000000000')
+    // this.form.get('identidade').setValue('0000000')
+    // this.form.get('celular').setValue('81900000000')
+    // this.form.get('hasEndereco').setValue(true)
   }
 
 }
