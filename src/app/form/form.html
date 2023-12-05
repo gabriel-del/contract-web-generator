@@ -1,9 +1,5 @@
 <form [formGroup]="form">
-
-  <div >
-  
-  
-  
+  <div>
   <p>
   <span matPrefix>Bloco: </span>
   <mat-button-toggle-group formControlName="bloco" aria-label="Font Style">
@@ -14,19 +10,7 @@
   </p>
   <app-error-msg [control]="form.get('bloco')" label="Bloco"></app-error-msg>
   
-  
-  <mat-form-field >
-    <mat-label>Apartamento</mat-label>
-    <mat-select formControlName="apartamento">
-      <mat-option *ngFor="let apartamento of apartamentos[form.get('bloco'). value]" [value]="apartamento">
-      {{apartamento}} 
-      </mat-option>
-    </mat-select>
-    <app-error-msg [control]="form.get('apartamento')" label="Apartamento"></app-error-msg>
-  </mat-form-field>
-  
-
-  
+ <app-field  name='apartamento' label="apartamento" tag="select" [array]="apartamentos[form.get('bloco'). value]"></app-field>
     <app-field  name='aluguel' label="Aluguel" placeholder="1700" prefix="R$ &nbsp;" suffix=",00"></app-field>
 
   
@@ -57,14 +41,11 @@
     <app-error-msg [control]="form.get('hasParking')" label="Tem estacionamento"></app-error-msg>
     <br/><mat-slide-toggle color="primary" formControlName="hasBikerack">Tem bicicletário</mat-slide-toggle>
     <app-error-msg [control]="form.get('hasBikerack')" label="Tem bicicletário"></app-error-msg>
-    <mat-form-field>
-      <mat-label>Limite de Pessoas</mat-label>
-      <mat-select formControlName="limitePessoas">
-        <mat-option *ngFor="let numero of limitePessoas" [value]="numero">{{numero}}</mat-option>
-      </mat-select>
-      <app-error-msg [control]="form.get('limitePessoas')" label="Limite de Pessoas"></app-error-msg>
-    </mat-form-field>
+   
+    <app-field  name='limitePessoas' label="Limite de Pessoas" tag="select" [array]="limitePessoas"> </app-field>
   </ng-container>
+
+
   
     </div><div>
       <!-- ###### DIVISÃO -->
@@ -72,10 +53,7 @@
       <app-field name='nome' label="Nome" placeholder="Gabriel Del Cesare Barros"></app-field>
       <app-field name='nacionalidade' label="Nacionalidade" placeholder="Brasileiro"></app-field>
       <app-field name='profissao' label="Profissão" placeholder="Autônomo"></app-field>
-      
       <app-field  name='estadoCivil' label="Estado Civil" tag="select" [array]="estadoCivil"></app-field>
-
-  
   <app-field name='cpf' label="cpf" placeholder="00000000000"></app-field>
   <app-field name='identidade' label="Identidade" placeholder="0000000"></app-field>
   <app-field name='celular' label="Celular" placeholder="81900000000" prefix="+55 &nbsp;"></app-field>
@@ -89,7 +67,6 @@
   
   <div *ngIf="form.get('hasEndereco').value">
     <app-field name='cep' label="Cep" placeholder="0000000" type="number"></app-field>
- 
 
   
     <mat-form-field>
@@ -100,13 +77,9 @@
       <app-error-msg [control]="form.get('estado')" label="Estado"></app-error-msg>  
     </mat-form-field>
     
-    <mat-form-field>
-      <mat-label>Cidade: </mat-label>
-      <mat-select formControlName="cidade">
-        <mat-option *ngFor="let cidade of cidades" [value]="cidade">{{cidade}}</mat-option>
-      </mat-select>
-      <app-error-msg [control]="form.get('cidade')" label="Cidade"></app-error-msg>  
-    </mat-form-field>
+    
+    <app-field  name='cidade' label="Cidade" tag="select" [array]="cidades"> </app-field>
+
     
     <app-field  name='bairro' label="Bairro" placeholder="Porto de Galinhas"></app-field>
     <app-field  name='rua' label="Rua" placeholder="Cavalo Marinho"></app-field>
