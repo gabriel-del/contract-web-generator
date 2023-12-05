@@ -38,8 +38,7 @@
     <app-error-msg [control]="form.get('dataInicio')" label="Data do Início"></app-error-msg>
   </mat-form-field>
 
-  <app-field  name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento">
-  </app-field>
+  <app-field  name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento"> </app-field>
 
   
   
@@ -74,13 +73,8 @@
       <app-field name='nacionalidade' label="Nacionalidade" placeholder="Brasileiro"></app-field>
       <app-field name='profissao' label="Profissão" placeholder="Autônomo"></app-field>
       
-      
-      <mat-form-field>
-    <mat-label>Estado Civil</mat-label>
-    <mat-select formControlName="estadoCivil">
-      <mat-option *ngFor="let option of estadoCivil" [value]="option">{{option}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+      <app-field  name='estadoCivil' label="Estado Civil" tag="select" [array]="estadoCivil"></app-field>
+
   
   <app-field name='cpf' label="cpf" placeholder="00000000000"></app-field>
   <app-field name='identidade' label="Identidade" placeholder="0000000"></app-field>
