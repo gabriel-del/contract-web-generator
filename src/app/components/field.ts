@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ContentChild } from '@angular/core';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
 import {formValidations} from './validations'
 import { FormService } from '../form/form.service';
@@ -7,7 +7,7 @@ import { FormService } from '../form/form.service';
 @Component({
   selector: 'app-field',
   template: `
-    <mat-form-field>
+    <mat-form-field *ngIf="tag === 'input' || tag === 'select'">
       <mat-label>{{label}}: </mat-label>
       <span *ngIf="prefix" matPrefix>{{prefix}}</span>
       
@@ -22,6 +22,9 @@ import { FormService } from '../form/form.service';
       <span *ngIf="suffix" matTextSuffix>{{suffix}}</span>
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
+
+    <mat-slide-toggle *ngIf="tag === 'slide'" color="primary" [formControlName]="name">{{label}}</mat-slide-toggle>
+
       `,
   styles: `
   mat-form-field{ width: 100%;}

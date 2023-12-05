@@ -10,7 +10,7 @@
   </p>
   <app-error-msg [control]="form.get('bloco')" label="Bloco"></app-error-msg>
   
- <app-field  name='apartamento' label="apartamento" tag="select" [array]="apartamentos[form.get('bloco'). value]"></app-field>
+ <app-field  name='apartamento' label="Apartamento" tag="select" [array]="apartamentos[form.get('bloco'). value]"></app-field>
     <app-field  name='aluguel' label="Aluguel" placeholder="1700" prefix="R$ &nbsp;" suffix=",00"></app-field>
 
   
@@ -22,7 +22,10 @@
     <app-error-msg [control]="form.get('dataInicio')" label="Data do Início"></app-error-msg>
   </mat-form-field>
 
-  <app-field  name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento"> </app-field>
+  <app-field  name='diaVencimento' label="Dia do Vencimento" tag="select" [array]="vencimento">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </app-field>
 
   
   
@@ -32,7 +35,7 @@
   </mat-form-field>
   
   
-  <mat-slide-toggle color="primary" formControlName="seeDefaults">Ver opções padrões</mat-slide-toggle>
+  <app-field tag="slide" name='seeDefaults' label="Ver opções padrões"></app-field>
   
   <ng-container *ngIf="form.get('seeDefaults').value" >
     <br/><mat-slide-toggle color="primary" formControlName="allowAnimals">Permitido Animal</mat-slide-toggle>
@@ -58,8 +61,9 @@
   <app-field name='identidade' label="Identidade" placeholder="0000000"></app-field>
   <app-field name='celular' label="Celular" placeholder="81900000000" prefix="+55 &nbsp;"></app-field>
   
-  
+  <!-- <mat-form-field> -->
   <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
+  <!-- </mat-form-field> -->
 </div>
 <!-- ###### DIVISÃO -->
 <!-- <div [ngClass]="hasErrorStyle('hasEndereco')"> -->
