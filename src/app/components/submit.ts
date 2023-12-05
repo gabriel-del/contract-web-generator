@@ -41,7 +41,6 @@ export class Submit implements OnInit {
     this.formService.compiling.next(false)
   }
   onSubmit() {
-    console.log(this.form)
     if (this.form.valid)
       console.log(this.form.value)
     // this.compile()

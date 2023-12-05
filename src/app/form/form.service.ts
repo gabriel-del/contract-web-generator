@@ -35,9 +35,9 @@ export class FormService {
     limitePessoas: [null, [Validators.required]],
     // cep: [null, []],
     // INQUILINO
-    nome: [null, [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
-    nacionalidade: [null, [Validators.pattern('[a-zA-Z ]*')]],
-    profissao: [null, [Validators.pattern('[a-zA-Z ]*')]],
+    nome: [null, [Validators.required, Validators.minLength(3), Validators.pattern('[A-zÀ-ú ]*')]],
+    nacionalidade: [null, [Validators.pattern('[A-zÀ-ú ]*')]],
+    profissao: [null, [Validators.pattern('[A-zÀ-ú ]*')]],
     estadoCivil: [null, []],
     cpf: [null, [Validators.pattern('[0-9]{11}')]],
     identidade: [null, [Validators.pattern('[0-9]{7}')]],

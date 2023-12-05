@@ -11,7 +11,7 @@ export class formValidations {
       '^[0-9]{11}$': '<strong>11 dígitos</strong> sequenciais',
       '^[0-9]{7}$': '<strong>7 dígitos</strong> sequenciais',
       '^[0-9]{10,11}$': '<strong>11 dígitos</strong> sequenciais',
-      '^[a-zA-Z ]*$': '<strong>Apenas letras</strong>'
+      '^[A-zÀ-ú ]*$': '<strong>Apenas letras</strong>'
     }
     return {
       required: `${validatorName} é <strong>obrigatório</strong>`,
