@@ -65,6 +65,7 @@ export class Form implements OnInit {
   setDefaultValues(){
     this.form.get('diaVencimento').setValue(31)
     // this.form.get('profissao').setValue('autônomo')
+    this.form.get('hasEndereco').setValue(true)
   }
   setDefaultValuesFull() {
     this.form.get('bloco').setValue('B')

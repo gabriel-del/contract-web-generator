@@ -25,16 +25,10 @@
     <app-error-msg [control]="form.get('apartamento')" label="Apartamento"></app-error-msg>
   </mat-form-field>
   
-    <mat-form-field >
-      <mat-label>Aluguel: </mat-label>
-      <span matPrefix>R$ &nbsp;</span>
-      <input matInput type="number" formControlName="aluguel" placeholder="Ex.: 1200">
-      <span matTextSuffix>,00</span>
-      <app-error-msg [control]="form.get('aluguel')" label="Valor do Aluguel"></app-error-msg>
-    </mat-form-field>
+
   
-  
-  
+    <app-field  name='aluguel' label="Aluguel" placeholder="1700" prefix="R$ &nbsp;" suffix=",00"></app-field>
+
   
   <mat-form-field>
     <mat-label>Data de Início</mat-label>
@@ -80,9 +74,9 @@
     </div><div>
       <!-- ###### DIVISÃO -->
       
-      <app-field tag="input" name='nome' label="Nome" placeholder="Gabriel Del Cesare Barros"></app-field>
-      <app-field tag="input" name='nacionalidade' label="Nacionalidade" placeholder="Brasileiro"></app-field>
-      <app-field tag="input" name='profissao' label="Profissão" placeholder="Autônomo"></app-field>
+      <app-field name='nome' label="Nome" placeholder="Gabriel Del Cesare Barros"></app-field>
+      <app-field name='nacionalidade' label="Nacionalidade" placeholder="Brasileiro"></app-field>
+      <app-field name='profissao' label="Profissão" placeholder="Autônomo"></app-field>
       
       
       <mat-form-field>
@@ -92,22 +86,21 @@
     </mat-select>
   </mat-form-field>
   
-  <app-field tag="input" name='cpf' label="cpf" placeholder="00000000000"></app-field>
-  <app-field tag="input" name='identidade' label="Identidade" placeholder="0000000"></app-field>
-  <app-field tag="input" name='celular' label="Celular" placeholder="81900000000" prefix="+55 &nbsp;"></app-field>
-
+  <app-field name='cpf' label="cpf" placeholder="00000000000"></app-field>
+  <app-field name='identidade' label="Identidade" placeholder="0000000"></app-field>
+  <app-field name='celular' label="Celular" placeholder="81900000000" prefix="+55 &nbsp;"></app-field>
   
-    <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
-    </div>
-      <!-- ###### DIVISÃO -->
-   <!-- <div [ngClass]="hasErrorStyle('hasEndereco')"> -->
+  
+  <mat-slide-toggle color="primary" formControlName="hasEndereco">Tem endereço?</mat-slide-toggle>
+</div>
+<!-- ###### DIVISÃO -->
+<!-- <div [ngClass]="hasErrorStyle('hasEndereco')"> -->
+  
   
   <div *ngIf="form.get('hasEndereco').value">
-    <mat-form-field>
-      <mat-label>Cep: </mat-label>
-      <input type="number" matInput formControlName="cep" placeholder="11111111">
-      <app-error-msg [control]="form.get('cep')" label="Cep"></app-error-msg>
-    </mat-form-field>
+    <app-field name='cep' label="Cep" placeholder="0000000" type="number"></app-field>
+ 
+
   
     <mat-form-field>
       <mat-label>Estado: </mat-label>
@@ -125,37 +118,12 @@
       <app-error-msg [control]="form.get('cidade')" label="Cidade"></app-error-msg>  
     </mat-form-field>
     
-      <mat-form-field >
-        <mat-label>Bairro: </mat-label>
-        <input type="text" matInput formControlName="bairro" placeholder="Ex.: Porto de Galinhas">
-        <app-error-msg [control]="form.get('bairro')" label="Bairro"></app-error-msg>
-      </mat-form-field>
+    <app-field  name='bairro' label="Bairro" placeholder="Porto de Galinhas"></app-field>
+    <app-field  name='rua' label="Rua" placeholder="Cavalo Marinho"></app-field>
+    <app-field  name='numero' label="Número" placeholder="00" type="number"></app-field>
+    <app-field  name='complemento' label="Complemento" placeholder="apt 01"></app-field>
+
     
-      <mat-form-field>
-        <mat-label>Rua: </mat-label>
-        <input type="text" matInput formControlName="rua" placeholder="Ex.: Cavalo Marinho">
-        <app-error-msg [control]="form.get('rua')" label="Rua"></app-error-msg>
-      </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Número: </mat-label>
-      <input type="number" matInput formControlName="numero" placeholder="00">
-      <app-error-msg [control]="form.get('numero')" label="Número"></app-error-msg>
-    </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Complemento: </mat-label>
-      <input type="text" matInput formControlName="complemento" placeholder="Ex.: apt 01">
-      <app-error-msg [control]="form.get('complemento')" label="Complemento"></app-error-msg>
-    </mat-form-field>
-  
-    
-  
-   
-    
-  
-  
-  
     
     <!-- <div [ngClass]="hasErrorStyle('items')" formArrayName="items"> Items: 
       <div   *ngFor="let item of formulario.get('items')['controls']; let i = index">
