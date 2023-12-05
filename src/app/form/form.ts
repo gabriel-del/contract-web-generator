@@ -52,37 +52,35 @@ export class Form implements OnInit {
   }
   resetar() {this.form.reset()}
 
-  defaultValues: ((string | number)[] | (string | boolean)[])[] = [
-    ['bloco', 'B'],
-    ['apartamento', 4],
-    ['aluguel', '1500'],
-    ['dataInicio', '2023-12-01T03:00:00.000Z'],
-    ['diaVencimento', 31],
-    ['objetos', '2 camas'],
-    ['seeDefaults', true],
-    ['allowAnimals', true],
-    ['hasParking', true],
-    ['hasBikerack', true],
-    ['limitePessoas', 5],
-    ['nome',  'Gabriel'],
-    ['nacionalidade', 'brasileiro'],
-    ['profissao', 'autônomo'],
-    ['estadoCivil', 'solteiro'],
-    ['cpf', '00000000000'],
-    ['identidade', '0000000'],
-    ['celular', '81900000000'],
-    ['hasEndereco', true],
-    ['cep', '51030300'],
-    ['estado', 'PE'],
-    ['cidade', 'Ipojuca'],
-    ['Bairro', 'Porto de Galinhas'],
-    ['rua', 'Cavalo Marinho'],
-    ['numero', 182],
-    ['complemento', 'apt 01']
-  ]
-  setDefaultValues(array) {
-  
-    this.defaultValues.filter((v: any[]) => array.includes(v[0])).forEach((v: any[]) => this.form.get(v[0]).setValue(v[1]))
+  setDefaultValues(array: string[]) {
+    let values: ((string | number)[] | (string | boolean)[])[] = [
+      ['bloco', 'B'],
+      ['apartamento', 4],
+      ['aluguel', '1500'],
+      ['dataInicio', '2023-12-01T03:00:00.000Z'],
+      ['diaVencimento', 31],
+      ['objetos', '2 camas'],
+      ['seeDefaults', true],
+      ['allowAnimals', true],
+      ['hasParking', true],
+      ['hasBikerack', true],
+      ['limitePessoas', 5],
+      ['nome',  'Gabriel'],
+      ['nacionalidade', 'brasileiro'],
+      ['profissao', 'autônomo'],
+      ['estadoCivil', 'solteiro'],
+      ['cpf', '00000000000'],
+      ['identidade', '0000000'],
+      ['celular', '81900000000'],
+      ['hasEndereco', true],
+      ['cep', '51030300'],
+      ['estado', 'PE'],
+      ['cidade', 'Ipojuca'],
+      ['Bairro', 'Porto de Galinhas'],
+      ['rua', 'Cavalo Marinho'],
+      ['numero', 182],
+      ['complemento', 'apt 01']
+    ]
+    values.filter((v: any[]) => array.includes(v[0])).forEach((v: any[]) => this.form.get(v[0]).setValue(v[1]))
   }
-
 }
