@@ -11,7 +11,6 @@ import {AppComponent} from './app.component'
 import {Form} from './form/form'
 import {DebugForm} from './components/debug-form'
 import {DebugF} from './components/debug-f'
-import {ShowError} from './components/showError'
 import {MaterialModule} from './material.module'
 import {Home} from './views/home'
 import {Footer} from './views/footer'
@@ -31,7 +30,6 @@ import {Field} from './components/field'
     Form,
     DebugForm,
     DebugF,
-    ShowError,
     Home,
     Footer,
     Header,
