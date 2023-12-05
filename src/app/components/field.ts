@@ -41,7 +41,7 @@ import {formValidations} from './validations'
   </ng-container>
 
     <mat-slide-toggle *ngIf="tag === 'slide'" color="primary" [formControlName]="name">{{label}}</mat-slide-toggle>
-
+    <mat-error *ngIf="errorMessage != null && tag === 'slide'" [innerHtml]="errorMessage"></mat-error>
       `,
   styles: `
   mat-form-field{ width: 100%;}
