@@ -9,7 +9,7 @@ export class formValidations {
   static getErrorMsg(validator: string, validatorName: string, validatorValue?: any) {
     const patternMsg = {
       '^[0-9]{11}$': '<strong>11 dígitos</strong> sequenciais',
-      '^[0-9]{7}$': '<strong>7 dígitos</strong> sequenciais',
+      '^[0-9]{7}.*$': '<strong>7 dígitos</strong> ao início',
       '^[0-9]{10,11}$': '<strong>11 dígitos</strong> sequenciais',
       '^[0-9]{3,4}$': '<strong>4 dígitos</strong> sequenciais',
       '^[A-zÀ-ú ]*$': '<strong>Apenas letras</strong>',

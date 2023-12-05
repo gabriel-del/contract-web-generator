@@ -40,7 +40,7 @@ export class FormService {
     profissao: [null, [Validators.pattern('[A-zÀ-ú ]*'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     estadoCivil: [null, []],
     cpf: [null, [Validators.pattern('[0-9]{11}'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
-    identidade: [null, [Validators.pattern('[0-9]{7}'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
+    identidade: [null, [Validators.pattern('[0-9]{7}.*'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     celular: [null, [Validators.pattern('[0-9]{10,11}'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     // ENDEREÇO
     hasEndereco: [null, []],
