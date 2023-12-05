@@ -56,6 +56,45 @@ export class Form implements OnInit {
     this.form.get('seeDefaults').setValue(true)
     this.form.get('hasEndereco').setValue(true)
   }
+  defaultValues = [
+    ['bloco', 'B'],
+    ['apartamento', '4'],
+    ['aluguel', '1500'],
+    ['dataInicio', '2023-12-01T03:00:00.000Z'],
+    ['diaVencimento', 31],
+    ['objetos', '2 camas'],
+    ['seeDefaults', true],
+    ['allowAnimals', true],
+    ['hasParking', true],
+    ['hasBikerack', true],
+    ['limitePessoas', 5],
+    ['nome',  'Gabriel'],
+    ['nacionalidade', 'brasileiro'],
+    ['profissao', 'autônomo'],
+    ['estadoCivil', 'solteiro'],
+    ['cpf', '00000000000'],
+    ['identidade', '0000000'],
+    ['celular', '81900000000'],
+    ['hasEndereco', true],
+    ['cep', '51030300'],
+    ['estado', 'PE'],
+    ['cidade', 'Ipojuca'],
+    ['Bairro', 'Porto de Galinhas'],
+    ['rua', 'Cavalo Marinho'],
+    ['numero', 182],
+    ['complemento', 'apt 01'],
+    ['', ],
+  ]
+  setDefaultValuesEndereco() {
+    // this.form.get('cep').setValue('51030300')
+    // this.form.get('cep').setValue('5559000')
+    this.form.get('estado').setValue('PE')
+    this.form.get('cidade').setValue('Ipojuca')
+    this.form.get('bairro').setValue('Porto de Galinhas')
+    this.form.get('rua').setValue('Cavalo Marinho')
+    this.form.get('numero').setValue(182)
+    this.form.get('complemento').setValue('apt 01')
+  }
   setDefaultValuesFull() {
     this.form.get('bloco').setValue('B')
     this.form.get('apartamento').setValue(4)
@@ -77,14 +116,5 @@ export class Form implements OnInit {
     this.form.get('celular').setValue('81900000000')
     this.form.get('hasEndereco').setValue(true)
   }
-  setDefaultValuesEndereco() {
-    // this.form.get('cep').setValue('51030300')
-    // this.form.get('cep').setValue('5559000')
-    this.form.get('estado').setValue('PE')
-    this.form.get('cidade').setValue('Ipojuca')
-    this.form.get('bairro').setValue('Porto de Galinhas')
-    this.form.get('rua').setValue('Cavalo Marinho')
-    this.form.get('numero').setValue(182)
-    this.form.get('complemento').setValue('apt 01')
-  }
+
 }
