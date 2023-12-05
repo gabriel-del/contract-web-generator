@@ -27,7 +27,7 @@ export class FormService {
     aluguel: [null, [Validators.required, Validators.pattern('^(?!\\s)(?!.*\\s$).*$'), Validators.pattern('[0-9]{3,4}')]],
     dataInicio: [null, [Validators.required]],
     diaVencimento: [null, [Validators.required]],
-    objetos: [null, []],
+    objetos: [null, [Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     seeDefaults: [null, []],
     allowAnimals: [null, [Validators.required]],
     hasParking: [null, [Validators.required]],
@@ -36,21 +36,21 @@ export class FormService {
     // cep: [null, []],
     // INQUILINO
     nome: [null, [Validators.required, Validators.minLength(3), Validators.pattern('[A-zÀ-ú ]*'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
-    nacionalidade: [null, [Validators.pattern('[A-zÀ-ú ]*')]],
-    profissao: [null, [Validators.pattern('[A-zÀ-ú ]*')]],
+    nacionalidade: [null, [Validators.pattern('[A-zÀ-ú ]*'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
+    profissao: [null, [Validators.pattern('[A-zÀ-ú ]*'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     estadoCivil: [null, []],
-    cpf: [null, [Validators.pattern('[0-9]{11}')]],
-    identidade: [null, [Validators.pattern('[0-9]{7}')]],
-    celular: [null, [Validators.pattern('[0-9]{10,11}')]],
+    cpf: [null, [Validators.pattern('[0-9]{11}'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
+    identidade: [null, [Validators.pattern('[0-9]{7}'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
+    celular: [null, [Validators.pattern('[0-9]{10,11}'), Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     // ENDEREÇO
     hasEndereco: [null, []],
     cep: [null, [formValidations.cepValidator]],
     estado: [null, []],
     cidade: [null, []],
-    bairro: [null, []],
-    rua: [null, []],
+    bairro: [null, [Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
+    rua: [null, [Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]],
     numero: [null, []],
-    complemento: [null, []]
+    complemento: [null, [Validators.pattern('^(?!\\s)(?!.*\\s$).*$')]]
     // items: this.buildItems(),
   })
   texRead() {
