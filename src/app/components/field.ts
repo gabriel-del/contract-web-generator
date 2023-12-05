@@ -16,6 +16,7 @@ import {formValidations} from './validations'
           {{arrayName ? element[arrayName] : element}}
         </mat-option>
       </mat-select>
+      <textarea *ngIf="tag === 'textarea'" matInput [placeholder]="placeholder" [formControlName]="name"></textarea>
 
 
       <span *ngIf="suffix" matTextSuffix>{{suffix}}</span>
@@ -44,7 +45,7 @@ export class Field implements OnInit {
   @Input() arrayName!: string
   @Input() type: string = 'text'
   control: any
-  pattern = /^(input|select)$/
+  pattern = /^(input|select|textarea)$/
   ngOnInit(): void {
     this.control = this.formService.form.get(this.name)
   }
