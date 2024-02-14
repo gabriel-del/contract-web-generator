@@ -51,7 +51,7 @@ export class Form implements OnInit {
     this.form.get('hasBikerack').setValue({A: true, B1: true, B2: true, C: false}[v])
     this.form.get('limitePessoas').setValue({A: 3, B1: 5, B2: 2, C: 5}[v])
   }
-  resetar() {this.form.reset()}
+  // reset() {this.form.reset()}
   setDefaultValues(array: string[]) {
     const values: ((string | number)[] | (string | boolean)[])[] = [
       ['bloco', 'B'],
