@@ -77,7 +77,7 @@ export class FormService {
     }
     const extenso = (v: any, g: string = 'm'): string => {
       v = Number(v)
-      if (isNaN(v)) return ''
+      if (Number.isNaN(v)) return ''
       if (v === 0) return 'zero'
       return (extensoApi(v, {number: {gender: g}}) as string).replace(/^mil\b/, 'hum mil')
     }
