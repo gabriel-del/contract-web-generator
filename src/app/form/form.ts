@@ -36,7 +36,7 @@ export class Form implements OnInit {
       map(estado => this.estados?.filter(({sigla}) => sigla === estado)),
       map(estado => estado[0].cidades)
     ).subscribe(cidades => this.cidades = cidades)
-    
+
     this.setDefaultValues(['diaVencimento'])
     // this.setDefaultValues(['bloco', 'apartamento', 'aluguel', 'dataInicio', 'diaVencimento', 'objetos', 'seeDefaults', 'allowAnimals', 'hasParking', 'hasBikerack', 'limitePessoas', 'nome', 'nacionalidade', 'profissao', 'estadoCivil', 'cpf', 'identidade', 'celular', 'hasEndereco' ])
     this.form.valueChanges.subscribe(_ => this.formService.texRead())
@@ -52,9 +52,8 @@ export class Form implements OnInit {
     this.form.get('limitePessoas').setValue({A: 3, B1: 5, B2: 2, C: 5}[v])
   }
   resetar() {this.form.reset()}
-
   setDefaultValues(array: string[]) {
-    let values: ((string | number)[] | (string | boolean)[])[] = [
+    const values: ((string | number)[] | (string | boolean)[])[] = [
       ['bloco', 'B'],
       ['apartamento', 4],
       ['aluguel', '1500'],
@@ -66,7 +65,7 @@ export class Form implements OnInit {
       ['hasParking', true],
       ['hasBikerack', true],
       ['limitePessoas', 5],
-      ['nome',  'Gabriel'],
+      ['nome', 'Gabriel'],
       ['nacionalidade', 'brasileiro'],
       ['profissao', 'autônomo'],
       ['estadoCivil', 'solteiro'],

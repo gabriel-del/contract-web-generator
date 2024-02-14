@@ -21,7 +21,7 @@ import {formValidations} from './validations'
       <span *ngIf="suffix" matTextSuffix>{{suffix}}</span>
       <mat-error *ngIf="errorMessage != null" [innerHtml]="errorMessage"></mat-error>
     </mat-form-field>
-    
+
     <mat-form-field *ngIf="tag === 'datepicker'">
       <mat-label>{{label}}: </mat-label>
       <input  matInput [matDatepicker]="picker" [formControlName]="name" >

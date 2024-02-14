@@ -17,10 +17,10 @@ export class Pdf implements OnInit {
   @Input({transform: booleanAttribute}) showPdf!: boolean
   @Input({transform: booleanAttribute}) savePdf!: boolean
   ngOnInit(): void {
-    this.formService.compiling$ .pipe(
-        // tap(v => console.log(v)),
-        skip(1)
-      ).subscribe(a => {if (a === false) this.updatePdf()})
+    this.formService.compiling$.pipe(
+      // tap(v => console.log(v)),
+      skip(1)
+    ).subscribe(a => {if (a === false) this.updatePdf()})
   }
   updatePdf() {
     if (this.formService.r?.status === 0) {
